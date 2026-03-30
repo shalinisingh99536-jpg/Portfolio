@@ -3,226 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shalini Singh | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Shalini Singh | Content Strategist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-white: #ffffff;
+            --bg: #ffffff;
             --pastel-blue: #f0f4f7;
             --pastel-peach: #fff9f6;
             --pastel-green: #f2f7f2;
             --pastel-purple: #f6f5fa;
-            --text-main: #1a1a1a;
-            --text-light: #666;
-            --accent: #222;
+            --text: #1a1a1a;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--bg-white); 
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            position: fixed; top: 0; width: 100%;
-            display: flex; justify-content: space-between;
-            padding: 30px 5%; z-index: 1000;
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(10px);
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 30px 5%; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }
         .logo { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.5rem; }
-        .nav-links a { 
-            text-decoration: none; color: var(--text-main); 
-            margin-left: 30px; font-size: 0.85rem; text-transform: uppercase; 
-            letter-spacing: 1px; font-weight: 500;
-        }
-
-        /* --- LANDING SECTION --- */
-        .landing {
-            height: 100vh;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            text-align: center; background: white;
-        }
-        .landing h1 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: clamp(3rem, 8vw, 6rem); 
-            font-weight: 400; margin-bottom: 10px;
-            letter-spacing: -2px;
-        }
-        .landing p { 
-            font-size: 1rem; color: var(--text-light); 
-            letter-spacing: 4px; text-transform: uppercase; 
-        }
-
-        /* --- ABOUT & STRATEGY (Bento Style) --- */
-        .section-title { 
-            padding: 100px 5% 40px; font-family: 'Playfair Display', serif; 
-            font-size: 2.5rem; text-align: center;
-        }
-
-        .bento-container {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-auto-rows: minmax(150px, auto);
-            gap: 20px; padding: 0 5% 100px;
-        }
-
-        .bento-item { 
-            border-radius: 30px; padding: 40px; 
-            display: flex; flex-direction: column; justify-content: center;
-        }
-
+        .nav-links a { text-decoration: none; color: var(--text); margin-left: 30px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .landing { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .landing h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 400; margin-bottom: 10px; letter-spacing: -2px; }
+        .landing p { font-size: 1rem; color: #666; letter-spacing: 4px; text-transform: uppercase; }
+        .bento-container { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; padding: 0 5% 100px; }
+        .bento-item { border-radius: 30px; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
         .about-main { grid-column: span 8; background: var(--pastel-blue); }
         .about-hr { grid-column: span 4; background: var(--pastel-green); }
         .metrics { grid-column: span 4; background: var(--pastel-purple); text-align: center;}
         .services { grid-column: span 8; background: var(--pastel-peach); }
-
         .bento-item h3 { font-family: 'Playfair Display', serif; margin-bottom: 15px; font-size: 1.8rem; }
-        .bento-item p { color: var(--text-light); line-height: 1.6; font-size: 1rem; }
-
-        /* --- WORK SECTION --- */
-        .work-grid { 
-            display: grid; grid-template-columns: repeat(2, 1fr); 
-            gap: 40px; padding: 0 5% 100px;
-        }
-        .work-card { 
-            background: #fff; border: 1px solid #eee; border-radius: 20px; 
-            overflow: hidden; transition: 0.4s ease;
-        }
-        .work-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .work-img { height: 350px; background: #f9f9f9; display: flex; align-items: center; justify-content: center; color: #ccc;}
-        .work-info { padding: 25px; }
-        .work-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 10px; display: block;}
-
-        /* --- RESUME SECTION --- */
-        .resume-section { background: #fafafa; padding: 100px 5%; }
-        .resume-table { width: 100%; max-width: 900px; margin: 0 auto; border-collapse: collapse; }
-        .resume-row { border-bottom: 1px solid #ddd; }
-        .resume-row td { padding: 30px 0; }
-        .res-year { width: 20%; color: var(--text-light); font-size: 0.9rem; }
-        .res-title { font-weight: 500; font-size: 1.1rem; }
-        .res-org { color: var(--text-light); font-style: italic; }
-
-        footer { padding: 100px 5%; text-align: center; background: var(--pastel-blue); }
-        .contact-link { 
-            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 4rem); 
-            text-decoration: none; color: var(--text-main); display: block; margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .about-main, .about-hr, .metrics, .services { grid-column: span 12; }
-            .work-grid { grid-template-columns: 1fr; }
-            .landing h1 { font-size: 3.5rem; }
-        }
+        .section-title { padding: 80px 5% 40px; font-family: 'Playfair Display', serif; font-size: 2.5rem; text-align: center; }
+        footer { padding: 100px 5%; text-align: center; background: var(--pastel-blue); margin-top: 50px; }
+        .contact-link { font-family: 'Playfair Display', serif; font-size: 2.5rem; text-decoration: none; color: var(--text); display: block; margin-top: 20px; }
     </style>
 </head>
 <body>
-
     <nav>
         <div class="logo">S.S</div>
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#work">Work</a>
-            <a href="#resume">Resume</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
-
-    <!-- LANDING -->
     <section class="landing">
         <p>Portfolio 2024</p>
         <h1>Shalini Singh</h1>
         <p>Strategist • Storyteller • Professional</p>
     </section>
-
-    <!-- ABOUT / BENTO -->
     <h2 id="about" class="section-title">The Strategy</h2>
     <div class="bento-container">
         <div class="bento-item about-main">
             <h3>Human-Centric Content</h3>
-            <p>I don't just create content; I architect narratives. My approach combines the structural discipline of corporate strategy with the fluid empathy of creative storytelling.</p>
+            <p>I architect narratives that combine corporate discipline with creative empathy.</p>
         </div>
         <div class="bento-item about-hr">
             <h3>The HR Edge</h3>
-            <p>With a professional background in Human Resources, I understand <b>organizational psychology</b>. I know what makes people trust a brand and what makes them stay.</p>
+            <p>My background in HR gives me a unique understanding of organizational psychology.</p>
         </div>
         <div class="bento-item metrics">
-            <h3 style="font-size: 3rem; margin:0;">10+</h3>
+            <h3 style="font-size: 3rem;">10+</h3>
             <p>Brands Partnered</p>
-            <h3 style="font-size: 3rem; margin:15px 0 0;">50+</h3>
-            <p>Scripts Crafted</p>
         </div>
         <div class="bento-item services">
-            <h3>What I Bring to the Table</h3>
-            <p>• Brand Narrative Development<br>• Scriptwriting & Storyboarding<br>• Behavioral Research-Driven Content<br>• Professional Stakeholder Management</p>
+            <h3>Expertise</h3>
+            <p>• Narrative Strategy • Scriptwriting • Behavioral Research</p>
         </div>
     </div>
-
-    <!-- WORK -->
-    <h2 id="work" class="section-title">Selected Projects</h2>
-    <div class="work-grid">
-        <div class="work-card">
-            <div class="work-img">Thumbnail: Mitti Café Campaign</div>
-            <div class="work-info">
-                <span class="work-tag">Freelance / Scripting / Production</span>
-                <h3>Mitti Café Impact Reel</h3>
-            </div>
-        </div>
-        <div class="work-card">
-            <div class="work-img">Thumbnail: Sports Campaign</div>
-            <div class="work-info">
-                <span class="work-tag">Freelance / Creative Direction</span>
-                <h3>Indoor Cricket & Turf Branding</h3>
-            </div>
-        </div>
-        <div class="work-card">
-            <div class="work-img">Thumbnail: University Project</div>
-            <div class="work-info">
-                <span class="work-tag">Academic / Research</span>
-                <h3>Conceptual Brand Strategy: Case Study</h3>
-            </div>
-        </div>
-        <div class="work-card">
-            <div class="work-img">Thumbnail: Social Media</div>
-            <div class="work-info">
-                <span class="work-tag">Personal / Experimental</span>
-                <h3>The "Stories Everywhere" Series</h3>
-            </div>
-        </div>
-    </div>
-
-    <!-- RESUME -->
-    <section id="resume" class="resume-section">
-        <h2 class="section-title">The Journey</h2>
-        <table class="resume-table">
-            <tr class="resume-row">
-                <td class="res-year">2023 — Present</td>
-                <td class="res-title">Content Strategist & Creative Freelancer <br><span class="res-org">Independent</span></td>
-            </tr>
-            <tr class="resume-row">
-                <td class="res-year">2021 — 2023</td>
-                <td class="res-title">Human Resources Associate <br><span class="res-org">Corporate Experience (Building the foundation of professional strategy)</span></td>
-            </tr>
-            <tr class="resume-row">
-                <td class="res-year">2018 — 2021</td>
-                <td class="res-title">Bachelor of Commerce (B.Com) <br><span class="res-org">University Education</span></td>
-            </tr>
-        </table>
-    </section>
-
-    <!-- CONTACT -->
     <footer id="contact">
-        <p>Have a story that needs telling?</p>
-        <a href="mailto:your@email.com" class="contact-link">Let's Talk.</a>
-        <div style="margin-top: 50px;">
-            <a href="#" style="color: #666; margin: 0 10px;">LinkedIn</a>
-            <a href="#" style="color: #666; margin: 0 10px;">Instagram</a>
-        </div>
+        <p>Let's build a story together.</p>
+        <a href="mailto:your-email@example.com" class="contact-link">Get in Touch</a>
     </footer>
-
 </body>
 </html>
