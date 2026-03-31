@@ -175,98 +175,100 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   #orbitAnchor{display:none;}
 }
 
+
+
+
 /* ═══════════ BRAND SCROLLER ═══════════ */
-
-/* Wave connector between hero and brands */
-.wave-connector{
-  background:#ffffff;
-  line-height:0;
-  overflow:hidden;
-}
-.wave-connector svg{
-  display:block;
-  width:100%;
-  height:80px;
-}
-
 #brands{
-  background:#FAF7F2;
-  padding:80px 0 96px;
+  background:var(--cream);
+  padding:72px 0 80px;
   overflow:hidden;
-  border-top:none;
 }
 
+/* Header */
 .brands-header{
   text-align:center;
   margin-bottom:52px;
   padding:0 40px;
 }
-
-/* Consistent heading size — matches rest of site */
-.brands-label{
+.brands-count{
   font-family:'Syne',sans-serif;
-  font-size:15px;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink);
-  display:inline-flex;align-items:center;gap:20px;
+  font-size:11px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--blush-deep);
+  margin-bottom:8px;
 }
-.brands-label::before,
-.brands-label::after{
-  content:'';
-  width:52px;height:1.5px;
-  background:var(--blush-deep);
-  display:inline-block;
-  opacity:.5;
+.brands-heading{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(22px,2.5vw,32px);
+  font-weight:800;
+  color:var(--ink);
+  letter-spacing:-.02em;
+  line-height:1.1;
 }
 
 /* Scroll rows */
 .scroll-row{
   overflow:hidden;
-  padding:14px 0;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%);
+  padding:12px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);
 }
-.scroll-row + .scroll-row{ margin-top:32px; }
-
+.scroll-row+.scroll-row{
+  margin-top:24px;
+}
 .scroll-track{
   display:flex;
-  gap:24px;
-  width:max-content;
   align-items:center;
+  gap:0;
+  width:max-content;
 }
-.track-left { animation:scrollLeft 30s linear infinite; }
-.track-right{ animation:scrollRight 36s linear infinite; }
-
+.track-left{ animation:scrollLeft 35s linear infinite; }
+.track-right{ animation:scrollRight 40s linear infinite; }
 .scroll-row:hover .scroll-track{ animation-play-state:paused; }
 
-@keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-@keyframes scrollRight{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+@keyframes scrollLeft{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+@keyframes scrollRight{
+  from{transform:translateX(-50%);}
+  to{transform:translateX(0);}
+}
 
-/* ALL logos — white card, uniform size, original colours */
+/* Individual logo — uniform size, no boxes, no cards */
 .logo-item{
   flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  width:160px;height:72px;
-  background:#ffffff;
-  border-radius:12px;
-  padding:10px 14px;
-  box-shadow:0 2px 12px rgba(28,24,38,.07);
-  transition:transform .3s ease,box-shadow .3s ease;
-  overflow:hidden;
-  isolation:isolate;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:180px;
+  height:80px;
+  padding:0 16px;
+  transition:opacity .3s ease, transform .3s ease;
+  opacity:.75;
 }
 .logo-item:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 28px rgba(28,24,38,.12);
+  opacity:1;
+  transform:scale(1.05);
 }
 .logo-item img{
-  width:100%;height:100%;
+  max-width:148px;
+  max-height:52px;
+  width:auto;
+  height:auto;
   object-fit:contain;
   object-position:center;
-  mix-blend-mode:multiply;
-  transition:transform .3s ease;
+  display:block;
 }
-.logo-item:hover img{transform:scale(1.05);}
+
+/* Thin separator line between rows */
+.scroll-separator{
+  width:80px;height:1px;
+  background:var(--blush);
+  margin:0 auto;
+  opacity:.4;
+}
 
 </style>
 </head>
@@ -437,71 +439,61 @@ if(video){
 }
 </script>
 
-<!-- Wave connector: hero → brands -->
-<div class="wave-connector">
-  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,0 C480,80 960,0 1440,70 L1440,0 L0,0 Z" fill="#FAF7F2"/>
-  </svg>
-</div>
-
-<!-- ═══════════════════════════════════
-     BRAND LOGO SCROLLER
-═══════════════════════════════════ -->
+<!-- Brand Scroller -->
 <section id="brands">
 
   <div class="brands-header">
-    <p class="brands-label">Brands that trusted the work.</p>
+    <p class="brands-count">20+ brands</p>
+    <h2 class="brands-heading">Brands that trusted the work.</h2>
   </div>
 
-  <!-- ROW 1: scrolls left -->
-  <div class="scroll-row" id="row1">
+  <!-- ROW 1: scrolls left — logos 1 to 9 -->
+  <div class="scroll-row">
     <div class="scroll-track track-left">
-      <div class="logo-item"><img src="assets/hightable.png" alt="Hightable"/></div>
-      <div class="logo-item"><img src="assets/sprentzo.png" alt="Sprentzo"/></div>
-      <div class="logo-item"><img src="assets/mitti-cafe.png" alt="Mitti Cafe"/></div>
-      <div class="logo-item"><img src="assets/metashot.png" alt="Metashot"/></div>
-      <div class="logo-item"><img src="assets/oben-electric.png" alt="Oben Electric"/></div>
-      <div class="logo-item"><img src="assets/stable-money-dark.png" alt="Stable Money"/></div>
-      <div class="logo-item"><img src="assets/hamdard-masale.png" alt="Hamdard Masale"/></div>
-      <div class="logo-item"><img src="assets/khichdi-bar.png" alt="Khichdi Bar"/></div>
-      <div class="logo-item"><img src="assets/swish.png" alt="Swish"/></div>
-      <div class="logo-item"><img src="assets/everyday-friday.png" alt="Everyday Friday"/></div>
+      <div class="logo-item"><img src="1.png"  alt="Brand 1"/></div>
+      <div class="logo-item"><img src="2.png"  alt="Brand 2"/></div>
+      <div class="logo-item"><img src="3.png"  alt="Brand 3"/></div>
+      <div class="logo-item"><img src="4.png"  alt="Brand 4"/></div>
+      <div class="logo-item"><img src="5.png"  alt="Brand 5"/></div>
+      <div class="logo-item"><img src="6.png"  alt="Brand 6"/></div>
+      <div class="logo-item"><img src="7.png"  alt="Brand 7"/></div>
+      <div class="logo-item"><img src="8.png"  alt="Brand 8"/></div>
+      <div class="logo-item"><img src="9.png"  alt="Brand 9"/></div>
       <!-- Duplicate for seamless loop -->
-      <div class="logo-item"><img src="assets/hightable.png" alt="Hightable"/></div>
-      <div class="logo-item"><img src="assets/sprentzo.png" alt="Sprentzo"/></div>
-      <div class="logo-item"><img src="assets/mitti-cafe.png" alt="Mitti Cafe"/></div>
-      <div class="logo-item"><img src="assets/metashot.png" alt="Metashot"/></div>
-      <div class="logo-item"><img src="assets/oben-electric.png" alt="Oben Electric"/></div>
-      <div class="logo-item"><img src="assets/stable-money-dark.png" alt="Stable Money"/></div>
-      <div class="logo-item"><img src="assets/hamdard-masale.png" alt="Hamdard Masale"/></div>
-      <div class="logo-item"><img src="assets/khichdi-bar.png" alt="Khichdi Bar"/></div>
-      <div class="logo-item"><img src="assets/swish.png" alt="Swish"/></div>
-      <div class="logo-item"><img src="assets/everyday-friday.png" alt="Everyday Friday"/></div>
+      <div class="logo-item"><img src="1.png"  alt="Brand 1"/></div>
+      <div class="logo-item"><img src="2.png"  alt="Brand 2"/></div>
+      <div class="logo-item"><img src="3.png"  alt="Brand 3"/></div>
+      <div class="logo-item"><img src="4.png"  alt="Brand 4"/></div>
+      <div class="logo-item"><img src="5.png"  alt="Brand 5"/></div>
+      <div class="logo-item"><img src="6.png"  alt="Brand 6"/></div>
+      <div class="logo-item"><img src="7.png"  alt="Brand 7"/></div>
+      <div class="logo-item"><img src="8.png"  alt="Brand 8"/></div>
+      <div class="logo-item"><img src="9.png"  alt="Brand 9"/></div>
     </div>
   </div>
 
-  <!-- ROW 2: scrolls right -->
-  <div class="scroll-row" id="row2">
+  <!-- ROW 2: scrolls right — logos 10 to 18 -->
+  <div class="scroll-row">
     <div class="scroll-track track-right">
-      <div class="logo-item"><img src="assets/indian-silicon-valley.png" alt="Indian Silicon Valley"/></div>
-      <div class="logo-item"><img src="assets/meesho.png" alt="Meesho"/></div>
-      <div class="logo-item"><img src="assets/pronto.png" alt="Pronto"/></div>
-      <div class="logo-item"><img src="assets/jito.png" alt="JITO"/></div>
-      <div class="logo-item"><img src="assets/calmosis.png" alt="Calmosis"/></div>
-      <div class="logo-item"><img src="assets/finyog.png" alt="FinYog"/></div>
-      <div class="logo-item"><img src="assets/aroma-care.png" alt="Aroma Care"/></div>
-      <div class="logo-item"><img src="assets/personal-touch.png" alt="Personal Touch Skincare"/></div>
-      <div class="logo-item"><img src="assets/hightable.png" alt="Hightable"/></div>
+      <div class="logo-item"><img src="10.png" alt="Brand 10"/></div>
+      <div class="logo-item"><img src="11.png" alt="Brand 11"/></div>
+      <div class="logo-item"><img src="12.png" alt="Brand 12"/></div>
+      <div class="logo-item"><img src="13.png" alt="Brand 13"/></div>
+      <div class="logo-item"><img src="14.png" alt="Brand 14"/></div>
+      <div class="logo-item"><img src="15.png" alt="Brand 15"/></div>
+      <div class="logo-item"><img src="16.png" alt="Brand 16"/></div>
+      <div class="logo-item"><img src="17.png" alt="Brand 17"/></div>
+      <div class="logo-item"><img src="18.png" alt="Brand 18"/></div>
       <!-- Duplicate for seamless loop -->
-      <div class="logo-item"><img src="assets/indian-silicon-valley.png" alt="Indian Silicon Valley"/></div>
-      <div class="logo-item"><img src="assets/meesho.png" alt="Meesho"/></div>
-      <div class="logo-item"><img src="assets/pronto.png" alt="Pronto"/></div>
-      <div class="logo-item"><img src="assets/jito.png" alt="JITO"/></div>
-      <div class="logo-item"><img src="assets/calmosis.png" alt="Calmosis"/></div>
-      <div class="logo-item"><img src="assets/finyog.png" alt="FinYog"/></div>
-      <div class="logo-item"><img src="assets/aroma-care.png" alt="Aroma Care"/></div>
-      <div class="logo-item"><img src="assets/personal-touch.png" alt="Personal Touch Skincare"/></div>
-      <div class="logo-item"><img src="assets/hightable.png" alt="Hightable"/></div>
+      <div class="logo-item"><img src="10.png" alt="Brand 10"/></div>
+      <div class="logo-item"><img src="11.png" alt="Brand 11"/></div>
+      <div class="logo-item"><img src="12.png" alt="Brand 12"/></div>
+      <div class="logo-item"><img src="13.png" alt="Brand 13"/></div>
+      <div class="logo-item"><img src="14.png" alt="Brand 14"/></div>
+      <div class="logo-item"><img src="15.png" alt="Brand 15"/></div>
+      <div class="logo-item"><img src="16.png" alt="Brand 16"/></div>
+      <div class="logo-item"><img src="17.png" alt="Brand 17"/></div>
+      <div class="logo-item"><img src="18.png" alt="Brand 18"/></div>
     </div>
   </div>
 
