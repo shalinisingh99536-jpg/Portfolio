@@ -41,86 +41,29 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 /* HERO */
 #hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative;overflow:hidden;}
 
-.stripe-bg{position:absolute;top:0;left:0;width:60%;height:100%;z-index:0;background-color:var(--cream);background-image:repeating-linear-gradient(90deg,transparent 0px,transparent 32px,rgba(222,205,195,.2) 32px,rgba(222,205,195,.2) 48px);}
+/* Left: cream + vertical stripes */
+.stripe-bg{position:absolute;top:0;left:0;width:55%;height:100%;z-index:0;background-color:var(--cream);background-image:repeating-linear-gradient(90deg,transparent 0px,transparent 32px,rgba(222,205,195,.2) 32px,rgba(222,205,195,.2) 48px);}
+
+/* Right: clean white */
 .white-right{position:absolute;top:0;right:0;width:45%;height:100%;z-index:0;background:#ffffff;}
 
-/* LEFT */
+/* LEFT TEXT */
 .hero-left{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:110px 24px 80px 80px;}
 
-/* Role badge — dot only, NO dash */
-.role-badge{
-  font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--blush-deep);margin-bottom:32px;
-  display:flex;align-items:center;gap:8px;width:fit-content;
-  opacity:0;animation:fadeUp .65s ease .1s forwards;
-}
-.badge-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--blush-deep);
-  flex-shrink:0;
-  animation:pipPulse 2s ease-in-out infinite;
-}
+.role-badge{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blush-deep);margin-bottom:32px;display:flex;align-items:center;gap:8px;width:fit-content;opacity:0;animation:fadeUp .65s ease .1s forwards;}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--blush-deep);flex-shrink:0;animation:pipPulse 2s ease-in-out infinite;}
 
-/*
-  NAME — BOTH LINES USE SYNE ONLY.
-  No mixed fonts. No serif in the heading.
-  Line 1: Syne 700 (slightly lighter = natural hierarchy)
-  Line 2: Syne 800 bold blush (heavier = emphasis)
-  Same font-size so they match perfectly.
-*/
-.hero-h1{
-  margin-bottom:28px;
-  opacity:0;animation:fadeUp .75s ease .25s forwards;
-}
-.h1-line1{
-  font-family:'Syne',sans-serif;
-  font-weight:700;
-  font-size:clamp(60px,7.5vw,106px);
-  color:var(--ink);
-  display:block;
-  line-height:.92;
-  letter-spacing:-.03em;
-}
-.h1-line2{
-  font-family:'Syne',sans-serif;
-  font-weight:800;
-  font-size:clamp(60px,7.5vw,106px);
-  color:var(--blush-deep);
-  display:block;
-  line-height:.95;
-  letter-spacing:-.035em;
-  margin-top:4px;
-  position:relative;
-  display:inline-block;
-}
-/* Yellow underline — thin, sits under "Singh." */
-.h1-line2::before{
-  content:'';
-  position:absolute;
-  bottom:6px;left:-4px;right:-4px;
-  height:11px;
-  background:var(--yellow);
-  z-index:-1;border-radius:3px;
-  transform:scaleX(0) skewX(-4deg);
-  transform-origin:left;
-  animation:highlightIn .9s ease 1.1s forwards;
-}
+/* NAME — Syne only, both lines */
+.hero-h1{margin-bottom:28px;opacity:0;animation:fadeUp .75s ease .25s forwards;}
+.h1-line1{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(60px,7.5vw,106px);color:var(--ink);display:block;line-height:.92;letter-spacing:-.03em;}
+.h1-line2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(60px,7.5vw,106px);color:var(--blush-deep);display:inline-block;line-height:.95;letter-spacing:-.035em;margin-top:4px;position:relative;}
+.h1-line2::before{content:'';position:absolute;bottom:6px;left:-4px;right:-4px;height:11px;background:var(--yellow);z-index:-1;border-radius:3px;transform:scaleX(0) skewX(-4deg);transform-origin:left;animation:highlightIn .9s ease 1.1s forwards;}
 @keyframes highlightIn{to{transform:scaleX(1) skewX(-4deg);}}
 
-/* Tagline — Instrument Serif italic used HERE, not in the name */
-.hero-tagline{
-  font-family:'Instrument Serif',serif;font-style:italic;
-  font-size:clamp(17px,1.6vw,22px);
-  color:var(--ink-soft);line-height:1.5;
-  margin-bottom:22px;
-  opacity:0;animation:fadeUp .75s ease .4s forwards;
-}
+/* Tagline — Instrument Serif italic ONLY here */
+.hero-tagline{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(17px,1.6vw,22px);color:var(--ink-soft);line-height:1.5;margin-bottom:22px;opacity:0;animation:fadeUp .75s ease .4s forwards;}
 
-.hero-desc{
-  font-size:16px;line-height:1.88;font-weight:400;
-  color:var(--ink-soft);max-width:460px;margin-bottom:40px;
-  opacity:0;animation:fadeUp .75s ease .52s forwards;
-}
+.hero-desc{font-size:16px;line-height:1.88;font-weight:400;color:var(--ink-soft);max-width:460px;margin-bottom:40px;opacity:0;animation:fadeUp .75s ease .52s forwards;}
 .hero-desc strong{color:var(--ink);font-weight:700;}
 
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .75s ease .66s forwards;}
@@ -141,6 +84,75 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 .char-video{display:block;width:auto;height:100%;max-height:100vh;object-fit:contain;object-position:bottom center;mix-blend-mode:multiply;opacity:0;animation:charEntrance 1s ease .5s forwards;will-change:transform,opacity;margin-left:40px;}
 @keyframes charEntrance{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 
+/* ── ORBIT WORDS ──
+   Anchored between text and character.
+   left:63% puts them in the gap, close to character's hand.
+   All start at scale(0), opacity 0 at center point.
+   On .pop → burst outward with springy animation.
+   On .fadeout → collapse back to center.
+*/
+#orbitAnchor{
+  position:absolute;
+  /* Vertically centered, horizontally in the gap near character */
+  top:50%;
+  left:63%;
+  transform:translate(-50%,-50%);
+  z-index:10;
+  pointer-events:none;
+  width:0;height:0;
+}
+.orb-word{
+  position:absolute;
+  font-family:'Syne',sans-serif;
+  font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 14px;border-radius:30px;
+  white-space:nowrap;
+  box-shadow:2px 2px 0 rgba(0,0,0,.08);
+  /* Default: invisible, collapsed at anchor center */
+  opacity:0;
+  transform:translate(-50%,-50%) scale(0);
+  /* No transition by default */
+  transition:none;
+  will-change:transform,opacity;
+}
+
+/* POP state — burst outward with springy bounce */
+.orb-word.pop{
+  opacity:1;
+  transition:
+    opacity .3s ease,
+    transform .55s cubic-bezier(.34,1.56,.64,1);
+}
+.ow1.pop{ transform:translate(calc(-50% - 20px), calc(-50% - 95px)) scale(1); } /* top-left */
+.ow2.pop{ transform:translate(calc(-50% + 110px), calc(-50% - 30px)) scale(1); } /* right */
+.ow3.pop{ transform:translate(calc(-50% + 20px), calc(-50% + 95px)) scale(1); } /* bottom-right */
+.ow4.pop{ transform:translate(calc(-50% - 120px), calc(-50% + 20px)) scale(1); } /* left */
+
+/* FLOAT state — gentle bobbing after pop */
+.orb-word.pop.float{ animation:orbitFloat 3s ease-in-out infinite; }
+.ow2.pop.float{ animation-delay:.1s; }
+.ow3.pop.float{ animation-delay:.2s; }
+.ow4.pop.float{ animation-delay:.3s; }
+@keyframes orbitFloat{
+  0%,100%{ margin-top:0; }
+  50%{ margin-top:-5px; }
+}
+
+/* FADEOUT state — collapse back to center */
+.orb-word.fadeout{
+  opacity:0 !important;
+  transform:translate(-50%,-50%) scale(0) !important;
+  transition:opacity .45s ease, transform .45s ease !important;
+  animation:none !important;
+}
+
+/* Colours */
+.ow1{ background:var(--yellow);color:#5a3800; }
+.ow2{ background:var(--blush);color:#7a1535; }
+.ow3{ background:var(--sky);color:#0e4a66; }
+.ow4{ background:var(--sage);color:#0a4a28; }
+
 /* ANIMS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 
@@ -152,6 +164,7 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   .hero-left{padding:96px 28px 40px;text-align:center;}
   .role-badge,.hero-btns,.scroll-hint{justify-content:center;}
   .hero-desc{margin-inline:auto;}
+  #orbitAnchor{left:50%;top:35%;}
   .hero-right{padding:0 28px 56px;justify-content:center;min-height:320px;}
   .char-video{height:320px;max-height:320px;margin-left:0;}
 }
@@ -159,80 +172,7 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   .h1-line1,.h1-line2{font-size:clamp(48px,11vw,72px);}
   nav{padding:16px 20px;}.nav-links{gap:14px;}
   .nav-links a{font-size:11px;letter-spacing:.08em;}
-}
-
-
-/* ── ORBIT WORDS — pop in when character knocks ── */
-.orbit-words{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:0;height:0;
-  pointer-events:none;
-  z-index:10;
-}
-.orb-word{
-  position:absolute;
-  font-family:'Syne',sans-serif;
-  font-size:10px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;
-  padding:6px 13px;border-radius:30px;
-  white-space:nowrap;
-  box-shadow:2px 2px 0 rgba(0,0,0,.08);
-  /* Start invisible and scaled to 0 at center */
-  opacity:0;
-  transform:translate(-50%,-50%) scale(0);
-  transition:none;
-}
-/* When .pop class added — spring out to position */
-.orb-word.pop{
-  opacity:1;
-  transition:
-    opacity .35s ease,
-    transform .5s cubic-bezier(.34,1.56,.64,1);
-}
-/* Each word pops to a different position */
-.ow1{
-  background:var(--yellow);color:#5a3800;
-  /* Top */
-  --tx:-50%;--ty:calc(-50% - 110px);
-}
-.ow2{
-  background:var(--blush);color:#7a1535;
-  /* Right */
-  --tx:calc(-50% + 130px);--ty:-50%;
-}
-.ow3{
-  background:var(--sky);color:#0e4a66;
-  /* Bottom */
-  --tx:-50%;--ty:calc(-50% + 110px);
-}
-.ow4{
-  background:var(--sage);color:#0a4a28;
-  /* Left */
-  --tx:calc(-50% - 140px);--ty:-50%;
-}
-.orb-word.pop{
-  transform:translate(var(--tx),var(--ty)) scale(1);
-}
-
-/* After pop — gentle float */
-.orb-word.float{
-  animation:gentleFloat 3s ease-in-out infinite;
-}
-.ow2.float{animation-delay:.15s;}
-.ow3.float{animation-delay:.3s;}
-.ow4.float{animation-delay:.45s;}
-@keyframes gentleFloat{
-  0%,100%{margin-top:0;}
-  50%{margin-top:-6px;}
-}
-
-/* Fade out before next loop */
-.orb-word.fadeout{
-  opacity:0;
-  transform:translate(-50%,-50%) scale(0);
-  transition:opacity .4s ease, transform .4s ease;
+  #orbitAnchor{display:none;}
 }
 </style>
 </head>
@@ -259,9 +199,8 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   <div class="stripe-bg"></div>
   <div class="white-right"></div>
 
+  <!-- LEFT -->
   <div class="hero-left">
-
-    <!-- Dot only, no dash -->
     <p class="role-badge">
       <span class="badge-dot"></span>
       Content Marketer &amp; Creator
@@ -292,27 +231,25 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
       <div class="scroll-line"></div>
       <span class="scroll-label">Scroll to explore</span>
     </div>
-
   </div>
 
-
-  <!-- ORBIT WORDS — absolutely positioned in the gap, pop at 0.3s -->
-  <div id="orbitAnchor" style="position:absolute;top:50%;left:72%;transform:translate(-50%,-50%);z-index:10;pointer-events:none;">
-    <div class="orbit-words" id="orbitWords">
-      <span class="orb-word ow1">&#127912; Paints at 2am</span>
-      <span class="orb-word ow2">&#129363; 4 waffles. No regrets.</span>
-      <span class="orb-word ow3">&#127916; Scripts before chai</span>
-      <span class="orb-word ow4">&#128293; 10+ Brands</span>
-    </div>
+  <!-- ORBIT WORDS — burst out from gap when character knocks at 0.3s -->
+  <div id="orbitAnchor">
+    <span class="orb-word ow1">&#129363; Can eat 4 waffles in one go</span>
+    <span class="orb-word ow2">&#127908; Sings like no one&#39;s listening</span>
+    <span class="orb-word ow3">&#127916; Most alive when camera&#39;s on</span>
+    <span class="orb-word ow4">&#128514; Certified meme paglu</span>
   </div>
+
+  <!-- RIGHT: Character video -->
   <div class="hero-right">
     <video
       class="char-video"
+      id="charVideo"
       src="assets/character.mp4"
       autoplay loop muted playsinline
     ></video>
   </div>
-
 </section>
 
 <script>
@@ -331,58 +268,71 @@ window.addEventListener("scroll",()=>{
   document.getElementById("mainNav").classList.toggle("scrolled",window.scrollY>24);
 },{passive:true});
 
-/* ORBIT POP — synced to character knock at 0.3s */
-const video = document.querySelector(".char-video");
+/* ── ORBIT TIMING ──
+   Video loops. Character knocks at 0.3s.
+   timeupdate fires ~4x/sec.
+   
+   SEQUENCE:
+   1. At 0.3s → words POP outward (scale 0→1, springy)
+   2. At 0.6s → words start FLOATING gently
+   3. At 3.2s → words FADE back to center (scale 1→0)
+   4. At next loop (t<0.1) → reset flag, ready to fire again
+*/
+const video = document.getElementById("charVideo");
 const words = document.querySelectorAll(".orb-word");
 let popped = false;
-let floatTimer, fadeTimer;
+let floatTimer = null;
+let fadeTimer  = null;
 
-function popOrbits(){
-  // Clear any previous state
+function resetWords(){
   words.forEach(w=>{
     w.classList.remove("pop","float","fadeout");
+    // Force reflow so transition:none takes effect immediately
+    void w.offsetWidth;
   });
+}
 
-  // Stagger each word popping out
+function popOrbits(){
+  resetWords();
+
+  // Stagger each word bursting out — 70ms between each
   words.forEach((w,i)=>{
-    setTimeout(()=>{
-      w.classList.add("pop");
-    }, i * 80); // 80ms between each word
+    setTimeout(()=>{ w.classList.add("pop"); }, i * 70);
   });
 
   // Start floating after all have popped
   floatTimer = setTimeout(()=>{
-    words.forEach(w=> w.classList.add("float"));
-  }, 600);
+    words.forEach(w=>{ w.classList.add("float"); });
+  }, 550);
 
-  // Fade out after 3 seconds, ready for next loop
+  // Fade back to center after 3.2s
   fadeTimer = setTimeout(()=>{
     words.forEach(w=>{
-      w.classList.remove("pop","float");
+      w.classList.remove("float");
       w.classList.add("fadeout");
     });
-    // Reset for next loop
+    // Clean up classes after fadeout completes (500ms)
     setTimeout(()=>{
-      words.forEach(w=> w.classList.remove("fadeout"));
+      words.forEach(w=>{ w.classList.remove("pop","fadeout"); });
       popped = false;
     }, 500);
   }, 3200);
 }
 
 if(video){
-  video.addEventListener("timeupdate", ()=>{
+  video.addEventListener("timeupdate",()=>{
     const t = video.currentTime;
-    // Trigger at 0.3s (character knocks), reset after 0.5s so it fires every loop
+
+    // Trigger window: 0.3s–0.5s
     if(t >= 0.3 && t < 0.5 && !popped){
       popped = true;
       clearTimeout(floatTimer);
       clearTimeout(fadeTimer);
       popOrbits();
     }
-    // Reset flag when video loops back to start
-    if(t < 0.1){
-      popped = false;
-    }
+
+    // Reset when video loops back to start
+    if(t < 0.1){ popped = false; }
   });
 }
 </script>
