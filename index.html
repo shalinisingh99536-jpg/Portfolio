@@ -176,84 +176,91 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 }
 
 /* ═══════════ BRAND SCROLLER ═══════════ */
-#brands{
-  background:#E4F2EA;
-  padding:72px 0 64px;
+
+/* Wave connector between hero and brands */
+.wave-connector{
+  background:#ffffff;
+  line-height:0;
   overflow:hidden;
 }
+.wave-connector svg{
+  display:block;
+  width:100%;
+  height:80px;
+}
+
+#brands{
+  background:#FAF7F2;
+  padding:72px 0 88px;
+  overflow:hidden;
+  border-top:none;
+}
+
 .brands-header{
   text-align:center;
-  margin-bottom:48px;
+  margin-bottom:52px;
   padding:0 40px;
 }
+
+/* Consistent heading size — matches rest of site */
 .brands-label{
   font-family:'Syne',sans-serif;
-  font-size:11px;font-weight:700;
-  letter-spacing:.22em;text-transform:uppercase;
-  color:#4A7A5A;
-  display:inline-flex;align-items:center;gap:14px;
+  font-size:15px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink);
+  display:inline-flex;align-items:center;gap:20px;
 }
 .brands-label::before,
 .brands-label::after{
   content:'';
-  width:40px;height:1px;
-  background:rgba(74,122,90,.3);
+  width:52px;height:1.5px;
+  background:var(--blush-deep);
   display:inline-block;
+  opacity:.5;
 }
 
-/* Each row */
+/* Scroll rows */
 .scroll-row{
   overflow:hidden;
-  padding:12px 0;
-  /* Fade edges */
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);
+  padding:14px 0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%);
 }
-.scroll-row:first-of-type{ margin-bottom:8px; }
+.scroll-row + .scroll-row{ margin-top:32px; }
 
-/* The moving track */
 .scroll-track{
   display:flex;
-  gap:56px;
+  gap:40px;
   width:max-content;
   align-items:center;
 }
-.track-left { animation:scrollLeft 28s linear infinite; }
-.track-right{ animation:scrollRight 32s linear infinite; }
+.track-left { animation:scrollLeft 30s linear infinite; }
+.track-right{ animation:scrollRight 36s linear infinite; }
 
-/* Pause on hover */
 .scroll-row:hover .scroll-track{ animation-play-state:paused; }
 
-@keyframes scrollLeft {
-  from{ transform:translateX(0); }
-  to  { transform:translateX(-50%); }
-}
-@keyframes scrollRight {
-  from{ transform:translateX(-50%); }
-  to  { transform:translateX(0); }
-}
+@keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes scrollRight{from{transform:translateX(-50%);}to{transform:translateX(0);}}
 
-/* Individual logo items */
+/* ALL logos same canvas 200x80 — uniform size, original design preserved */
 .logo-item{
   flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  height:52px;
-  transition:transform .3s ease, filter .3s ease;
+  width:200px;
+  height:80px;
+  transition:transform .3s ease;
 }
-.logo-item:hover{
-  transform:scale(1.1);
-}
+.logo-item:hover{ transform:scale(1.06); }
 .logo-item img{
-  height:100%;
-  width:auto;
-  max-width:160px;
+  width:200px;
+  height:80px;
   object-fit:contain;
-  /* Desaturate slightly, restore on hover */
-  filter:grayscale(20%) opacity(0.85);
+  object-position:center;
+  filter:opacity(.88);
   transition:filter .3s ease;
 }
 .logo-item:hover img{
-  filter:grayscale(0%) opacity(1);
+  filter:opacity(1);
 }
 
 </style>
@@ -419,11 +426,15 @@ if(video){
 }
 </script>
 
+<!-- Wave connector: hero → brands -->
+<div class="wave-connector">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,80 1080,0 1440,60 L1440,0 L0,0 Z" fill="#FAF7F2"/>
+  </svg>
+</div>
+
 <!-- ═══════════════════════════════════
      BRAND LOGO SCROLLER
-     Background: Pale Sage #E4F2EA
-     Two rows, opposite directions
-     Hover pauses row
 ═══════════════════════════════════ -->
 <section id="brands">
 
