@@ -41,7 +41,7 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 /* HERO */
 #hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative;overflow:hidden;}
 
-.stripe-bg{position:absolute;top:0;left:0;width:55%;height:100%;z-index:0;background-color:var(--cream);background-image:repeating-linear-gradient(90deg,transparent 0px,transparent 32px,rgba(222,205,195,.2) 32px,rgba(222,205,195,.2) 48px);}
+.stripe-bg{position:absolute;top:0;left:0;width:60%;height:100%;z-index:0;background-color:var(--cream);background-image:repeating-linear-gradient(90deg,transparent 0px,transparent 32px,rgba(222,205,195,.2) 32px,rgba(222,205,195,.2) 48px);}
 .white-right{position:absolute;top:0;right:0;width:45%;height:100%;z-index:0;background:#ffffff;}
 
 /* LEFT */
@@ -160,6 +160,80 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   nav{padding:16px 20px;}.nav-links{gap:14px;}
   .nav-links a{font-size:11px;letter-spacing:.08em;}
 }
+
+
+/* ── ORBIT WORDS — pop in when character knocks ── */
+.orbit-words{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:0;height:0;
+  pointer-events:none;
+  z-index:10;
+}
+.orb-word{
+  position:absolute;
+  font-family:'Syne',sans-serif;
+  font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 13px;border-radius:30px;
+  white-space:nowrap;
+  box-shadow:2px 2px 0 rgba(0,0,0,.08);
+  /* Start invisible and scaled to 0 at center */
+  opacity:0;
+  transform:translate(-50%,-50%) scale(0);
+  transition:none;
+}
+/* When .pop class added — spring out to position */
+.orb-word.pop{
+  opacity:1;
+  transition:
+    opacity .35s ease,
+    transform .5s cubic-bezier(.34,1.56,.64,1);
+}
+/* Each word pops to a different position */
+.ow1{
+  background:var(--yellow);color:#5a3800;
+  /* Top */
+  --tx:-50%;--ty:calc(-50% - 110px);
+}
+.ow2{
+  background:var(--blush);color:#7a1535;
+  /* Right */
+  --tx:calc(-50% + 130px);--ty:-50%;
+}
+.ow3{
+  background:var(--sky);color:#0e4a66;
+  /* Bottom */
+  --tx:-50%;--ty:calc(-50% + 110px);
+}
+.ow4{
+  background:var(--sage);color:#0a4a28;
+  /* Left */
+  --tx:calc(-50% - 140px);--ty:-50%;
+}
+.orb-word.pop{
+  transform:translate(var(--tx),var(--ty)) scale(1);
+}
+
+/* After pop — gentle float */
+.orb-word.float{
+  animation:gentleFloat 3s ease-in-out infinite;
+}
+.ow2.float{animation-delay:.15s;}
+.ow3.float{animation-delay:.3s;}
+.ow4.float{animation-delay:.45s;}
+@keyframes gentleFloat{
+  0%,100%{margin-top:0;}
+  50%{margin-top:-6px;}
+}
+
+/* Fade out before next loop */
+.orb-word.fadeout{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(0);
+  transition:opacity .4s ease, transform .4s ease;
+}
 </style>
 </head>
 <body>
@@ -221,6 +295,16 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 
   </div>
 
+
+  <!-- ORBIT WORDS — absolutely positioned in the gap, pop at 0.3s -->
+  <div id="orbitAnchor" style="position:absolute;top:50%;left:72%;transform:translate(-50%,-50%);z-index:10;pointer-events:none;">
+    <div class="orbit-words" id="orbitWords">
+      <span class="orb-word ow1">&#127912; Paints at 2am</span>
+      <span class="orb-word ow2">&#129363; 4 waffles. No regrets.</span>
+      <span class="orb-word ow3">&#127916; Scripts before chai</span>
+      <span class="orb-word ow4">&#128293; 10+ Brands</span>
+    </div>
+  </div>
   <div class="hero-right">
     <video
       class="char-video"
@@ -232,6 +316,7 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 </section>
 
 <script>
+/* CURSOR */
 const cur=document.getElementById("cur"),ring=document.getElementById("cur-ring");
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+"px";cur.style.top=my+"px";});
@@ -240,7 +325,66 @@ document.querySelectorAll("a").forEach(el=>{
   el.addEventListener("mouseenter",()=>{cur.classList.add("big");ring.classList.add("big");});
   el.addEventListener("mouseleave",()=>{cur.classList.remove("big");ring.classList.remove("big");});
 });
-window.addEventListener("scroll",()=>{document.getElementById("mainNav").classList.toggle("scrolled",window.scrollY>24);},{passive:true});
+
+/* NAV SCROLL */
+window.addEventListener("scroll",()=>{
+  document.getElementById("mainNav").classList.toggle("scrolled",window.scrollY>24);
+},{passive:true});
+
+/* ORBIT POP — synced to character knock at 0.3s */
+const video = document.querySelector(".char-video");
+const words = document.querySelectorAll(".orb-word");
+let popped = false;
+let floatTimer, fadeTimer;
+
+function popOrbits(){
+  // Clear any previous state
+  words.forEach(w=>{
+    w.classList.remove("pop","float","fadeout");
+  });
+
+  // Stagger each word popping out
+  words.forEach((w,i)=>{
+    setTimeout(()=>{
+      w.classList.add("pop");
+    }, i * 80); // 80ms between each word
+  });
+
+  // Start floating after all have popped
+  floatTimer = setTimeout(()=>{
+    words.forEach(w=> w.classList.add("float"));
+  }, 600);
+
+  // Fade out after 3 seconds, ready for next loop
+  fadeTimer = setTimeout(()=>{
+    words.forEach(w=>{
+      w.classList.remove("pop","float");
+      w.classList.add("fadeout");
+    });
+    // Reset for next loop
+    setTimeout(()=>{
+      words.forEach(w=> w.classList.remove("fadeout"));
+      popped = false;
+    }, 500);
+  }, 3200);
+}
+
+if(video){
+  video.addEventListener("timeupdate", ()=>{
+    const t = video.currentTime;
+    // Trigger at 0.3s (character knocks), reset after 0.5s so it fires every loop
+    if(t >= 0.3 && t < 0.5 && !popped){
+      popped = true;
+      clearTimeout(floatTimer);
+      clearTimeout(fadeTimer);
+      popOrbits();
+    }
+    // Reset flag when video loops back to start
+    if(t < 0.1){
+      popped = false;
+    }
+  });
+}
 </script>
 </body>
 </html>
