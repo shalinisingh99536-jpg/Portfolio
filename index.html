@@ -4,135 +4,198 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shalini Singh | Content Strategist</title>
+    
+    <!-- Animation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&family=Cabinet+Grotesk:wght@800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --yellow: #FDC339; /* From your reference image */
-            --rose: #F9F1F1;
-            --text: #1A1A1A;
-            --light: #666;
+            --bg: #FFFDFB;
+            --rose: #F7BFCC; /* Pastel Pink from your dress */
+            --rose-light: #FCE4EA;
+            --sage: #F2F7F2;
+            --sky: #A8D8F0;
+            --text: #1E1B2E;
+            --light-text: #5E5A71;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #fff; color: var(--text); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        nav { display: flex; justify-content: space-between; padding: 30px 8%; position: absolute; width: 100%; z-index: 100; }
-        .nav-links a { text-decoration: none; color: var(--text); margin-left: 40px; font-weight: 600; font-size: 14px; }
+        /* NAV */
+        nav { display: flex; justify-content: space-between; padding: 30px 8%; position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(255, 253, 251, 0.8); backdrop-filter: blur(10px); }
+        .logo { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.5px; }
+        .nav-links a { text-decoration: none; color: var(--text); margin-left: 35px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* HERO SECTION - SPLIT LAYOUT */
+        /* HERO SECTION (MADELYN STYLE + SPLIT) */
         .hero { height: 100vh; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; padding: 0 8%; position: relative; }
-
+        
         .hero-left { z-index: 10; }
-        .hero-left span { color: var(--yellow); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: 14px; display: block; margin-bottom: 10px; }
-        .hero-left h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 5vw, 5rem); line-height: 1.1; margin-bottom: 25px; }
-        .hero-left p { font-size: 1.1rem; color: var(--light); max-width: 450px; margin-bottom: 35px; line-height: 1.6; }
-        .hero-btns { display: flex; gap: 15px; }
-        .btn { padding: 15px 35px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; border: 2px solid var(--text); }
-        .btn-fill { background: var(--yellow); color: var(--text); border-color: var(--yellow); }
-        .btn-fill:hover { background: #eab02d; }
-        .btn-outline:hover { background: var(--text); color: #fff; }
+        .hero-left span { color: var(--rose); font-family: 'Cabinet Grotesk'; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 15px; display: block; }
+        .hero-left h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 6vw, 6rem); line-height: 1; margin-bottom: 25px; font-weight: 700; }
+        .hero-left p { font-size: 1.2rem; color: var(--light-text); max-width: 480px; margin-bottom: 35px; line-height: 1.4; font-style: italic; }
+        .hero-btns { display: flex; gap: 20px; }
+        .btn { padding: 18px 38px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.3s; border: 2px solid var(--text); }
+        .btn-fill { background: var(--rose); border-color: var(--rose); color: white; }
+        .btn-outline:hover { background: var(--text); color: white; }
 
-        /* HERO RIGHT - THE BLOB & AVATAR */
+        /* THE CHARACTER & BLOB */
         .hero-right { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
         .blob-bg { 
-            position: absolute; right: -10%; width: 120%; height: 110%; 
-            background: var(--yellow); 
-            clip-path: url(#blob-clip); /* Custom shape like your reference */
-            z-index: 1;
+            position: absolute; right: -15%; width: 130%; height: 100%; 
+            background: var(--rose-light); 
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 70%;
+            z-index: 1; opacity: 0.8;
+            animation: blobMelt 10s infinite alternate;
         }
-        #avatar-interactive { 
-            position: relative; z-index: 5; width: 85%; max-width: 450px; 
-            transform-origin: bottom center;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+        @keyframes blobMelt {
+            from { border-radius: 40% 60% 70% 30% / 40% 50% 60% 70%; }
+            to { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
         }
 
-        /* BRAND SCROLLER (MARQUEE) */
-        .marquee { border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 40px 0; background: #fff; overflow: hidden; }
-        .marquee-content { display: flex; animation: scroll 25s linear infinite; width: max-content; }
-        .marquee-content h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-right: 80px; color: #ddd; white-space: nowrap; transition: 0.3s; }
-        .marquee-content h2:hover { color: var(--text); cursor: default; }
+        .char-svg-wrap { position: relative; z-index: 5; width: 100%; max-width: 400px; }
+
+        /* BRAND LOGO SCROLLER */
+        .marquee { background: white; padding: 50px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; overflow: hidden; }
+        .marquee-track { display: flex; width: max-content; animation: scroll 30s linear infinite; align-items: center; }
+        .marquee-track img { height: 40px; margin-right: 100px; filter: grayscale(1) opacity(0.5); transition: 0.3s; }
+        .marquee-track img:hover { filter: grayscale(0) opacity(1); transform: scale(1.1); }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+        /* BENTO SECTIONS */
+        .section { padding: 120px 8%; }
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 50px; }
+        .bento-item { padding: 45px; border-radius: 30px; border: 1px solid rgba(0,0,0,0.04); }
+        .bento-item h4 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 15px; }
+        .b-1 { background: var(--rose-light); } .b-2 { background: var(--sage); } .b-3 { background: var(--sky); }
+
         /* FOOTER */
-        footer { padding: 80px 8%; text-align: center; background: #fafafa; }
-        .footer-logo { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; }
+        footer { background: var(--text); color: white; padding: 120px 8% 60px; text-align: center; }
+        .footer-h { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 7rem); margin-bottom: 40px; }
+        .footer-cta { display: inline-block; padding: 20px 60px; background: var(--rose); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; }
 
         @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 120px; height: auto; }
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; height: auto; }
             .hero-left p { margin: 0 auto 30px; }
             .hero-btns { justify-content: center; margin-bottom: 50px; }
-            .blob-bg { right: 0; width: 100%; height: 400px; bottom: 0; }
+            .hero-right { height: 400px; }
+            .blob-bg { right: 0; width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo"><b>Shalini Singh</b></div>
+        <div class="logo">SHALINI SINGH</div>
         <div class="nav-links">
             <a href="index.html">About</a>
-            <a href="work.html">Projects</a> <!-- DEDICATED WORK PAGE -->
+            <a href="work.html">Work</a>
             <a href="mailto:Shalinisingswork@gmail.com">Contact</a>
         </div>
     </nav>
 
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-left">
             <span>Content Strategist</span>
-            <h1>Hello, my name<br>is Shalini Singh</h1>
-            <p>I turn scrolls into stops and stories into strategies. Building human-first narratives for brands that want to stand out.</p>
+            <h1>Hello, my name <br> is Shalini.</h1>
+            <p>A Content strategist who turns scrolls into stops and stories into strategies.</p>
             <div class="hero-btns">
-                <a href="work.html" class="btn btn-fill">View Projects</a>
-                <a href="https://linkedin.com" class="btn btn-outline">LinkedIn</a>
+                <a href="work.html" class="btn btn-fill">See My Work</a>
+                <a href="mailto:Shalinisingswork@gmail.com" class="btn btn-outline">Let's Talk</a>
             </div>
         </div>
+        
         <div class="hero-right">
-            <!-- The shape behind her -->
             <div class="blob-bg"></div>
-            <img src="assets/avatar.png" id="avatar-interactive" alt="Shalini Avatar">
+            <div class="char-svg-wrap">
+                <!-- CODED SVG CHARACTER -->
+                <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Body (Breathes) -->
+                    <g class="body-group">
+                        <!-- Neck -->
+                        <rect x="92" y="145" width="16" height="20" fill="#E8A878" />
+                        <!-- Dress (Dusty Rose) -->
+                        <path d="M60,160 Q100,150 140,160 L150,240 L50,240 Z" fill="#F7BFCC" />
+                    </g>
+                    <!-- Head (Bobs) -->
+                    <g class="head-group">
+                        <!-- Hair Back -->
+                        <ellipse cx="100" cy="90" rx="45" ry="50" fill="#1A1A1A" />
+                        <!-- Face -->
+                        <ellipse cx="100" cy="100" rx="38" ry="42" fill="#FFCBA8" />
+                        <!-- Eyes -->
+                        <g class="eyes">
+                            <circle cx="85" cy="95" r="5" fill="white" />
+                            <circle id="pupil-l" cx="85" cy="95" r="2.5" fill="#1A1A1A" />
+                            <circle cx="115" cy="95" r="5" fill="white" />
+                            <circle id="pupil-r" cx="115" cy="95" r="2.5" fill="#1A1A1A" />
+                        </g>
+                        <!-- Smile -->
+                        <path d="M88,118 Q100,128 112,118" fill="none" stroke="#D96070" stroke-width="2" />
+                        <!-- Hair Front -->
+                        <path d="M60,90 Q100,40 140,90 Q130,70 100,75 Q70,70 60,90" fill="#1A1A1A" />
+                    </g>
+                </svg>
+            </div>
         </div>
     </section>
 
-    <!-- BRAND SCROLLER -->
+    <!-- LOGO SCROLLER -->
     <div class="marquee">
-        <div class="marquee-content">
-            <h2>Z1 TECH</h2> <h2>MITTI CAFE</h2> <h2>BUSINESS GITA</h2> <h2>JITO</h2> <h2>AROMA CARE</h2> <h2>INDIAN SILICON VALLEY</h2>
-            <h2>Z1 TECH</h2> <h2>MITTI CAFE</h2> <h2>BUSINESS GITA</h2> <h2>JITO</h2> <h2>AROMA CARE</h2> <h2>INDIAN SILICON VALLEY</h2>
+        <div class="marquee-track">
+            <!-- Replace these with actual logo image paths in your assets folder -->
+            <img src="assets/z1-logo.png" alt="Z1 Tech">
+            <img src="assets/mitti-logo.png" alt="Mitti Cafe">
+            <img src="assets/jito-logo.png" alt="JITO">
+            <img src="assets/business-gita-logo.png" alt="Business Gita">
+            <img src="assets/aroma-logo.png" alt="Aroma Care">
+            <!-- Duplicate for infinite loop -->
+            <img src="assets/z1-logo.png"> <img src="assets/mitti-logo.png"> <img src="assets/jito-logo.png"> <img src="assets/business-gita-logo.png"> <img src="assets/aroma-logo.png">
         </div>
     </div>
 
+    <!-- VALUE BENTO -->
+    <section class="section">
+        <h2 style="font-family: 'Playfair Display'; font-size: 3rem; text-align: center;">What I bring</h2>
+        <div class="bento-grid">
+            <div class="bento-item b-1">
+                <h4>Behavioral Strategy</h4>
+                <p>Deeply researched hooks based on human psychology and ad-tech logic.</p>
+            </div>
+            <div class="bento-item b-2">
+                <h4>Scripting & Narrative</h4>
+                <p>English to Regional storytelling that maintains brand voice.</p>
+            </div>
+            <div class="bento-item b-3">
+                <h4>Visual Direction</h4>
+                <p>Ensuring every frame and presentation aligns with the premium feel.</p>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <div class="footer-logo">Shalini Singh</div>
-        <p>© 2024. All rights reserved.</p>
+        <h2 class="footer-h">Let's build a new <br> strategy.</h2>
+        <a href="mailto:Shalinisingswork@gmail.com" class="footer-cta">Get in Touch</a>
     </footer>
 
-    <!-- SVG for the Blob Shape -->
-    <svg width="0" height="0">
-        <defs>
-            <clipPath id="blob-clip" clipPathUnits="objectBoundingBox">
-                <path d="M0.9,0.3 C1,0.6 0.8,0.9 0.5,1 C0.2,1.1 0,0.8 0,0.5 C0,0.2 0.3,0 0.6,0 C0.8,0 0.9,0.1 0.9,0.3"></path>
-            </clipPath>
-        </defs>
-    </svg>
-
     <script>
-        // BODY-LOGIC MOVEMENT: The avatar leans and sways based on mouse
-        const avatar = document.getElementById('avatar-interactive');
-        
+        // EYE FOLLOW ANIMATION
         document.addEventListener('mousemove', (e) => {
-            const xVal = (e.clientX / window.innerWidth - 0.5) * 20;
-            const yVal = (e.clientY / window.innerHeight - 0.5) * 10;
-            
-            gsap.to(avatar, {
-                duration: 1,
-                rotationZ: xVal / 2, // Body leaning
-                x: xVal, 
-                y: yVal,
-                skewX: xVal / 4, // "Squish" effect to look more alive
-                ease: "power2.out"
+            const pupils = document.querySelectorAll('#pupil-l, #pupil-r');
+            pupils.forEach(pupil => {
+                const rect = pupil.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / 30;
+                const y = (e.clientY - rect.top) / 30;
+                gsap.to(pupil, { x: x, y: y, duration: 0.1 });
             });
         });
+
+        // BREATHING & BOBBING
+        gsap.to(".body-group", { y: -5, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to(".head-group", { y: -3, duration: 2.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
     </script>
 </body>
 </html>
