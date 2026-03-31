@@ -338,3 +338,492 @@ if(video){
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shalini Singh — Content Marketer & Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --sky:#B8DFEF;--sky-light:#E4F3FA;--sky-deep:#5A9FC2;
+  --blush:#F2BDCA;--blush-light:#FDE8EE;--blush-deep:#D45E7A;
+  --yellow:#FAE083;--yellow-light:#FEF7D6;--yellow-deep:#C8940A;
+  --sage:#C5E8D5;--lavender:#D8CEFF;
+  --cream:#FAF7F2;--ink:#1C1826;--ink-soft:#4A4462;--ink-muted:#928EA8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);font-family:'Syne',sans-serif;color:var(--ink);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
+
+/* CURSOR */
+#cur{position:fixed;width:10px;height:10px;background:var(--blush-deep);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:multiply;transition:width .22s,height .22s;will-change:transform;}
+#cur-ring{position:fixed;width:32px;height:32px;border:2px solid var(--sky-deep);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4;transition:width .28s,height .28s,opacity .28s;will-change:transform;}
+#cur.big{width:42px;height:42px;opacity:.1;}
+#cur-ring.big{width:58px;height:58px;opacity:.08;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:600;padding:22px 56px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s;}
+nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(28,24,38,.08);}
+.nav-logo{font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px;}
+.nav-pip{width:8px;height:8px;border-radius:50%;background:var(--blush-deep);flex-shrink:0;animation:pipPulse 2.5s ease-in-out infinite;}
+@keyframes pipPulse{0%,100%{background:var(--blush-deep);transform:scale(1);}50%{background:var(--sky-deep);transform:scale(1.45);}}
+.nav-logo em{font-style:normal;color:var(--blush-deep);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;position:relative;padding-bottom:3px;transition:color .25s;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--blush-deep);border-radius:2px;transition:width .3s ease;}
+.nav-links a:hover{color:var(--blush-deep);}
+.nav-links a:hover::after{width:100%;}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative;overflow:hidden;}
+
+/* Left: cream + vertical stripes */
+.stripe-bg{position:absolute;top:0;left:0;width:55%;height:100%;z-index:0;background-color:var(--cream);background-image:repeating-linear-gradient(90deg,transparent 0px,transparent 32px,rgba(222,205,195,.2) 32px,rgba(222,205,195,.2) 48px);}
+
+/* Right: clean white */
+.white-right{position:absolute;top:0;right:0;width:45%;height:100%;z-index:0;background:#ffffff;}
+
+/* LEFT TEXT */
+.hero-left{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:110px 24px 80px 80px;}
+
+.role-badge{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blush-deep);margin-bottom:32px;display:flex;align-items:center;gap:8px;width:fit-content;opacity:0;animation:fadeUp .65s ease .1s forwards;}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--blush-deep);flex-shrink:0;animation:pipPulse 2s ease-in-out infinite;}
+
+/* NAME — Syne only, both lines */
+.hero-h1{margin-bottom:28px;opacity:0;animation:fadeUp .75s ease .25s forwards;}
+.h1-line1{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(60px,7.5vw,106px);color:var(--ink);display:block;line-height:.92;letter-spacing:-.03em;}
+.h1-line2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(60px,7.5vw,106px);color:var(--blush-deep);display:inline-block;line-height:.95;letter-spacing:-.035em;margin-top:4px;position:relative;}
+.h1-line2::before{content:'';position:absolute;bottom:6px;left:-4px;right:-4px;height:11px;background:var(--yellow);z-index:-1;border-radius:3px;transform:scaleX(0) skewX(-4deg);transform-origin:left;animation:highlightIn .9s ease 1.1s forwards;}
+@keyframes highlightIn{to{transform:scaleX(1) skewX(-4deg);}}
+
+/* Tagline — Instrument Serif italic ONLY here */
+.hero-tagline{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(17px,1.6vw,22px);color:var(--ink-soft);line-height:1.5;margin-bottom:22px;opacity:0;animation:fadeUp .75s ease .4s forwards;}
+
+.hero-desc{font-size:16px;line-height:1.88;font-weight:400;color:var(--ink-soft);max-width:460px;margin-bottom:40px;opacity:0;animation:fadeUp .75s ease .52s forwards;}
+.hero-desc strong{color:var(--ink);font-weight:700;}
+
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .75s ease .66s forwards;}
+.btn-main{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .18s ease,box-shadow .18s ease;}
+.btn-main:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+.btn-main:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;background:transparent;color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 rgba(90,159,194,.45);transition:transform .18s ease,box-shadow .18s ease,background .2s;}
+.btn-ghost:hover{background:var(--sky);transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(90,159,194,.45);}
+.btn-ghost:active{transform:translate(2px,2px);}
+
+.scroll-hint{margin-top:36px;display:flex;align-items:center;gap:12px;opacity:0;animation:fadeUp .75s ease 1s forwards;}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--blush-deep),transparent);animation:scrollPulse 2.2s ease-in-out infinite;}
+@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1);}50%{opacity:.25;transform:scaleY(.5);}}
+.scroll-label{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);}
+
+/* RIGHT: VIDEO */
+.hero-right{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:center;padding:0;overflow:hidden;}
+.char-video{display:block;width:auto;height:100%;max-height:100vh;object-fit:contain;object-position:bottom center;mix-blend-mode:multiply;opacity:0;animation:charEntrance 1s ease .5s forwards;will-change:transform,opacity;margin-left:40px;}
+@keyframes charEntrance{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── ORBIT WORDS ──
+   Anchored between text and character.
+   left:63% puts them in the gap, close to character's hand.
+   All start at scale(0), opacity 0 at center point.
+   On .pop → burst outward with springy animation.
+   On .fadeout → collapse back to center.
+*/
+#orbitAnchor{
+  position:absolute;
+  /* Vertically centered, horizontally in the gap near character */
+  top:50%;
+  left:63%;
+  transform:translate(-50%,-50%);
+  z-index:10;
+  pointer-events:none;
+  width:0;height:0;
+}
+.orb-word{
+  position:absolute;
+  font-family:'Syne',sans-serif;
+  font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 14px;border-radius:30px;
+  white-space:nowrap;
+  box-shadow:2px 2px 0 rgba(0,0,0,.08);
+  /* Default: invisible, collapsed at anchor center */
+  opacity:0;
+  transform:translate(-50%,-50%) scale(0);
+  /* No transition by default */
+  transition:none;
+  will-change:transform,opacity;
+}
+
+/* POP state — burst outward with springy bounce */
+.orb-word.pop{
+  opacity:1;
+  transition:
+    opacity .3s ease,
+    transform .55s cubic-bezier(.34,1.56,.64,1);
+}
+.ow1.pop{ transform:translate(calc(-50% - 20px), calc(-50% - 95px)) scale(1); } /* top-left */
+.ow2.pop{ transform:translate(calc(-50% + 110px), calc(-50% - 30px)) scale(1); } /* right */
+.ow3.pop{ transform:translate(calc(-50% + 20px), calc(-50% + 95px)) scale(1); } /* bottom-right */
+.ow4.pop{ transform:translate(calc(-50% - 120px), calc(-50% + 20px)) scale(1); } /* left */
+
+/* FLOAT state — gentle bobbing after pop */
+.orb-word.pop.float{ animation:orbitFloat 3s ease-in-out infinite; }
+.ow2.pop.float{ animation-delay:.1s; }
+.ow3.pop.float{ animation-delay:.2s; }
+.ow4.pop.float{ animation-delay:.3s; }
+@keyframes orbitFloat{
+  0%,100%{ margin-top:0; }
+  50%{ margin-top:-5px; }
+}
+
+/* FADEOUT state — collapse back to center */
+.orb-word.fadeout{
+  opacity:0 !important;
+  transform:translate(-50%,-50%) scale(0) !important;
+  transition:opacity .45s ease, transform .45s ease !important;
+  animation:none !important;
+}
+
+/* Colours */
+.ow1{ background:var(--yellow);color:#5a3800; }
+.ow2{ background:var(--blush);color:#7a1535; }
+.ow3{ background:var(--sky);color:#0e4a66; }
+.ow4{ background:var(--sage);color:#0a4a28; }
+
+/* ANIMS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:18px 24px;}.nav-links{gap:18px;}
+  #hero{grid-template-columns:1fr;min-height:auto;}
+  .stripe-bg{width:100%;}.white-right{display:none;}
+  .hero-left{padding:96px 28px 40px;text-align:center;}
+  .role-badge,.hero-btns,.scroll-hint{justify-content:center;}
+  .hero-desc{margin-inline:auto;}
+  #orbitAnchor{left:50%;top:35%;}
+  .hero-right{padding:0 28px 56px;justify-content:center;min-height:320px;}
+  .char-video{height:320px;max-height:320px;margin-left:0;}
+}
+@media(max-width:520px){
+  .h1-line1,.h1-line2{font-size:clamp(48px,11vw,72px);}
+  nav{padding:16px 20px;}.nav-links{gap:14px;}
+  .nav-links a{font-size:11px;letter-spacing:.08em;}
+  #orbitAnchor{display:none;}
+}
+
+/* ═══════════ BRAND SCROLLER ═══════════ */
+#brands{
+  background:#E4F2EA;
+  padding:72px 0 64px;
+  overflow:hidden;
+}
+.brands-header{
+  text-align:center;
+  margin-bottom:48px;
+  padding:0 40px;
+}
+.brands-label{
+  font-family:'Syne',sans-serif;
+  font-size:11px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:#4A7A5A;
+  display:inline-flex;align-items:center;gap:14px;
+}
+.brands-label::before,
+.brands-label::after{
+  content:'';
+  width:40px;height:1px;
+  background:rgba(74,122,90,.3);
+  display:inline-block;
+}
+
+/* Each row */
+.scroll-row{
+  overflow:hidden;
+  padding:12px 0;
+  /* Fade edges */
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);
+}
+.scroll-row:first-of-type{ margin-bottom:8px; }
+
+/* The moving track */
+.scroll-track{
+  display:flex;
+  gap:56px;
+  width:max-content;
+  align-items:center;
+}
+.track-left { animation:scrollLeft 28s linear infinite; }
+.track-right{ animation:scrollRight 32s linear infinite; }
+
+/* Pause on hover */
+.scroll-row:hover .scroll-track{ animation-play-state:paused; }
+
+@keyframes scrollLeft {
+  from{ transform:translateX(0); }
+  to  { transform:translateX(-50%); }
+}
+@keyframes scrollRight {
+  from{ transform:translateX(-50%); }
+  to  { transform:translateX(0); }
+}
+
+/* Individual logo items */
+.logo-item{
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  height:52px;
+  transition:transform .3s ease, filter .3s ease;
+}
+.logo-item:hover{
+  transform:scale(1.1);
+}
+.logo-item img{
+  height:100%;
+  width:auto;
+  max-width:160px;
+  object-fit:contain;
+  /* Desaturate slightly, restore on hover */
+  filter:grayscale(20%) opacity(0.85);
+  transition:filter .3s ease;
+}
+.logo-item:hover img{
+  filter:grayscale(0%) opacity(1);
+}
+
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-pip"></span>
+    Shalini <em>Singh</em>
+  </a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="resume.html">Resume</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="stripe-bg"></div>
+  <div class="white-right"></div>
+
+  <!-- LEFT -->
+  <div class="hero-left">
+    <p class="role-badge">
+      <span class="badge-dot"></span>
+      Content Marketer &amp; Creator
+    </p>
+
+    <div class="hero-h1">
+      <span class="h1-line1">Shalini</span>
+      <span class="h1-line2">Singh.</span>
+    </div>
+
+    <p class="hero-tagline">
+      Where strategy gets a soul &amp; stories get results.
+    </p>
+
+    <p class="hero-desc">
+      Not just a content creator &#8212; a <strong>full-stack storyteller</strong>.
+      I dig into what your audience actually cares about, then craft
+      narratives sharp enough to cut through the scroll and
+      <strong>land with intention.</strong>
+    </p>
+
+    <div class="hero-btns">
+      <a href="projects.html" class="btn-main">See My Work &#8594;</a>
+      <a href="contact.html" class="btn-ghost">Let&#39;s Collaborate</a>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Scroll to explore</span>
+    </div>
+  </div>
+
+  <!-- ORBIT WORDS — burst out from gap when character knocks at 0.3s -->
+  <div id="orbitAnchor">
+    <span class="orb-word ow1">&#129363; Can eat 4 waffles in one go</span>
+    <span class="orb-word ow2">&#127908; Sings like no one&#39;s listening</span>
+    <span class="orb-word ow3">&#127916; Most alive when camera&#39;s on</span>
+    <span class="orb-word ow4">&#128514; Certified meme paglu</span>
+  </div>
+
+  <!-- RIGHT: Character video -->
+  <div class="hero-right">
+    <video
+      class="char-video"
+      id="charVideo"
+      src="assets/character.mp4"
+      autoplay loop muted playsinline
+    ></video>
+  </div>
+</section>
+
+<script>
+/* CURSOR */
+const cur=document.getElementById("cur"),ring=document.getElementById("cur-ring");
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+"px";cur.style.top=my+"px";});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+"px";ring.style.top=ry+"px";requestAnimationFrame(loop);})();
+document.querySelectorAll("a").forEach(el=>{
+  el.addEventListener("mouseenter",()=>{cur.classList.add("big");ring.classList.add("big");});
+  el.addEventListener("mouseleave",()=>{cur.classList.remove("big");ring.classList.remove("big");});
+});
+
+/* NAV SCROLL */
+window.addEventListener("scroll",()=>{
+  document.getElementById("mainNav").classList.toggle("scrolled",window.scrollY>24);
+},{passive:true});
+
+/* ── ORBIT TIMING ──
+   Video loops. Character knocks at 0.3s.
+   timeupdate fires ~4x/sec.
+   
+   SEQUENCE:
+   1. At 0.3s → words POP outward (scale 0→1, springy)
+   2. At 0.6s → words start FLOATING gently
+   3. At 3.2s → words FADE back to center (scale 1→0)
+   4. At next loop (t<0.1) → reset flag, ready to fire again
+*/
+const video = document.getElementById("charVideo");
+const words = document.querySelectorAll(".orb-word");
+let popped = false;
+let floatTimer = null;
+let fadeTimer  = null;
+
+function resetWords(){
+  words.forEach(w=>{
+    w.classList.remove("pop","float","fadeout");
+    // Force reflow so transition:none takes effect immediately
+    void w.offsetWidth;
+  });
+}
+
+function popOrbits(){
+  resetWords();
+
+  // Stagger each word bursting out — 70ms between each
+  words.forEach((w,i)=>{
+    setTimeout(()=>{ w.classList.add("pop"); }, i * 70);
+  });
+
+  // Start floating after all have popped
+  floatTimer = setTimeout(()=>{
+    words.forEach(w=>{ w.classList.add("float"); });
+  }, 550);
+
+  // Fade back to center after 3.2s
+  fadeTimer = setTimeout(()=>{
+    words.forEach(w=>{
+      w.classList.remove("float");
+      w.classList.add("fadeout");
+    });
+    // Clean up classes after fadeout completes (500ms)
+    setTimeout(()=>{
+      words.forEach(w=>{ w.classList.remove("pop","fadeout"); });
+      popped = false;
+    }, 500);
+  }, 3200);
+}
+
+if(video){
+  video.addEventListener("timeupdate",()=>{
+    const t = video.currentTime;
+
+    // Trigger window: 0.3s–0.5s
+    if(t >= 0.3 && t < 0.5 && !popped){
+      popped = true;
+      clearTimeout(floatTimer);
+      clearTimeout(fadeTimer);
+      popOrbits();
+    }
+
+    // Reset when video loops back to start
+    if(t < 0.1){ popped = false; }
+  });
+}
+</script>
+
+<!-- ═══════════════════════════════════
+     BRAND LOGO SCROLLER
+     Background: Pale Sage #E4F2EA
+     Two rows, opposite directions
+     Hover pauses row
+═══════════════════════════════════ -->
+<section id="brands">
+
+  <div class="brands-header">
+    <p class="brands-label">Brands that trusted the work.</p>
+  </div>
+
+  <!-- ROW 1: scrolls left -->
+  <div class="scroll-row" id="row1">
+    <div class="scroll-track track-left">
+      <div class="logo-item"><img src="assets/logos/hightable.png" alt="Hightable"/></div>
+      <div class="logo-item"><img src="assets/logos/sprentzo.png" alt="Sprentzo"/></div>
+      <div class="logo-item"><img src="assets/logos/mitti-cafe.png" alt="Mitti Cafe"/></div>
+      <div class="logo-item"><img src="assets/logos/metashot.png" alt="Metashot"/></div>
+      <div class="logo-item"><img src="assets/logos/oben-electric.png" alt="Oben Electric"/></div>
+      <div class="logo-item"><img src="assets/logos/stable-money-dark.png" alt="Stable Money"/></div>
+      <div class="logo-item"><img src="assets/logos/hamdard-masale.png" alt="Hamdard Masale"/></div>
+      <div class="logo-item"><img src="assets/logos/khichdi-bar.png" alt="Khichdi Bar"/></div>
+      <div class="logo-item"><img src="assets/logos/swish.png" alt="Swish"/></div>
+      <div class="logo-item"><img src="assets/logos/everyday-friday.png" alt="Everyday Friday"/></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="logo-item"><img src="assets/logos/hightable.png" alt="Hightable"/></div>
+      <div class="logo-item"><img src="assets/logos/sprentzo.png" alt="Sprentzo"/></div>
+      <div class="logo-item"><img src="assets/logos/mitti-cafe.png" alt="Mitti Cafe"/></div>
+      <div class="logo-item"><img src="assets/logos/metashot.png" alt="Metashot"/></div>
+      <div class="logo-item"><img src="assets/logos/oben-electric.png" alt="Oben Electric"/></div>
+      <div class="logo-item"><img src="assets/logos/stable-money-dark.png" alt="Stable Money"/></div>
+      <div class="logo-item"><img src="assets/logos/hamdard-masale.png" alt="Hamdard Masale"/></div>
+      <div class="logo-item"><img src="assets/logos/khichdi-bar.png" alt="Khichdi Bar"/></div>
+      <div class="logo-item"><img src="assets/logos/swish.png" alt="Swish"/></div>
+      <div class="logo-item"><img src="assets/logos/everyday-friday.png" alt="Everyday Friday"/></div>
+    </div>
+  </div>
+
+  <!-- ROW 2: scrolls right -->
+  <div class="scroll-row" id="row2">
+    <div class="scroll-track track-right">
+      <div class="logo-item"><img src="assets/logos/indian-silicon-valley.png" alt="Indian Silicon Valley"/></div>
+      <div class="logo-item"><img src="assets/logos/meesho.png" alt="Meesho"/></div>
+      <div class="logo-item"><img src="assets/logos/pronto.png" alt="Pronto"/></div>
+      <div class="logo-item"><img src="assets/logos/jito.png" alt="JITO"/></div>
+      <div class="logo-item"><img src="assets/logos/calmosis.png" alt="Calmosis"/></div>
+      <div class="logo-item"><img src="assets/logos/finyog.png" alt="FinYog"/></div>
+      <div class="logo-item"><img src="assets/logos/aroma-care.png" alt="Aroma Care"/></div>
+      <div class="logo-item"><img src="assets/logos/personal-touch.png" alt="Personal Touch Skincare"/></div>
+      <div class="logo-item"><img src="assets/logos/hightable.png" alt="Hightable"/></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="logo-item"><img src="assets/logos/indian-silicon-valley.png" alt="Indian Silicon Valley"/></div>
+      <div class="logo-item"><img src="assets/logos/meesho.png" alt="Meesho"/></div>
+      <div class="logo-item"><img src="assets/logos/pronto.png" alt="Pronto"/></div>
+      <div class="logo-item"><img src="assets/logos/jito.png" alt="JITO"/></div>
+      <div class="logo-item"><img src="assets/logos/calmosis.png" alt="Calmosis"/></div>
+      <div class="logo-item"><img src="assets/logos/finyog.png" alt="FinYog"/></div>
+      <div class="logo-item"><img src="assets/logos/aroma-care.png" alt="Aroma Care"/></div>
+      <div class="logo-item"><img src="assets/logos/personal-touch.png" alt="Personal Touch Skincare"/></div>
+      <div class="logo-item"><img src="assets/logos/hightable.png" alt="Hightable"/></div>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>
