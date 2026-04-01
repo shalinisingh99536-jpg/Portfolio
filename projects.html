@@ -17,6 +17,9 @@
   --cream:#FAF7F2; --ink:#1C1826; --ink-soft:#4A4462; --ink-muted:#928EA8;
 }
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html, body {
+  overflow-x: hidden;
+}
 body {
   background: 
     radial-gradient(ellipse at top left, rgba(212, 94, 122, 0.08), transparent 50%),
@@ -394,9 +397,8 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 /* ═══════════ EXPANDED GALLERY SECTION ═══════════ */
 /* Hidden initially via opacity and pointer events */
 #gallery-wrapper {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100vh;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
   z-index: 50;
   background: rgba(250, 247, 242, 0.65); /* Cream frosted glass */
   backdrop-filter: blur(24px);
@@ -416,8 +418,7 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 .gallery-header {
   padding: 100px 56px 40px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: center;
   border-bottom: 1px solid rgba(28,24,38,0.06);
 }
 .gh-title {
@@ -450,6 +451,9 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
   flex: 1;
   overflow-y: auto;
   padding: 40px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   /* Custom scrollbar to look sleek */
 }
 .gallery-content::-webkit-scrollbar { width: 8px; }
@@ -458,6 +462,8 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 
 /* We use structural classes to hide/show specific categories */
 .g-panel {
+  width: 100%;
+  max-width: 1280px;
   display: none;
   animation: fadeIn 0.5s ease forwards;
 }
@@ -737,8 +743,13 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 <div id="gallery-wrapper">
   
   <div class="gallery-header">
-    <h2 class="gh-title" id="gallery-title">Archive</h2>
-    <button class="btn-back" id="btn-back">Close Folder ✕</button>
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%; max-width:1280px;">
+      <div>
+        <h2 class="gh-title" id="gallery-title">Archive</h2>
+        <p id="gallery-subtitle" style="font-family:'Instrument Serif',serif; font-style:italic; font-size:24px; color:var(--ink-soft); margin-top:4px;">Subtitle Goes Here</p>
+      </div>
+      <button class="btn-back" id="btn-back">Close Folder ✕</button>
+    </div>
   </div>
 
   <div class="gallery-content">
@@ -756,86 +767,137 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 
       <!-- Sub-Panel 1: Short-form Content -->
       <div class="sub-panel active" id="live-short">
-         <div class="aesthetic-split">
-            <div class="ae-text">
-               <span style="font-size:11px; font-weight:800; color:var(--yellow-deep); letter-spacing:0.15em; text-transform:uppercase;">Social Media Videos</span>
-               <h3 class="ae-title">Brand Campaigns driving hyper-engagement.</h3>
-               <p class="ae-desc">End-to-end production of highly engaging short-form video content designed for massive retention on Instagram and LinkedIn. I handle everything from scripting the hook to cutting the final frame.</p>
-               <div class="pc-tags"><span>Premiere Pro</span><span>Content Strategy</span><span>Storytelling</span></div>
-               <a href="#" style="font-size:11px; font-weight:800; margin-top:24px; color:var(--ink); text-decoration:none; border-bottom:2px solid var(--blush-deep); display:inline-block; align-self:flex-start;">VIEW ON INSTAGRAM ↗</a>
-            </div>
-            <div class="ae-visual">
-               <div class="phone-mock" style="max-width:240px; transform:rotate(-4deg); box-shadow:0 30px 60px rgba(0,0,0,0.1);">
-                 <div class="p-notch"></div>
-                 <div class="p-screen" style="padding:0;">
-                   <video src="character.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;"></video>
-                 </div>
+         <div style="text-align:left; margin-bottom:48px;">
+           <span style="font-size:11px; font-weight:800; color:var(--blush-deep); letter-spacing:0.15em; text-transform:uppercase;">Short-Form Production</span>
+           <h3 style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">Crafting high-retention visual stories that drive conversion.</h3>
+         </div>
+
+         <!-- Embed Grid Overview (Horizontal Scroll) -->
+         <div style="display:flex; gap:32px; overflow-x:auto; padding-bottom:32px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; align-items:start;">
+            
+            <!-- Hightable Reel 1 (IG) -->
+            <div style="display:flex; flex-direction:column; gap:16px; flex:0 0 calc(85vw - 40px); max-width:280px; scroll-snap-align:start;">
+               <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                  <iframe src="https://www.instagram.com/reel/DKpH0KhJSnr/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
                </div>
-               <div class="phone-mock" style="max-width:240px; transform:rotate(6deg) translateY(40px); box-shadow:0 30px 60px rgba(0,0,0,0.1);">
-                 <div class="p-notch"></div>
-                 <div class="p-screen" style="padding:0; background:var(--blush-light); display:flex; align-items:center; justify-content:center;">
-                   <span style="color:var(--blush-deep); font-weight:700;">Thumbnail</span>
-                 </div>
+               <div>
+                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Hightable</h4>
+                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;"><strong>3rd Place</strong> – Drove massive brand awareness via aggressive viral hook testing.</p>
                </div>
             </div>
+
+            <!-- Hightable Reel 2 (IG) -->
+            <div style="display:flex; flex-direction:column; gap:16px; flex:0 0 calc(85vw - 40px); max-width:280px; scroll-snap-align:start;">
+               <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                  <iframe src="https://www.instagram.com/reel/DKrzQZKyWfp/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+               </div>
+               <div>
+                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Hightable</h4>
+                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;"><strong>1st Place</strong> – Executed an epic brand awareness brief, earning high praise from founder Asha Bhatt.</p>
+               </div>
+            </div>
+
+            <!-- Mitti Cafe (LinkedIn) -->
+            <div style="display:flex; flex-direction:column; gap:16px; flex:0 0 calc(85vw - 40px); max-width:280px; scroll-snap-align:start;">
+               <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                  <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7304690259869470720" height="100%" width="100%" frameborder="0" allowfullscreen="" title="Embedded post" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+               </div>
+               <div>
+                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Mitti Cafe</h4>
+                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">Lead Visual Director & Strategist tracking corporate CSR impact.</p>
+               </div>
+            </div>
+
+            <!-- Stable Money (Google Drive) -->
+            <div style="display:flex; flex-direction:column; gap:16px; flex:0 0 calc(85vw - 40px); max-width:280px; scroll-snap-align:start;">
+               <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                  <iframe src="https://drive.google.com/file/d/1RhuQOSuaKCL8GFnm4Fnh2FwsFA9iEk5Z/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+               </div>
+               <div>
+                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Stable Money</h4>
+                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">Old advertisement storytelling. End-to-end production.</p>
+               </div>
+            </div>
+
+            <!-- Oben Electric (Google Drive) -->
+            <div style="display:flex; flex-direction:column; gap:16px; flex:0 0 calc(85vw - 40px); max-width:280px; scroll-snap-align:start;">
+               <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                  <iframe src="https://drive.google.com/file/d/1abR0Z6DnF7ZIhQMCIgOyO-t_HVu8YcHx/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+               </div>
+               <div>
+                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Oben Electric</h4>
+                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">From ideation to execution, made with high production.</p>
+               </div>
+            </div>
+
+            <!-- Sprentzo (Google Drive) -->
+            <div style="display:flex; flex-direction:column; gap:16px; flex:0 0 calc(85vw - 40px); max-width:280px; scroll-snap-align:start;">
+               <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                  <iframe src="https://drive.google.com/file/d/1_BB1JWyWwlSvAtSUr4GeZiTfhDduUMbu/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+               </div>
+               <div>
+                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Sprentzo</h4>
+                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">Brand research, end-to-end production.</p>
+               </div>
+            </div>
+
          </div>
       </div>
 
       <!-- Sub-Panel 2: Long-form Content -->
       <div class="sub-panel" id="live-long">
+         <div style="text-align:left; margin-bottom:48px;">
+           <span style="font-size:11px; font-weight:800; color:var(--yellow-deep); letter-spacing:0.15em; text-transform:uppercase;">YouTube Channels</span>
+           <h3 style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">Strategic video essays & educational content.</h3>
+         </div>
          <div class="aesthetic-grid">
             
-            <a href="#" class="clean-video-card">
-               <div class="cv-thumb">
-                 <img src="business-gita.jpg" alt="The Business Gita" onerror="this.src='';this.style.background='var(--yellow-light)'">
-                 <div class="cv-play">▶</div>
+            <div class="clean-video-card" style="box-shadow:0 10px 30px rgba(0,0,0,0.04); border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,0.05); background:#fff;">
+               <div class="cv-thumb" style="aspect-ratio:16/9; position:relative; overflow:hidden; background:var(--yellow-light);">
+                 <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-weight:800; font-size:12px; color:var(--yellow-deep); text-align:center;">The Business Gita<br><span style="font-size:32px;">▶</span></div>
                </div>
-               <div class="cv-info">
-                  <span style="font-size:11px; font-weight:800; color:var(--yellow-deep); letter-spacing:0.15em;">YOUTUBE CHANNEL</span>
-                  <h4 class="cv-title">The Business Gita</h4>
-                  <p class="ae-desc" style="font-size:14px; line-height:1.4;">Strategic content creation, end-to-end scripting, and full video production.</p>
-                  <div class="pc-tags"><span>Scripting</span><span>Shooting</span><span>Direction</span></div>
+               <div class="cv-info" style="padding:24px;">
+                  <span style="font-size:11px; font-weight:800; color:var(--yellow-deep); letter-spacing:0.15em;">END-TO-END PRODUCTION</span>
+                  <h4 class="cv-title" style="font-family:'Syne',sans-serif; font-size:18px; font-weight:800; letter-spacing:-0.01em; margin-top:8px;">The Business Gita</h4>
+                  <p class="ae-desc" style="font-size:14px; line-height:1.4; color:var(--ink-soft); margin-top:8px;">Strategic content creation, end-to-end scripting, and full video production. (Featured work on Home page).</p>
                </div>
-            </a>
+            </div>
 
-            <a href="#" class="clean-video-card">
-               <div class="cv-thumb">
-                 <img src="indian-skin.jpg" alt="The Indian Skin" onerror="this.src='';this.style.background='var(--blush-light)'">
-                 <div class="cv-play">▶</div>
+            <div class="clean-video-card" style="box-shadow:0 10px 30px rgba(0,0,0,0.04); border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,0.05); background:#fff;">
+               <div class="cv-thumb" style="aspect-ratio:16/9; position:relative; overflow:hidden; background:var(--blush-light);">
+                 <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-weight:800; font-size:12px; color:var(--blush-deep); text-align:center;">The Indian Skin<br><span style="font-size:32px;">▶</span></div>
                </div>
-               <div class="cv-info">
-                  <span style="font-size:11px; font-weight:800; color:var(--blush-deep); letter-spacing:0.15em;">YOUTUBE CHANNEL</span>
-                  <h4 class="cv-title">The Indian Skin</h4>
-                  <p class="ae-desc" style="font-size:14px; line-height:1.4;">Educational, deeply researched skincare content tailored for the Indian audience.</p>
-                  <div class="pc-tags"><span>Content Strategy</span><span>Research</span><span>Editing</span></div>
+               <div class="cv-info" style="padding:24px;">
+                  <span style="font-size:11px; font-weight:800; color:var(--blush-deep); letter-spacing:0.15em;">RESEARCH & EDITING</span>
+                  <h4 class="cv-title" style="font-family:'Syne',sans-serif; font-size:18px; font-weight:800; letter-spacing:-0.01em; margin-top:8px;">The Indian Skin</h4>
+                  <p class="ae-desc" style="font-size:14px; line-height:1.4; color:var(--ink-soft); margin-top:8px;">Educational, deeply researched skincare content visually tailored for the Indian audience.</p>
                </div>
-            </a>
+            </div>
 
          </div>
       </div>
 
       <!-- Sub-Panel 3: Web & Thumbnails -->
       <div class="sub-panel" id="live-web">
-         <div class="aesthetic-split" style="gap:56px;">
+         <div style="text-align:left; margin-bottom:48px;">
+           <span style="font-size:11px; font-weight:800; color:var(--sky-deep); letter-spacing:0.15em; text-transform:uppercase;">Website Redesign</span>
+           <h3 style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">Architecting intuitive UX & seamless interfaces.</h3>
+         </div>
+         <div class="aesthetic-split" style="gap:56px; align-items:start;">
             <div class="ae-visual" style="flex:1.5;">
-               <div class="browser-mock" style="box-shadow: 0 30px 60px rgba(0,0,0,0.15); border:1px solid rgba(0,0,0,0.05);">
-                  <div class="bm-top" style="height:32px; background:#f5f5f5;"><div class="bm-dot r"></div><div class="bm-dot y"></div><div class="bm-dot g"></div><div class="bm-bar" style="height:14px; background:#e0e0e0; margin-left:16px;"></div></div>
-                  <div class="bm-content" style="padding:0;"><img src="isv-site.jpg" style="width:100%; display:block;" onerror="this.src='';this.style.background='var(--sky-light)'"></div>
+               <div class="browser-mock" style="box-shadow: 0 30px 60px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.05); border-radius:8px; overflow:hidden; background:#fff;">
+                  <div class="bm-top" style="height:32px; background:#f5f5f5; display:flex; align-items:center; padding:0 12px; gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#FF5F56;"></div><div style="width:10px;height:10px;border-radius:50%;background:#FFBD2E;"></div><div style="width:10px;height:10px;border-radius:50%;background:#27C93F;"></div><div style="flex:1;height:14px;background:#e0e0e0;border-radius:4px;margin-left:16px;"></div></div>
+                  <div class="bm-content" style="padding:0; aspect-ratio:16/10; background:var(--sky-light); display:flex; align-items:center; justify-content:center;">
+                    <span style="font-weight:800; color:var(--sky-deep); font-size:14px; text-transform:uppercase;">Website Mockup</span>
+                  </div>
                </div>
             </div>
             <div class="ae-text" style="flex:1;">
-               <span style="font-size:11px; font-weight:800; color:var(--sky-deep); letter-spacing:0.15em;">WEB DESIGN & DEVELOPMENT</span>
-               <h3 class="ae-title">The Indian Silicon Valley</h3>
-               <p class="ae-desc">A complete aesthetic and structural website redesign in Figma, deployed flawlessly on Webflow. Celebrated as the most intuitive design internally.</p>
-               <div class="pc-tags"><span>UI/UX</span><span>Figma</span><span>Webflow</span></div>
-               <a href="#" style="font-size:11px; font-weight:800; margin-top:16px; color:var(--ink); text-decoration:none; border-bottom:2px solid var(--sky-deep); display:inline-block; align-self:flex-start;">VISIT LIVE SITE ↗</a>
-               
-               <hr style="border:none; border-top:1px solid rgba(0,0,0,0.06); margin:40px 0;">
-
-               <span style="font-size:11px; font-weight:800; color:var(--ink-soft); letter-spacing:0.15em;">THUMBNAIL DESIGN</span>
-               <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
-                  <div style="aspect-ratio:16/9; background:var(--lavender); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:10px; color:var(--ink-soft); text-transform:uppercase;">Thumbnail</div>
-                  <div style="aspect-ratio:16/9; background:var(--sky-light); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:10px; color:var(--ink-soft); text-transform:uppercase;">Thumbnail</div>
+               <h4 class="cv-title" style="font-family:'Syne',sans-serif; font-size:24px; font-weight:800; letter-spacing:-0.01em;">The Indian Silicon Valley</h4>
+               <p class="ae-desc" style="font-size:15px; line-height:1.6; color:var(--ink-soft); margin-top:16px;">A complete aesthetic and structural website redesign. Navigating complex site architecture to build a flawless, user-centric deployed product. (Featured on Home page).</p>
+               <div style="display:flex; gap:8px; margin-top:24px;">
+                 <span style="padding:4px 10px; border-radius:20px; background:var(--sky-light); font-size:10px; font-weight:800; text-transform:uppercase; color:var(--sky-deep);">UI/UX</span>
+                 <span style="padding:4px 10px; border-radius:20px; background:var(--sky-light); font-size:10px; font-weight:800; text-transform:uppercase; color:var(--sky-deep);">Figma</span>
                </div>
             </div>
          </div>
@@ -843,12 +905,26 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 
       <!-- Sub-Panel 4: Performance Marketing -->
       <div class="sub-panel" id="live-perf">
-         <div class="aesthetic-impact">
-            <h2 class="impact-stat">#1</h2>
-            <h3 class="impact-title">Top Conversions</h3>
-            <p class="impact-desc">Developed and ran Google and Meta Ads campaigns for <strong>Urban Vault</strong> that secured the absolute highest leads and conversions among all participating groups in the class.</p>
-            <div class="impact-tags pc-tags"><span>Google Ads</span><span>Meta Ads</span><span>Lead Generation</span><span>Analytics</span></div>
-            <a href="#" style="font-size:11px; font-weight:800; margin-top:16px; color:var(--ink); text-decoration:none; border-bottom:2px solid #3a614d; display:inline-block;">VIEW CASE STUDY ↗</a>
+         <div style="text-align:left; margin-bottom:48px;">
+           <span style="font-size:11px; font-weight:800; color:#3a614d; letter-spacing:0.15em; text-transform:uppercase;">Performance Marketing</span>
+           <h3 style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">Data-driven campaigns that dominate conversions.</h3>
+         </div>
+         
+         <div style="background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.03); padding:40px; display:flex; gap:40px; align-items:center;">
+           <div style="flex:1;">
+             <h2 style="font-family:'Syne',sans-serif; font-size:96px; font-weight:800; color:var(--sage); line-height:1; letter-spacing:-0.05em;">#1</h2>
+             <span style="display:block; font-size:12px; font-weight:800; color:#3a614d; letter-spacing:0.15em; text-transform:uppercase; margin-top:8px;">In Class Conversions</span>
+           </div>
+           
+           <div style="flex:2;">
+              <h4 style="font-family:'Syne',sans-serif; font-size:24px; font-weight:800; letter-spacing:-0.01em;">Urban Vault Media Buying</h4>
+              <p style="font-size:16px; line-height:1.6; color:var(--ink-soft); margin-top:16px;">Developed and ran Google and Meta Ads campaigns for Urban Vault. I successfully secured the absolute highest leads and conversions among all participating groups in the class by optimizing ad spend and aggressive A/B testing.</p>
+              <div style="display:flex; gap:8px; margin-top:24px;">
+                 <span style="padding:4px 10px; border-radius:20px; background:var(--sage); font-size:10px; font-weight:800; text-transform:uppercase; color:#3a614d;">Google Ads</span>
+                 <span style="padding:4px 10px; border-radius:20px; background:var(--sage); font-size:10px; font-weight:800; text-transform:uppercase; color:#3a614d;">Meta Ads</span>
+                 <span style="padding:4px 10px; border-radius:20px; background:var(--sage); font-size:10px; font-weight:800; text-transform:uppercase; color:#3a614d;">Lead Gen</span>
+              </div>
+           </div>
          </div>
       </div>
 
@@ -1009,16 +1085,27 @@ subFolders.forEach(folder => {
     // Get target panel
     const target = folder.getAttribute("data-target");
     let titleText = "Archive";
-    if(target === "live") titleText = "Live Projects";
-    if(target === "freelance") titleText = "Freelance Studio";
-    if(target === "campaign") titleText = "Campaign Strategies";
+    let subText = "";
+    if(target === "live") {
+      titleText = "The Mixed Tape";
+      subText = "The LIT projects — College work.";
+    }
+    if(target === "freelance") {
+      titleText = "The Experiment Files";
+      subText = "Personal explorations & Freelance Studio.";
+    }
+    if(target === "campaign") {
+      titleText = "The Big Brain Stuff";
+      subText = "Strategic campaigns & high-level tier-downs.";
+    }
     
     // Hide all panels, show target
     panels.forEach(p => p.classList.remove("active"));
     document.getElementById(`panel-${target}`).classList.add("active");
 
-    // Update gallery header
+    // Update gallery header & subtitle
     galleryTitle.innerText = titleText;
+    document.getElementById("gallery-subtitle").innerText = subText;
 
     // Activate gallery Overlay
     vaultSection.classList.add("gallery-active");
