@@ -430,10 +430,10 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 /* ── APP-STYLE CAROUSEL ── */
 .carousel-track {
   display: flex;
-  gap: 32px;
+  gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 40px;
+  padding: 20px 40px;
   max-width: 1400px;
   margin: 0 auto;
   /* Hide scrollbar for clean look */
@@ -446,8 +446,8 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 
 .carousel-card {
   flex-shrink: 0;
-  width: 480px; 
-  min-height: 560px;
+  width: 300px; 
+  min-height: 480px;
   background: #ffffff;
   border-radius: 20px;
   scroll-snap-align: center;
@@ -465,7 +465,7 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 
 .c-img-wrap {
   width: 100%;
-  height: 280px;
+  height: 200px;
   overflow: hidden;
   border-radius: 20px 20px 0 0;
   position: relative;
@@ -488,19 +488,25 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 }
 .c-title {
   font-family: 'Syne', sans-serif;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   letter-spacing: -0.02em;
+}
+.c-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
 }
 .c-skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   margin-bottom: auto; 
 }
 .skill-pill {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   padding: 6px 12px;
@@ -846,10 +852,12 @@ if(video){
       </div>
       <div class="c-content">
         <h3 class="c-title">Indian Silicon Valley</h3>
+        <p class="c-desc">Redesigned their website from scratch in Figma and developed it in Webflow. Concept fully approved by Jivraj Singh.</p>
         <div class="c-skills">
-          <span class="skill-pill">Website Redesign</span>
-          <span class="skill-pill">Digital Strategy</span>
-          <span class="skill-pill">UX</span>
+          <span class="skill-pill">Visual Design</span>
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">Webflow</span>
+          <span class="skill-pill">UX Narrative</span>
         </div>
         <div class="c-link-arrow">&#8594;</div>
       </div>
@@ -862,10 +870,11 @@ if(video){
       </div>
       <div class="c-content">
         <h3 class="c-title">JITO Tycoon Campaign</h3>
+        <p class="c-desc">Visual direction, scripting, and female presenter for JITO North Bangalore's Instagram featuring local founders.</p>
         <div class="c-skills">
           <span class="skill-pill">Visual Direction</span>
           <span class="skill-pill">Presenter</span>
-          <span class="skill-pill">On-Camera</span>
+          <span class="skill-pill">Scripting</span>
         </div>
         <div class="c-link-arrow">&#8594;</div>
       </div>
@@ -878,10 +887,12 @@ if(video){
       </div>
       <div class="c-content">
         <h3 class="c-title">Business Gita</h3>
+        <p class="c-desc">YouTube strategist, researcher, and script writer. Delivered highly praised thumbnail designs and concepts.</p>
         <div class="c-skills">
-          <span class="skill-pill">Channel Strategy</span>
-          <span class="skill-pill">Scripting</span>
+          <span class="skill-pill">YT Strategy</span>
+          <span class="skill-pill">Thumbnails</span>
           <span class="skill-pill">Research</span>
+          <span class="skill-pill">Scripting</span>
         </div>
         <div class="c-link-arrow">&#8594;</div>
       </div>
@@ -894,9 +905,10 @@ if(video){
       </div>
       <div class="c-content">
         <h3 class="c-title">Pronto Campaigns</h3>
+        <p class="c-desc">Served as an actor and contributed to the screenwriting and story execution.</p>
         <div class="c-skills">
-          <span class="skill-pill">Actor</span>
-          <span class="skill-pill">1st & 2nd Place Awards</span>
+          <span class="skill-pill">Acting</span>
+          <span class="skill-pill">Scripting</span>
         </div>
         <div class="c-link-arrow">&#8594;</div>
       </div>
