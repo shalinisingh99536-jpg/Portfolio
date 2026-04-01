@@ -262,14 +262,14 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 @keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @keyframes scrollRight{from{transform:translateX(-50%);}to{transform:translateX(0);}}
 
-/* Logo items — unified grayscale styling that pops on hover */
+/* Logo items — clear and elegant full-color logos */
 .logo-item{
   flex-shrink:0;
   display:flex;
   align-items:center;
   justify-content:center;
-  width:200px;
-  height:100px;
+  width:220px;
+  height:110px;
   padding:16px 24px;
   border-right:1px solid rgba(28,24,38,.06);
   transition: background .3s ease;
@@ -279,21 +279,18 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 }
 .logo-item img{
   max-width:100%;
-  max-height:48px;  /* Locks height so logos are proportional */
+  max-height:75px;  /* Increased size for crystal clear visibility */
   width:auto;
   height:auto;
   object-fit:contain;
   object-position:center;
   display:block;
-  /* Make them fade together seamlessly into the grid */
-  filter: grayscale(100%) opacity(60%) contrast(1.1);
-  mix-blend-mode: multiply; /* Removes any white backgrounds from JPG logos */
-  transition: all .35s ease-out;
+  mix-blend-mode: multiply; /* Removes any harsh white background boxes */
+  transition: transform .3s ease-out;
 }
-/* Pop to full color & grow when hovered */
+/* Smooth bounce effect on hover */
 .logo-item:hover img{
-  filter: grayscale(0%) opacity(100%) contrast(1);
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 </style>
