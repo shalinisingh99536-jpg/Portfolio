@@ -427,100 +427,113 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   letter-spacing: -0.03em;
   margin-bottom: 12px;
 }
-.sn-list {
-  border-top: 1px solid rgba(28,24,38,.1);
-}
-.sn-row {
+/* ── APP-STYLE CAROUSEL ── */
+.carousel-track {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 40px;
-  border-bottom: 1px solid rgba(28,24,38,.1);
+  gap: 32px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  /* Hide scrollbar for clean look */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-card {
+  flex-shrink: 0;
+  width: 480px; 
+  min-height: 560px;
+  background: #ffffff;
+  border-radius: 20px;
+  scroll-snap-align: center;
   text-decoration: none;
   color: var(--ink);
-  position: relative;
-  overflow: hidden;
-  transition: background 0.4s ease, padding 0.4s ease;
-}
-.sn-row:hover {
-  padding-left: 56px;
-  padding-right: 24px;
-}
-/* Subtle aesthetic linear gradients instead of solid block colors */
-.sn-row.color-sage:hover { background: linear-gradient(90deg, rgba(197, 232, 213, 0.4), transparent); cursor: pointer; }
-.sn-row.color-blush:hover { background: linear-gradient(90deg, rgba(253, 232, 238, 0.6), transparent); cursor: pointer; }
-.sn-row.color-sky:hover { background: linear-gradient(90deg, rgba(228, 243, 250, 0.6), transparent); cursor: pointer; }
-.sn-row.color-yellow:hover { background: linear-gradient(90deg, rgba(254, 247, 214, 0.6), transparent); cursor: pointer; }
-
-.sn-info {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   display: flex;
-  align-items: center;
-  gap: 48px;
+  flex-direction: column;
+}
+.carousel-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.c-img-wrap {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
   position: relative;
-  z-index: 2;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.sn-row:hover .sn-info {
-  transform: translateX(20px);
+.c-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
-.sn-num {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--ink-soft);
+.carousel-card:hover .c-img-wrap img {
+  transform: scale(1.05);
+}
+
+.c-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.c-title {
   font-family: 'Syne', sans-serif;
-  opacity: 0.6;
-}
-.sn-title {
-  font-size: clamp(24px, 3vw, 36px);
-  font-weight: 700;
-  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 24px;
   letter-spacing: -0.02em;
 }
-.sn-role {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-size: 19px;
-  color: var(--ink-soft);
-  position: relative;
-  z-index: 2;
-  transition: transform 0.4s ease;
+.c-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: auto; 
 }
-.sn-row:hover .sn-role {
+.skill-pill {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding: 6px 12px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.c-link-arrow {
+  margin-top: 32px;
+  font-size: 24px;
   color: var(--ink);
+  transition: transform 0.3s ease;
+  align-self: flex-end;
+}
+.carousel-card:hover .c-link-arrow {
+  transform: translateX(6px);
 }
 
-/* Floating Image Hover */
-.sn-img-target {
-  position: absolute;
-  right: 15%;
-  top: 50%;
-  transform: translateY(-50%) rotate(5deg) scale(0.85);
-  width: 260px;
-  height: 160px;
-  border-radius: 12px;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-.sn-row:hover .sn-img-target {
-  opacity: 1;
-  transform: translateY(-50%) rotate(-2deg) scale(1);
-  right: 10%;
-}
+/* Card Tints */
+.card-sage .c-img-wrap { background: var(--sage); }
+.card-sage .skill-pill { background: var(--sage); color: #1e3626; }
+.card-blush .c-img-wrap { background: var(--blush); }
+.card-blush .skill-pill { background: var(--blush); color: #4a212b; }
+.card-sky .c-img-wrap { background: var(--sky); }
+.card-sky .skill-pill { background: var(--sky); color: #1c3241; }
+.card-yellow .c-img-wrap { background: var(--yellow); }
+.card-yellow .skill-pill { background: var(--yellow); color: #433d1b; }
 
-.sn-cta-wrap {
-  text-align: center;
-  margin-top: 80px;
-}
-
+/* Responsive */
 @media(max-width: 900px) {
-  .sn-row { flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 40px; }
-  .sn-info { gap: 24px; flex-direction: column; align-items: flex-start; }
-  .sn-img-target { display: none; } /* Hide hover images on mobile */
-  .sn-row:hover { padding-left: 40px; padding-right: 40px; background: transparent !important; }
-  .sn-row:hover .sn-info { transform: translateX(0); }
+  .carousel-card { width: 320px; }
+  .carousel-track { padding: 20px; gap: 20px; }
 }
 
 </style>
@@ -825,52 +838,68 @@ if(video){
     <h2 class="sn-h2">Proofs of Concept.</h2>
   </div>
 
-  <div class="sn-list">
-    <!-- ROW 1 -->
-    <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank" class="sn-row color-sage">
-      <div class="sn-info">
-        <span class="sn-num">01</span>
-        <h3 class="sn-title">Indian Silicon Valley</h3>
+  <div class="carousel-track">
+    <!-- CARD 1 -->
+    <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank" class="carousel-card card-sage">
+      <div class="c-img-wrap">
+        <img src="assets/isv-site.jpg" alt="Indian Silicon Valley">
       </div>
-      <span class="sn-role">Website Redesign</span>
-      <!-- Floating Project Thumbnail -->
-      <div class="sn-img-target" style="overflow: hidden; background: var(--sage);">
-        <img src="assets/isv-site.jpg" alt="Indian Silicon Valley Redesign" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.95;">
-      </div>
-    </a>
-
-    <!-- ROW 2 -->
-    <a href="projects.html" class="sn-row color-blush">
-      <div class="sn-info">
-        <span class="sn-num">02</span>
-        <h3 class="sn-title">JITO Tycoon Campaign</h3>
-      </div>
-      <span class="sn-role">Visual Direction & Presenter</span>
-      <div class="sn-img-target" style="overflow: hidden; background: var(--blush);">
-        <img src="assets/jito-presenter.jpg" alt="JITO Campaign" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.95;">
+      <div class="c-content">
+        <h3 class="c-title">Indian Silicon Valley</h3>
+        <div class="c-skills">
+          <span class="skill-pill">Website Redesign</span>
+          <span class="skill-pill">Digital Strategy</span>
+          <span class="skill-pill">UX</span>
+        </div>
+        <div class="c-link-arrow">&#8594;</div>
       </div>
     </a>
 
-    <!-- ROW 3 -->
-    <a href="https://youtube.com/@businessgita-4lit?si=HB4YN4x64JvlfgSQ" target="_blank" class="sn-row color-sky">
-      <div class="sn-info">
-        <span class="sn-num">03</span>
-        <h3 class="sn-title">Business Gita</h3>
+    <!-- CARD 2 -->
+    <a href="projects.html" class="carousel-card card-blush">
+      <div class="c-img-wrap">
+        <img src="assets/jito-presenter.jpg" alt="JITO Tycoon Campaign">
       </div>
-      <span class="sn-role">Targeted Strategy & Scripting</span>
-      <div class="sn-img-target" style="overflow: hidden; background: var(--sky);">
-        <img src="assets/business-gita.jpg" alt="Business Gita" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.95;">
+      <div class="c-content">
+        <h3 class="c-title">JITO Tycoon Campaign</h3>
+        <div class="c-skills">
+          <span class="skill-pill">Visual Direction</span>
+          <span class="skill-pill">Presenter</span>
+          <span class="skill-pill">On-Camera</span>
+        </div>
+        <div class="c-link-arrow">&#8594;</div>
       </div>
     </a>
 
-    <!-- ROW 4 -->
-    <a href="#" class="sn-row color-yellow">
-      <div class="sn-info">
-        <span class="sn-num">04</span>
-        <h3 class="sn-title">Pronto Campaigns</h3>
+    <!-- CARD 3 -->
+    <a href="https://youtube.com/@businessgita-4lit?si=HB4YN4x64JvlfgSQ" target="_blank" class="carousel-card card-sky">
+      <div class="c-img-wrap">
+        <img src="assets/business-gita.jpg" alt="Business Gita">
       </div>
-      <span class="sn-role">On-Camera (1st & 2nd Place Awards)</span>
-      <div class="sn-img-target" style="background: linear-gradient(135deg, var(--yellow), #E0D392);"></div>
+      <div class="c-content">
+        <h3 class="c-title">Business Gita</h3>
+        <div class="c-skills">
+          <span class="skill-pill">Channel Strategy</span>
+          <span class="skill-pill">Scripting</span>
+          <span class="skill-pill">Research</span>
+        </div>
+        <div class="c-link-arrow">&#8594;</div>
+      </div>
+    </a>
+
+    <!-- CARD 4 -->
+    <a href="#" class="carousel-card card-yellow">
+      <div class="c-img-wrap" style="background: linear-gradient(135deg, var(--yellow), #E0D392);">
+        <!-- Placeholder for video thumb -->
+      </div>
+      <div class="c-content">
+        <h3 class="c-title">Pronto Campaigns</h3>
+        <div class="c-skills">
+          <span class="skill-pill">Actor</span>
+          <span class="skill-pill">1st & 2nd Place Awards</span>
+        </div>
+        <div class="c-link-arrow">&#8594;</div>
+      </div>
     </a>
   </div>
 
