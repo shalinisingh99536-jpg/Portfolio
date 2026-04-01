@@ -18,7 +18,15 @@
 }
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 body {
-  background: var(--cream);
+  background: 
+    radial-gradient(ellipse at top left, rgba(212, 94, 122, 0.08), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(90, 159, 194, 0.08), transparent 50%),
+    linear-gradient(rgba(28, 24, 38, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 24, 38, 0.03) 1px, transparent 1px),
+    var(--cream);
+  background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+  background-position: center, center, center, center;
+  background-attachment: fixed;
   font-family: 'Syne', sans-serif;
   color: var(--ink);
   overflow-x: hidden;
@@ -114,7 +122,12 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 .f-back {
   background: linear-gradient(145deg, #6C9CB9, #4B8DB2);
   transform: translateZ(-30px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  /* Make the folder look thick with solid 3D layers */
+  box-shadow: 
+    0 -2px 0 var(--blush-deep), 
+    0 -4px 0 var(--yellow-deep), 
+    0 -6px 0 var(--sky-deep), 
+    0 20px 50px rgba(0,0,0,0.15);
   border: 1px solid rgba(255,255,255,0.2);
 }
 .f-back::before {
@@ -128,6 +141,12 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
   border-radius: 12px 12px 0 0;
   border: 1px solid rgba(255,255,255,0.2);
   border-bottom: none;
+}
+.thick-tab {
+  position: absolute;
+  height: 48px; width: 100px;
+  border-radius: 12px 12px 0 0;
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
 /* Inside the Folder: The 3 Sub-folders */
@@ -252,14 +271,14 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
   pointer-events: none;
   z-index: 1;
   perspective: 1200px;
-  transition: filter 0.6s ease, opacity 0.6s ease;
+  transition: filter 1s ease, transform 1s ease;
 }
 #vault-scene:hover ~ .orbit-wrapper {
   filter: blur(8px);
-  opacity: 0.2;
 }
 #vault-section.is-open .orbit-wrapper {
-  opacity: 0;
+  /* Let them stay visible but slow them down or push them back gracefully */
+  transform: scale(0.9) translateZ(-100px);
 }
 .polaroid {
   position: absolute;
@@ -267,8 +286,8 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
   pointer-events: auto; /* allow explicit click/hover on the photos */
 }
 .p-frame {
-  width: 170px; height: 200px;
-  padding: 10px 10px 40px;
+  width: 220px; height: 260px;
+  padding: 12px 12px 48px;
   border-radius: 6px;
   box-shadow: inset 0 0 0 2px rgba(255,255,255,0.9), 0 20px 40px rgba(0,0,0,0.06);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
@@ -279,14 +298,56 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 .f-yellow { background: var(--yellow-light); }
 .f-sage { background: #E8F5E9; }
 
+.f-sage { background: #E8F5E9; }
+
 .p-img { 
   width: 100%; 
-  height: 150px; /* 200 - 50 padding */
+  height: 200px; 
   background: var(--lavender); 
-  border-radius: 2px; 
+  border-radius: 4px; 
   object-fit: cover; 
   display: block; 
 }
+.p-cap {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--ink);
+  text-align: center;
+  margin-top: 14px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* ── AMBIENT MARKETING BG ── */
+.ambient-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+  overflow: hidden;
+}
+.ambient-pill {
+  position: absolute;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  border-radius: 30px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+  color: var(--ink-soft); text-transform: uppercase;
+  animation: floatAmbient 20s ease-in-out infinite;
+}
+.ambient-icon {
+  position: absolute; font-size: 32px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.05));
+  animation: floatAmbient 24s ease-in-out infinite reverse; opacity: 0.6;
+}
+.ambient-bg .p1 { top: 12%; left: 45%; animation-delay: 0s; }
+.ambient-bg .p2 { bottom: 12%; right: 45%; animation-delay: -5s; }
+.ambient-bg .i1 { top: 30%; right: 25%; animation-delay: -10s; }
+.ambient-bg .i2 { bottom: 20%; left: 20%; animation-delay: -2s; font-size:40px; }
+.ambient-bg .i3 { top: 10%; right: 18%; animation-delay: -7s; }
+@keyframes floatAmbient { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-30px) rotate(10deg);} }
 
 /* Polaroids Interaction */
 .polaroid:hover { z-index: 100; animation-play-state: paused; }
@@ -337,16 +398,16 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
   top: 0; left: 0;
   width: 100%; height: 100vh;
   z-index: 50;
-  background: rgba(250, 247, 242, 0.98); /* Cream frosted glass */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(250, 247, 242, 0.65); /* Cream frosted glass */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.6s ease;
   display: flex;
   flex-direction: column;
 }
-#vault-section.gallery-active #gallery-wrapper {
+#vault-section.gallery-active ~ #gallery-wrapper {
   opacity: 1;
   pointer-events: auto;
 }
@@ -408,56 +469,48 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 }
 
 /* ── MOCKUPS & BENTO CSS (Placeholders for actual content) ── */
-/* ── PROJECT CARDS (Live Grid) ── */
-.live-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-}
-.project-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-  border: 1px solid rgba(0,0,0,0.03);
-}
-.project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-.pc-media {
-  width: 100%; aspect-ratio: 16/9;
-  background: var(--sky-light);
-  overflow: hidden; position: relative;
-  display: flex; align-items: center; justify-content: center;
-}
-.pc-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.project-card:hover .pc-media img { transform: scale(1.05); }
+/* ── AESTHETIC SUB-TAB VIEWS (Live Projects) ── */
+.sub-nav { display:flex; gap:32px; margin-bottom: 64px; border-bottom:1px solid rgba(0,0,0,0.06); padding-bottom:16px; overflow-x:auto; }
+.sub-nav::-webkit-scrollbar { display:none; }
+.sub-btn { background:none; border:none; padding:8px 0; font-family:'Syne',sans-serif; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-muted); cursor:pointer; transition:all 0.3s; position:relative; white-space:nowrap; }
+.sub-btn:hover { color:var(--ink); }
+.sub-btn.active { color:var(--ink); }
+.sub-btn.active::after { content:''; position:absolute; bottom:-17px; left:0; width:100%; height:2px; background:var(--blush-deep); }
 
-.pc-body { padding: 32px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-.pc-category { font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; }
-.pc-category.blush { color: var(--blush-deep); }
-.pc-category.sky   { color: var(--sky-deep); }
-.pc-category.yellow{ color: var(--yellow-deep); }
+.sub-panel { display:none; animation:fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; padding-bottom:80px; opacity:0; transform:translateY(20px); }
+.sub-panel.active { display:block; }
+@keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
 
-.pc-title { font-size: 28px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
-.pc-desc { font-size: 15px; color: var(--ink-soft); line-height: 1.6; flex: 1; }
+.aesthetic-split { display:flex; gap:64px; align-items:center; }
+.ae-text { flex:1; display:flex; flex-direction:column; gap:16px; }
+.ae-visual { flex:1; display:flex; justify-content:center; align-items:center; position:relative; }
+.ae-title { font-size:40px; font-weight:800; letter-spacing:-0.02em; line-height:1.1; }
+.ae-desc { font-size:16px; color:var(--ink-soft); line-height:1.6; }
 
-.pc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.pc-tags span { font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 20px; background: rgba(0,0,0,0.04); color: var(--ink-muted); }
+.aesthetic-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+.clean-video-card { display:flex; flex-direction:column; gap:20px; cursor:pointer; text-decoration:none; color:inherit; }
+.cv-thumb { width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; position:relative; box-shadow:0 20px 40px rgba(0,0,0,0.06); }
+.cv-thumb img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease, filter 0.5s ease; filter:brightness(0.95); }
+.clean-video-card:hover .cv-thumb img { transform:scale(1.03); filter:brightness(1); }
+.cv-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.9); width:64px; height:64px; border-radius:50%; background:var(--cream); color:var(--ink); display:flex; align-items:center; justify-content:center; font-size:24px; opacity:0; transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); padding-left:4px; }
+.clean-video-card:hover .cv-play { opacity:1; transform:translate(-50%,-50%) scale(1); box-shadow:0 10px 30px rgba(0,0,0,0.2); }
+.cv-info { display:flex; flex-direction:column; gap:10px; }
+.cv-title { font-size:24px; font-weight:800; letter-spacing:-0.01em; margin:0; }
 
-.pc-link {
-  font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
-  text-decoration: none; display: inline-flex; align-items: center; gap: 4px; border-bottom: 2px solid var(--blush-deep); padding-bottom: 2px; align-self: flex-start;
-  transition: gap 0.3s ease;
+.aesthetic-impact { text-align:center; padding:80px 20px; max-width:700px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:24px; background:var(--sage); border-radius:32px; }
+.impact-stat { font-size:140px; font-family:'Syne',sans-serif; font-weight:800; color:var(--ink); line-height:0.9; margin:0; letter-spacing:-0.04em; }
+.impact-title { font-size:40px; font-weight:800; letter-spacing:-0.02em; color:var(--ink); margin:0; }
+.impact-desc { font-size:22px; line-height:1.5; color:#3a614d; font-family:'Instrument Serif', serif; font-style:italic; margin:0; }
+
+.pc-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.pc-tags span { font-size:11px; font-weight:700; padding:6px 14px; border-radius:20px; background:rgba(0,0,0,0.04); color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.05em; }
+
+@media(max-width: 900px) {
+  .aesthetic-split { flex-direction:column; gap:40px; }
+  .aesthetic-grid { grid-template-columns:1fr; }
+  .impact-stat { font-size:90px; }
+  .sub-nav { gap: 24px; }
 }
-.project-card:hover .pc-link { gap: 8px; color: var(--blush-deep); }
-
-@media(min-width: 901px) {
-  .project-card.wide { grid-column: 1 / 3; }
-  .project-card.wide .pc-media { aspect-ratio: 21/9; }
-}
-@media(max-width: 900px) { .live-grid { grid-template-columns: 1fr; } }
 
 .bento-grid {
   display: grid;
@@ -598,44 +651,69 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 <!-- ════════════ THE MASTER VAULT (3D Section) ════════════ -->
 <section id="vault-section">
 
+  <!-- Floating Ambient BG for Marketing Vibes -->
+  <div class="ambient-bg">
+    <div class="ambient-pill p1">Creative Direction</div>
+    <div class="ambient-pill p2">Growth Strategy</div>
+    <div class="ambient-icon i1">🎯</div>
+    <div class="ambient-icon i2">🖱️</div>
+    <div class="ambient-icon i3">📈</div>
+  </div>
+
   <!-- Floating Polaroids (Interactive Colored Frames) -->
   <div class="orbit-wrapper">
     <div class="polaroid p1">
-      <div class="p-frame f-blush"><img src="Work%201.jpg" class="p-img" alt="Work 1" onerror="this.src=''; this.style.background='var(--blush-deep)'"></div>
+      <div class="p-frame f-blush">
+        <img src="Work%201.jpg" class="p-img" alt="Work 1" onerror="this.src=''; this.style.background='var(--blush-light)'">
+        <div class="p-cap">Shoot Day</div>
+      </div>
     </div>
     <div class="polaroid p2">
-      <div class="p-frame f-sky"><img src="work%202.JPG" class="p-img" alt="Work 2" onerror="this.src=''; this.style.background='var(--sky-deep)'"></div>
+      <div class="p-frame f-sky">
+        <img src="work%202.JPG" class="p-img" alt="Work 2" onerror="this.src=''; this.style.background='var(--sky-light)'">
+        <div class="p-cap">Deep Work</div>
+      </div>
     </div>
     <div class="polaroid p3">
-      <div class="p-frame f-yellow"><img src="work%203.png" class="p-img" alt="Work 3" onerror="this.src=''; this.style.background='var(--yellow-deep)'"></div>
+      <div class="p-frame f-yellow">
+        <img src="work%203.png" class="p-img" alt="Work 3" onerror="this.src=''; this.style.background='var(--yellow-light)'">
+        <div class="p-cap">Editing flow</div>
+      </div>
     </div>
     <div class="polaroid p4">
-      <div class="p-frame f-sage"><img src="work%204.png" class="p-img" alt="Work 4" onerror="this.src=''; this.style.background='var(--sage)'"></div>
+      <div class="p-frame f-sage">
+        <img src="work%204.png" class="p-img" alt="Work 4" onerror="this.src=''; this.style.background='var(--sage)'">
+        <div class="p-cap">Strategy</div>
+      </div>
     </div>
   </div>
   
   <div class="vault-title">
     <h1>The Vault</h1>
-    <p>Select a folder to unlock my work</p>
+    <p>Everything I've made lives here. Pick a folder.</p>
   </div>
 
   <div id="vault-scene">
-    <!-- The folder back cover -->
-    <div class="folder-part f-back"></div>
+    <!-- The folder back cover with fake thickness tabs -->
+    <div class="folder-part f-back">
+       <div class="thick-tab" style="background:var(--blush-deep); top:-10px; left:8%; z-index:-1; transform:translateZ(-10px);"></div>
+       <div class="thick-tab" style="background:var(--yellow-deep); top:-15px; left:25%; z-index:-2; transform:translateZ(-20px);"></div>
+       <div class="thick-tab" style="background:var(--sky-deep); top:-20px; left:45%; z-index:-3; transform:translateZ(-30px);"></div>
+    </div>
     
     <!-- The 3 sub-folders sandwiched inside -->
     <div class="inner-wrap">
       <div class="sub-folder sf-live" data-target="live">
-        <span class="sf-icon">🌐</span>
-        <span class="sf-label">Live<br>Projects</span>
+        <span class="sf-icon" style="font-size:24px;">📼</span>
+        <span class="sf-label" style="font-size:12px; line-height:1.2;">The Mixed Tape<br><small style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; font-weight:400; color:rgba(28,24,38,0.7); display:block; margin-top:2px;">(College Projects)</small></span>
       </div>
       <div class="sub-folder sf-freelance" data-target="freelance">
-        <span class="sf-icon">🎬</span>
-        <span class="sf-label">Freelance<br>Studio</span>
+        <span class="sf-icon" style="font-size:24px;">🧪</span>
+        <span class="sf-label" style="font-size:12px; line-height:1.2;">The Experiment Files<br><small style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; font-weight:400; color:rgba(28,24,38,0.7); display:block; margin-top:2px;">(Personal & Freelance)</small></span>
       </div>
       <div class="sub-folder sf-campaign" data-target="campaign">
-        <span class="sf-icon">📈</span>
-        <span class="sf-label">Campaign<br>Strategies</span>
+        <span class="sf-icon" style="font-size:24px;">🧠</span>
+        <span class="sf-label" style="font-size:12px; line-height:1.2;">The Big Brain Stuff<br><small style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; font-weight:400; color:rgba(28,24,38,0.7); display:block; margin-top:2px;">(Campaign Strategies)</small></span>
       </div>
     </div>
     
@@ -645,6 +723,9 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
         <div class="front-logo">🗂️</div>
         <div class="front-text">Master Archive</div>
       </div>
+      <!-- Aesthetic stickers -->
+      <div style="position:absolute; bottom:20px; right:20px; border:2px solid rgba(28,24,38,0.2); color:rgba(28,24,38,0.5); padding:4px 8px; font-family:'Syne',sans-serif; font-size:9px; font-weight:800; letter-spacing:0.1em; transform:rotate(-5deg); pointer-events:none;">VOL. 1</div>
+      <div style="position:absolute; top:20px; left:20px; border:2px dashed rgba(255,255,255,0.6); padding:4px 12px; font-family:'Syne',sans-serif; font-weight:700; font-size:10px; letter-spacing:0.1em; color:#fff; transform:rotate(-15deg); background:rgba(0,0,0,0.05); pointer-events:none;">CLASSIFIED</div>
     </div>
   </div>
 
@@ -663,79 +744,114 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
   <div class="gallery-content">
     
     <!-- PANEL 1: LIVE PROJECTS -->
-    <div class="g-panel" id="panel-live">
-      <div class="live-grid">
-        
-        <!-- Youtube: Business Gita -->
-        <div class="project-card">
-          <div class="pc-media"><img src="business-gita.jpg" alt="The Business Gita" onerror="this.src='';this.style.background='var(--yellow-light)'"></div>
-          <div class="pc-body">
-            <span class="pc-category yellow">YOUTUBE CHANNEL</span>
-            <h3 class="pc-title">The Business Gita</h3>
-            <p class="pc-desc">Leading strategic content creation, scripting, and full video production to build an engaging digital presence.</p>
-            <div class="pc-tags"><span>Scripting</span><span>Shooting</span><span>Editing</span><span>Direction</span></div>
-            <a href="#" class="pc-link">WATCH ON YOUTUBE ↗</a>
-          </div>
-        </div>
-
-        <!-- Youtube: The Indian Skin -->
-        <div class="project-card">
-          <div class="pc-media"><img src="indian-skin.jpg" alt="The Indian Skin" onerror="this.src='';this.style.background='var(--blush-light)'"></div>
-          <div class="pc-body">
-            <span class="pc-category blush">YOUTUBE CHANNEL</span>
-            <h3 class="pc-title">The Indian Skin</h3>
-            <p class="pc-desc">Developing highly engaging, educational skincare content tailored specifically for the Indian audience.</p>
-            <div class="pc-tags"><span>Content Strategy</span><span>Video Editing</span><span>Research</span></div>
-            <a href="#" class="pc-link">WATCH ON YOUTUBE ↗</a>
-          </div>
-        </div>
-
-        <!-- Website: Indian Silicon Valley -->
-        <div class="project-card wide">
-          <div class="pc-media" style="align-items:flex-end;">
-             <!-- Desktop browser mock for web design -->
-             <div class="browser-mock" style="width: 80%; transform: translateY(20px); border-bottom-left-radius:0; border-bottom-right-radius:0; box-shadow: 0 0 40px rgba(0,0,0,0.1);">
-                <div class="bm-top" style="height:32px;"><div class="bm-dot r"></div><div class="bm-dot y"></div><div class="bm-dot g"></div><div class="bm-bar" style="height:16px;"></div></div>
-                <div class="bm-content" style="padding:0; min-height:auto;"><img src="isv-site.jpg" style="width:100%; height:auto; display:block;" onerror="this.src='';this.style.background='var(--sky-deep)'"></div>
-             </div>
-          </div>
-          <div class="pc-body">
-            <span class="pc-category sky">WEB DESIGN & DEVELOPMENT</span>
-            <h3 class="pc-title">The Indian Silicon Valley</h3>
-            <p class="pc-desc">Redesigned their entire website from scratch in Figma and built it on Webflow. Highly appreciated by Jivraj Singh for being the most intuitive version to date.</p>
-            <div class="pc-tags"><span>UI/UX</span><span>Figma</span><span>Webflow</span><span>Development</span></div>
-            <a href="#" class="pc-link">VISIT LIVE SITE ↗</a>
-          </div>
-        </div>
-
-        <!-- Urban Vault -->
-        <div class="project-card">
-          <div class="pc-media" style="background:var(--sage); flex-direction:column; gap:8px;">
-             <h2 style="font-size:56px; font-weight:800; color:var(--ink); margin:0;">#1</h2>
-             <span style="font-weight:700; color:var(--ink); letter-spacing:0.1em; text-transform:uppercase; font-size:12px;">Top Conversions</span>
-          </div>
-          <div class="pc-body">
-            <span class="pc-category" style="color:#4a8260; font-weight:800; font-size:11px; letter-spacing:0.15em;">PERFORMANCE MARKETING</span>
-            <h3 class="pc-title">Urban Vault</h3>
-            <p class="pc-desc">Ran highly targeted Google and Meta Ads campaigns. Achieved the highest leads and conversions among all groups in the class.</p>
-            <div class="pc-tags"><span>Google Ads</span><span>Meta Ads</span><span>Lead Gen</span><span>Analytics</span></div>
-            <a href="#" class="pc-link">VIEW CASE STUDY ↗</a>
-          </div>
-        </div>
-
-        <!-- Social Media Videos -->
-        <div class="project-card">
-          <div class="pc-media"><video src="character.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;"></video></div>
-          <div class="pc-body">
-            <span class="pc-category yellow">SOCIAL MEDIA VIDEOS</span>
-            <h3 class="pc-title">Brand Campaigns</h3>
-            <p class="pc-desc">End-to-end production of engaging short-form video content designed for high retention on Instagram and LinkedIn.</p>
-            <div class="pc-tags"><span>Premiere Pro</span><span>Social Media</span><span>Storytelling</span></div>
-            <a href="#" class="pc-link">VIEW ON INSTAGRAM ↗</a>
-          </div>
-        </div>
-
+    <div class="g-panel active" id="panel-live">
+      
+      <!-- Sub-Navigation Menu -->
+      <div class="sub-nav">
+        <button class="sub-btn active" data-target="live-short">Short-form Content</button>
+        <button class="sub-btn" data-target="live-long">Long-form Content</button>
+        <button class="sub-btn" data-target="live-web">Design & Web</button>
+        <button class="sub-btn" data-target="live-perf">Performance Marketing</button>
       </div>
+
+      <!-- Sub-Panel 1: Short-form Content -->
+      <div class="sub-panel active" id="live-short">
+         <div class="aesthetic-split">
+            <div class="ae-text">
+               <span style="font-size:11px; font-weight:800; color:var(--yellow-deep); letter-spacing:0.15em; text-transform:uppercase;">Social Media Videos</span>
+               <h3 class="ae-title">Brand Campaigns driving hyper-engagement.</h3>
+               <p class="ae-desc">End-to-end production of highly engaging short-form video content designed for massive retention on Instagram and LinkedIn. I handle everything from scripting the hook to cutting the final frame.</p>
+               <div class="pc-tags"><span>Premiere Pro</span><span>Content Strategy</span><span>Storytelling</span></div>
+               <a href="#" style="font-size:11px; font-weight:800; margin-top:24px; color:var(--ink); text-decoration:none; border-bottom:2px solid var(--blush-deep); display:inline-block; align-self:flex-start;">VIEW ON INSTAGRAM ↗</a>
+            </div>
+            <div class="ae-visual">
+               <div class="phone-mock" style="max-width:240px; transform:rotate(-4deg); box-shadow:0 30px 60px rgba(0,0,0,0.1);">
+                 <div class="p-notch"></div>
+                 <div class="p-screen" style="padding:0;">
+                   <video src="character.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;"></video>
+                 </div>
+               </div>
+               <div class="phone-mock" style="max-width:240px; transform:rotate(6deg) translateY(40px); box-shadow:0 30px 60px rgba(0,0,0,0.1);">
+                 <div class="p-notch"></div>
+                 <div class="p-screen" style="padding:0; background:var(--blush-light); display:flex; align-items:center; justify-content:center;">
+                   <span style="color:var(--blush-deep); font-weight:700;">Thumbnail</span>
+                 </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Sub-Panel 2: Long-form Content -->
+      <div class="sub-panel" id="live-long">
+         <div class="aesthetic-grid">
+            
+            <a href="#" class="clean-video-card">
+               <div class="cv-thumb">
+                 <img src="business-gita.jpg" alt="The Business Gita" onerror="this.src='';this.style.background='var(--yellow-light)'">
+                 <div class="cv-play">▶</div>
+               </div>
+               <div class="cv-info">
+                  <span style="font-size:11px; font-weight:800; color:var(--yellow-deep); letter-spacing:0.15em;">YOUTUBE CHANNEL</span>
+                  <h4 class="cv-title">The Business Gita</h4>
+                  <p class="ae-desc" style="font-size:14px; line-height:1.4;">Strategic content creation, end-to-end scripting, and full video production.</p>
+                  <div class="pc-tags"><span>Scripting</span><span>Shooting</span><span>Direction</span></div>
+               </div>
+            </a>
+
+            <a href="#" class="clean-video-card">
+               <div class="cv-thumb">
+                 <img src="indian-skin.jpg" alt="The Indian Skin" onerror="this.src='';this.style.background='var(--blush-light)'">
+                 <div class="cv-play">▶</div>
+               </div>
+               <div class="cv-info">
+                  <span style="font-size:11px; font-weight:800; color:var(--blush-deep); letter-spacing:0.15em;">YOUTUBE CHANNEL</span>
+                  <h4 class="cv-title">The Indian Skin</h4>
+                  <p class="ae-desc" style="font-size:14px; line-height:1.4;">Educational, deeply researched skincare content tailored for the Indian audience.</p>
+                  <div class="pc-tags"><span>Content Strategy</span><span>Research</span><span>Editing</span></div>
+               </div>
+            </a>
+
+         </div>
+      </div>
+
+      <!-- Sub-Panel 3: Web & Thumbnails -->
+      <div class="sub-panel" id="live-web">
+         <div class="aesthetic-split" style="gap:56px;">
+            <div class="ae-visual" style="flex:1.5;">
+               <div class="browser-mock" style="box-shadow: 0 30px 60px rgba(0,0,0,0.15); border:1px solid rgba(0,0,0,0.05);">
+                  <div class="bm-top" style="height:32px; background:#f5f5f5;"><div class="bm-dot r"></div><div class="bm-dot y"></div><div class="bm-dot g"></div><div class="bm-bar" style="height:14px; background:#e0e0e0; margin-left:16px;"></div></div>
+                  <div class="bm-content" style="padding:0;"><img src="isv-site.jpg" style="width:100%; display:block;" onerror="this.src='';this.style.background='var(--sky-light)'"></div>
+               </div>
+            </div>
+            <div class="ae-text" style="flex:1;">
+               <span style="font-size:11px; font-weight:800; color:var(--sky-deep); letter-spacing:0.15em;">WEB DESIGN & DEVELOPMENT</span>
+               <h3 class="ae-title">The Indian Silicon Valley</h3>
+               <p class="ae-desc">A complete aesthetic and structural website redesign in Figma, deployed flawlessly on Webflow. Celebrated as the most intuitive design internally.</p>
+               <div class="pc-tags"><span>UI/UX</span><span>Figma</span><span>Webflow</span></div>
+               <a href="#" style="font-size:11px; font-weight:800; margin-top:16px; color:var(--ink); text-decoration:none; border-bottom:2px solid var(--sky-deep); display:inline-block; align-self:flex-start;">VISIT LIVE SITE ↗</a>
+               
+               <hr style="border:none; border-top:1px solid rgba(0,0,0,0.06); margin:40px 0;">
+
+               <span style="font-size:11px; font-weight:800; color:var(--ink-soft); letter-spacing:0.15em;">THUMBNAIL DESIGN</span>
+               <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
+                  <div style="aspect-ratio:16/9; background:var(--lavender); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:10px; color:var(--ink-soft); text-transform:uppercase;">Thumbnail</div>
+                  <div style="aspect-ratio:16/9; background:var(--sky-light); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:10px; color:var(--ink-soft); text-transform:uppercase;">Thumbnail</div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Sub-Panel 4: Performance Marketing -->
+      <div class="sub-panel" id="live-perf">
+         <div class="aesthetic-impact">
+            <h2 class="impact-stat">#1</h2>
+            <h3 class="impact-title">Top Conversions</h3>
+            <p class="impact-desc">Developed and ran Google and Meta Ads campaigns for <strong>Urban Vault</strong> that secured the absolute highest leads and conversions among all participating groups in the class.</p>
+            <div class="impact-tags pc-tags"><span>Google Ads</span><span>Meta Ads</span><span>Lead Generation</span><span>Analytics</span></div>
+            <a href="#" style="font-size:11px; font-weight:800; margin-top:16px; color:var(--ink); text-decoration:none; border-bottom:2px solid #3a614d; display:inline-block;">VIEW CASE STUDY ↗</a>
+         </div>
+      </div>
+
     </div>
 
     <!-- PANEL 2: FREELANCE STUDIO -->
@@ -913,6 +1029,22 @@ subFolders.forEach(folder => {
 btnBack.addEventListener("click", () => {
   vaultSection.classList.remove("gallery-active");
   // Let the vault stay open so they can pick another folder immediately!
+});
+
+/* 5. Sub-Panel Navigation (Live Projects) */
+const subBtns = document.querySelectorAll(".sub-btn");
+const subPanels = document.querySelectorAll(".sub-panel");
+
+subBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    // remove active from all btns and panels
+    subBtns.forEach(b => b.classList.remove("active"));
+    subPanels.forEach(p => p.classList.remove("active"));
+    
+    // add active to clicked btn and target panel
+    btn.classList.add("active");
+    document.getElementById(btn.getAttribute("data-target")).classList.add("active");
+  });
 });
 </script>
 
