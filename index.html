@@ -67,9 +67,9 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 .hero-desc strong{color:var(--ink);font-weight:700;}
 
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .75s ease .66s forwards;}
-.btn-main{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .18s ease,box-shadow .18s ease;}
-.btn-main:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
-.btn-main:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
+.btn-main{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .18s ease,box-shadow .18s ease,background .25s ease;}
+.btn-main:hover{background:var(--sky);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+.btn-main:active{background:var(--blush);transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
 .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;background:transparent;color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 rgba(90,159,194,.45);transition:transform .18s ease,box-shadow .18s ease,background .2s;}
 .btn-ghost:hover{background:var(--sky);transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(90,159,194,.45);}
 .btn-ghost:active{transform:translate(2px,2px);}
@@ -364,10 +364,18 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   box-shadow: 2px 2px 0 var(--ink) !important;
 }
 
-.card-sage { background: var(--sage); }
-.card-sky { background: var(--sky); }
-.card-blush { background: var(--blush); }
-.card-yellow { background: var(--yellow); }
+/* Color swapping interactiveness on hover! */
+.card-sage { background: var(--sage); transition: background 0.4s ease; }
+.card-sage:hover { background: var(--yellow); }
+
+.card-sky { background: var(--sky); transition: background 0.4s ease; }
+.card-sky:hover { background: var(--blush); }
+
+.card-blush { background: var(--blush); transition: background 0.4s ease; }
+.card-blush:hover { background: var(--sky); }
+
+.card-yellow { background: var(--yellow); transition: background 0.4s ease; }
+.card-yellow:hover { background: var(--sage); }
 
 .m-num {
   font-family: 'Syne', sans-serif;
@@ -377,6 +385,11 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   margin-bottom: 8px;
   color: var(--ink);
   letter-spacing: -0.04em;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/* Make the exact number inside bounce playfully */
+.metric-card:hover .m-num {
+  transform: scale(1.15) rotate(4deg);
 }
 .m-label {
   font-family: 'Syne', sans-serif;
@@ -669,7 +682,7 @@ if(video){
     <!-- Right Column (Metric Cards) -->
     <div class="about-right">
       <div class="metric-card card-sage">
-        <h3 class="m-num">1+</h3>
+        <h3 class="m-num">2+</h3>
         <p class="m-label">Years of Experience</p>
       </div>
       <div class="metric-card card-sky">
