@@ -291,6 +291,111 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 .logo-item:hover img {
   transform: scale(1.45);
 }
+/* ═══════════ ABOUT TEASER ═══════════ */
+#about-teaser {
+  background: var(--cream);
+  padding: 40px 40px 120px;
+  position: relative;
+}
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.about-h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+.about-desc {
+  font-size: 16px;
+  line-height: 1.88;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+.about-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.metric-card {
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 4px 4px 0 var(--ink);
+  opacity: 0; /* for observer */
+  transform: translateY(40px);
+}
+/* Scroll reveal */
+.metric-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.about-left {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.about-left.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover Tactile Press */
+.metric-card:hover {
+  transform: translate(-4px, -4px) !important;
+  box-shadow: 8px 8px 0 var(--ink) !important;
+}
+.metric-card:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0 var(--ink) !important;
+}
+
+.card-sage { background: var(--sage); }
+.card-sky { background: var(--sky); }
+.card-blush { background: var(--blush); }
+.card-yellow { background: var(--yellow); }
+
+.m-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+}
+.m-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+
+@media(max-width: 960px) {
+  .about-container { grid-template-columns: 1fr; gap: 56px; }
+  .about-left { text-align: center; }
+  .about-desc { margin-inline: auto; }
+  .about-left .role-badge { margin-inline: auto; }
+}
+@media(max-width: 520px) {
+  .about-right { grid-template-columns: 1fr; }
+}
 
 </style>
 </head>
@@ -534,6 +639,86 @@ if(video){
   </div>
 
 </section>
+
+<!-- WAVE: White Brands -> Cream About -->
+<div style="background:#ffffff; line-height:0; overflow:hidden;">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:72px;">
+    <path d="M0,0 C480,72 960,0 1440,56 L1440,72 L0,72 Z" fill="#FAF7F2"/>
+  </svg>
+</div>
+
+<!-- ABOUT TEASER -->
+<section id="about-teaser">
+  <div class="about-container">
+    
+    <!-- Left Column (Bio) -->
+    <div class="about-left">
+      <p class="role-badge" style="opacity:1; animation:none; margin-bottom:24px;">
+        <span class="badge-dot"></span>
+        ABOUT ME
+      </p>
+      <h2 class="about-h2">Content is everywhere.<br>Resonance is rare.</h2>
+      <p class="about-desc">
+        Before I was a content marketer, I analyzed human motivation across diverse sectors in HR. That experience taught me a vital truth: the most effective marketing isn't about chasing trends, it's about mastering consumer psychology.
+        <br><br>
+        I translate raw brand objectives into razor-sharp scripts and campaigns that command attention and seamlessly turn viewers into buyers.
+      </p>
+      <a href="about.html" class="btn-main">Get to know the strategist &#x2192;</a>
+    </div>
+
+    <!-- Right Column (Metric Cards) -->
+    <div class="about-right">
+      <div class="metric-card card-sage">
+        <h3 class="m-num">1+</h3>
+        <p class="m-label">Years of Experience</p>
+      </div>
+      <div class="metric-card card-sky">
+        <h3 class="m-num">20+</h3>
+        <p class="m-label">Brand Collaborations</p>
+      </div>
+      <div class="metric-card card-blush">
+        <h3 class="m-num">8+</h3>
+        <p class="m-label">Industries Covered</p>
+      </div>
+      <div class="metric-card card-yellow">
+        <h3 class="m-num">∞</h3>
+        <p class="m-label">Story Ideas</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Scroll Reveal Animations for About Section
+  document.addEventListener("DOMContentLoaded", () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2 // Trigger when 20% visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Only animate once
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements
+    const leftText = document.querySelector('.about-left');
+    if (leftText) observer.observe(leftText);
+
+    const cards = document.querySelectorAll('.metric-card');
+    cards.forEach((card, index) => {
+      // Stagger the delays so cards pop in one after another
+      card.style.transitionDelay = `${index * 0.15}s`;
+      observer.observe(card);
+    });
+  });
+</script>
 
 </body>
 </html>
