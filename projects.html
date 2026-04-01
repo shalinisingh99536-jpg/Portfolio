@@ -408,6 +408,57 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
 }
 
 /* ── MOCKUPS & BENTO CSS (Placeholders for actual content) ── */
+/* ── PROJECT CARDS (Live Grid) ── */
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.project-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+.pc-media {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--sky-light);
+  overflow: hidden; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.pc-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.project-card:hover .pc-media img { transform: scale(1.05); }
+
+.pc-body { padding: 32px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.pc-category { font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; }
+.pc-category.blush { color: var(--blush-deep); }
+.pc-category.sky   { color: var(--sky-deep); }
+.pc-category.yellow{ color: var(--yellow-deep); }
+
+.pc-title { font-size: 28px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+.pc-desc { font-size: 15px; color: var(--ink-soft); line-height: 1.6; flex: 1; }
+
+.pc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.pc-tags span { font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 20px; background: rgba(0,0,0,0.04); color: var(--ink-muted); }
+
+.pc-link {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 4px; border-bottom: 2px solid var(--blush-deep); padding-bottom: 2px; align-self: flex-start;
+  transition: gap 0.3s ease;
+}
+.project-card:hover .pc-link { gap: 8px; color: var(--blush-deep); }
+
+@media(min-width: 901px) {
+  .project-card.wide { grid-column: 1 / 3; }
+  .project-card.wide .pc-media { aspect-ratio: 21/9; }
+}
+@media(max-width: 900px) { .live-grid { grid-template-columns: 1fr; } }
+
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -613,28 +664,77 @@ nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webki
     
     <!-- PANEL 1: LIVE PROJECTS -->
     <div class="g-panel" id="panel-live">
-      <div class="mockup-container">
-        <!-- Website Mockup -->
-        <div class="browser-mock">
-          <div class="bm-top">
-            <div class="bm-dot r"></div><div class="bm-dot y"></div><div class="bm-dot g"></div>
-            <div class="bm-bar"></div>
-          </div>
-          <div class="bm-content">
-            <h3 style="font-family:'Syne',sans-serif; margin-bottom:16px;">Websites Built by Me</h3>
-            <p style="color:var(--ink-soft); line-height:1.6;">
-              (You can embed an iframe of your website here, or use high-res scrolling screenshots of the live websites you've created.)
-            </p>
-          </div>
-        </div>
+      <div class="live-grid">
         
-        <!-- Channels list -->
-        <div>
-          <h3 style="font-family:'Syne',sans-serif; margin-bottom:24px;">YouTube Channels</h3>
-          <div style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,0.04);">
-            <p style="color:var(--ink-soft);">(Links and channel stats will go here. E.g., Channel 1, Channel 2)</p>
+        <!-- Youtube: Business Gita -->
+        <div class="project-card">
+          <div class="pc-media"><img src="business-gita.jpg" alt="The Business Gita" onerror="this.src='';this.style.background='var(--yellow-light)'"></div>
+          <div class="pc-body">
+            <span class="pc-category yellow">YOUTUBE CHANNEL</span>
+            <h3 class="pc-title">The Business Gita</h3>
+            <p class="pc-desc">Leading strategic content creation, scripting, and full video production to build an engaging digital presence.</p>
+            <div class="pc-tags"><span>Scripting</span><span>Shooting</span><span>Editing</span><span>Direction</span></div>
+            <a href="#" class="pc-link">WATCH ON YOUTUBE ↗</a>
           </div>
         </div>
+
+        <!-- Youtube: The Indian Skin -->
+        <div class="project-card">
+          <div class="pc-media"><img src="indian-skin.jpg" alt="The Indian Skin" onerror="this.src='';this.style.background='var(--blush-light)'"></div>
+          <div class="pc-body">
+            <span class="pc-category blush">YOUTUBE CHANNEL</span>
+            <h3 class="pc-title">The Indian Skin</h3>
+            <p class="pc-desc">Developing highly engaging, educational skincare content tailored specifically for the Indian audience.</p>
+            <div class="pc-tags"><span>Content Strategy</span><span>Video Editing</span><span>Research</span></div>
+            <a href="#" class="pc-link">WATCH ON YOUTUBE ↗</a>
+          </div>
+        </div>
+
+        <!-- Website: Indian Silicon Valley -->
+        <div class="project-card wide">
+          <div class="pc-media" style="align-items:flex-end;">
+             <!-- Desktop browser mock for web design -->
+             <div class="browser-mock" style="width: 80%; transform: translateY(20px); border-bottom-left-radius:0; border-bottom-right-radius:0; box-shadow: 0 0 40px rgba(0,0,0,0.1);">
+                <div class="bm-top" style="height:32px;"><div class="bm-dot r"></div><div class="bm-dot y"></div><div class="bm-dot g"></div><div class="bm-bar" style="height:16px;"></div></div>
+                <div class="bm-content" style="padding:0; min-height:auto;"><img src="isv-site.jpg" style="width:100%; height:auto; display:block;" onerror="this.src='';this.style.background='var(--sky-deep)'"></div>
+             </div>
+          </div>
+          <div class="pc-body">
+            <span class="pc-category sky">WEB DESIGN & DEVELOPMENT</span>
+            <h3 class="pc-title">The Indian Silicon Valley</h3>
+            <p class="pc-desc">Redesigned their entire website from scratch in Figma and built it on Webflow. Highly appreciated by Jivraj Singh for being the most intuitive version to date.</p>
+            <div class="pc-tags"><span>UI/UX</span><span>Figma</span><span>Webflow</span><span>Development</span></div>
+            <a href="#" class="pc-link">VISIT LIVE SITE ↗</a>
+          </div>
+        </div>
+
+        <!-- Urban Vault -->
+        <div class="project-card">
+          <div class="pc-media" style="background:var(--sage); flex-direction:column; gap:8px;">
+             <h2 style="font-size:56px; font-weight:800; color:var(--ink); margin:0;">#1</h2>
+             <span style="font-weight:700; color:var(--ink); letter-spacing:0.1em; text-transform:uppercase; font-size:12px;">Top Conversions</span>
+          </div>
+          <div class="pc-body">
+            <span class="pc-category" style="color:#4a8260; font-weight:800; font-size:11px; letter-spacing:0.15em;">PERFORMANCE MARKETING</span>
+            <h3 class="pc-title">Urban Vault</h3>
+            <p class="pc-desc">Ran highly targeted Google and Meta Ads campaigns. Achieved the highest leads and conversions among all groups in the class.</p>
+            <div class="pc-tags"><span>Google Ads</span><span>Meta Ads</span><span>Lead Gen</span><span>Analytics</span></div>
+            <a href="#" class="pc-link">VIEW CASE STUDY ↗</a>
+          </div>
+        </div>
+
+        <!-- Social Media Videos -->
+        <div class="project-card">
+          <div class="pc-media"><video src="character.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;"></video></div>
+          <div class="pc-body">
+            <span class="pc-category yellow">SOCIAL MEDIA VIDEOS</span>
+            <h3 class="pc-title">Brand Campaigns</h3>
+            <p class="pc-desc">End-to-end production of engaging short-form video content designed for high retention on Instagram and LinkedIn.</p>
+            <div class="pc-tags"><span>Premiere Pro</span><span>Social Media</span><span>Storytelling</span></div>
+            <a href="#" class="pc-link">VIEW ON INSTAGRAM ↗</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
