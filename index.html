@@ -427,45 +427,71 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   letter-spacing: -0.03em;
   margin-bottom: 12px;
 }
-/* ── APP-STYLE CAROUSEL ── */
-.carousel-track {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 20px 40px;
-  max-width: 1400px;
-  margin: 0 auto;
-  /* Hide scrollbar for clean look */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+/* ── STICKY PARALLAX GALLERY ── */
+#selected-narratives {
+  /* Creating the long scroll window */
+  height: 250vh; 
+  position: relative;
+  background: var(--cream);
 }
-.carousel-track::-webkit-scrollbar {
-  display: none;
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.parallax-grid {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  margin-top: 40px;
 }
 
-.carousel-card {
-  flex-shrink: 0;
-  width: 300px; 
-  min-height: 480px;
+/* Massive background typography */
+.bg-massive-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Syne', sans-serif;
+  font-size: 15vw;
+  font-weight: 800;
+  color: rgba(28,24,38,0.03); /* Extremely subtle ghost text */
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+  letter-spacing: -0.04em;
+}
+
+.parallax-card {
+  width: 260px; 
+  min-height: 440px;
   background: #ffffff;
   border-radius: 20px;
-  scroll-snap-align: center;
   text-decoration: none;
   color: var(--ink);
   box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   display: flex;
   flex-direction: column;
+  transition: box-shadow 0.4s ease;
+  will-change: transform; /* Hint for buttery scroll performance */
 }
-.carousel-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+.parallax-card:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
 .c-img-wrap {
   width: 100%;
-  height: 200px;
+  height: 180px;
   overflow: hidden;
   border-radius: 20px 20px 0 0;
   position: relative;
@@ -476,7 +502,7 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   object-fit: cover;
   transition: transform 0.6s ease;
 }
-.carousel-card:hover .c-img-wrap img {
+.parallax-card:hover .c-img-wrap img {
   transform: scale(1.05);
 }
 
@@ -488,16 +514,16 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 }
 .c-title {
   font-family: 'Syne', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
   margin-bottom: 12px;
   letter-spacing: -0.02em;
 }
 .c-desc {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
   color: var(--ink-soft);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .c-skills {
   display: flex;
@@ -506,10 +532,10 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   margin-bottom: auto; 
 }
 .skill-pill {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 100px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -522,7 +548,7 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   transition: transform 0.3s ease;
   align-self: flex-end;
 }
-.carousel-card:hover .c-link-arrow {
+.parallax-card:hover .c-link-arrow {
   transform: translateX(6px);
 }
 
@@ -536,10 +562,21 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 .card-yellow .c-img-wrap { background: var(--yellow); }
 .card-yellow .skill-pill { background: var(--yellow); color: #433d1b; }
 
+.sn-cta-wrap {
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  margin-top: 40px;
+  width: 100%;
+}
+
 /* Responsive */
 @media(max-width: 900px) {
-  .carousel-card { width: 320px; }
-  .carousel-track { padding: 20px; gap: 20px; }
+  #selected-narratives { height: auto; }
+  .sticky-wrapper { position: relative; height: auto; padding: 60px 0; }
+  .parallax-grid { flex-direction: column; padding: 20px; gap: 40px; }
+  .parallax-card { width: 320px; transform: none !important; }
+  .bg-massive-text { display: none; }
 }
 
 </style>
@@ -836,87 +873,90 @@ if(video){
 
 <!-- SELECTED NARRATIVES (Featured Work) -->
 <section id="selected-narratives">
-  <div class="sn-header">
-    <p class="role-badge" style="opacity:1; animation:none; margin-bottom:16px;">
-      <span class="badge-dot"></span>
-      SELECTED NARRATIVES
-    </p>
-    <h2 class="sn-h2">Proofs of Concept.</h2>
-  </div>
+  <div class="sticky-wrapper">
+    <div class="bg-massive-text">PROOFS</div>
+    
+    <div class="sn-header" style="position: relative; z-index: 10; text-align: center; padding-top: 20px;">
+      <p class="role-badge" style="opacity:1; animation:none; margin-bottom:16px; justify-content: center;">
+        <span class="badge-dot"></span>
+        SELECTED NARRATIVES
+      </p>
+      <h2 class="sn-h2">Proofs of Concept.</h2>
+    </div>
 
-  <div class="carousel-track">
-    <!-- CARD 1 -->
-    <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank" class="carousel-card card-sage">
-      <div class="c-img-wrap">
-        <img src="assets/isv-site.jpg" alt="Indian Silicon Valley">
-      </div>
-      <div class="c-content">
-        <h3 class="c-title">Indian Silicon Valley</h3>
-        <p class="c-desc">Redesigned their website from scratch in Figma and developed it in Webflow. Concept fully approved by Jivraj Singh.</p>
-        <div class="c-skills">
-          <span class="skill-pill">Visual Design</span>
-          <span class="skill-pill">Figma</span>
-          <span class="skill-pill">Webflow</span>
-          <span class="skill-pill">UX Narrative</span>
+    <div class="parallax-grid">
+      <!-- CARD 1 -->
+      <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank" class="parallax-card card-sage">
+        <div class="c-img-wrap">
+          <img src="assets/isv-site.jpg" alt="Indian Silicon Valley">
         </div>
-        <div class="c-link-arrow">&#8594;</div>
-      </div>
-    </a>
-
-    <!-- CARD 2 -->
-    <a href="projects.html" class="carousel-card card-blush">
-      <div class="c-img-wrap">
-        <img src="assets/jito-presenter.jpg" alt="JITO Tycoon Campaign">
-      </div>
-      <div class="c-content">
-        <h3 class="c-title">JITO Tycoon Campaign</h3>
-        <p class="c-desc">Visual direction, scripting, and female presenter for JITO North Bangalore's Instagram featuring local founders.</p>
-        <div class="c-skills">
-          <span class="skill-pill">Visual Direction</span>
-          <span class="skill-pill">Presenter</span>
-          <span class="skill-pill">Scripting</span>
+        <div class="c-content">
+          <h3 class="c-title">Indian Silicon Valley</h3>
+          <p class="c-desc">Redesigned their website from scratch in Figma and developed it in Webflow. Concept highly appreciated by Jivraj Singh (Founder).</p>
+          <div class="c-skills">
+            <span class="skill-pill">Visual Design</span>
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">Webflow</span>
+            <span class="skill-pill">UX Narrative</span>
+          </div>
+          <div class="c-link-arrow">&#8594;</div>
         </div>
-        <div class="c-link-arrow">&#8594;</div>
-      </div>
-    </a>
+      </a>
 
-    <!-- CARD 3 -->
-    <a href="https://youtube.com/@businessgita-4lit?si=HB4YN4x64JvlfgSQ" target="_blank" class="carousel-card card-sky">
-      <div class="c-img-wrap">
-        <img src="assets/business-gita.jpg" alt="Business Gita">
-      </div>
-      <div class="c-content">
-        <h3 class="c-title">Business Gita</h3>
-        <p class="c-desc">YouTube strategist, researcher, and script writer. Delivered highly praised thumbnail designs and concepts.</p>
-        <div class="c-skills">
-          <span class="skill-pill">YT Strategy</span>
-          <span class="skill-pill">Thumbnails</span>
-          <span class="skill-pill">Research</span>
-          <span class="skill-pill">Scripting</span>
+      <!-- CARD 2 -->
+      <a href="projects.html" class="parallax-card card-blush">
+        <div class="c-img-wrap">
+          <img src="assets/jito-presenter.jpg" alt="JITO Tycoon Campaign">
         </div>
-        <div class="c-link-arrow">&#8594;</div>
-      </div>
-    </a>
-
-    <!-- CARD 4 -->
-    <a href="#" class="carousel-card card-yellow">
-      <div class="c-img-wrap" style="background: linear-gradient(135deg, var(--yellow), #E0D392);">
-        <!-- Placeholder for video thumb -->
-      </div>
-      <div class="c-content">
-        <h3 class="c-title">Pronto Campaigns</h3>
-        <p class="c-desc">Served as an actor and contributed to the screenwriting and story execution.</p>
-        <div class="c-skills">
-          <span class="skill-pill">Acting</span>
-          <span class="skill-pill">Scripting</span>
+        <div class="c-content">
+          <h3 class="c-title">JITO Tycoon Campaign</h3>
+          <p class="c-desc">Visual direction, scripting, and female presenter for JITO North Bangalore's Instagram featuring local founders.</p>
+          <div class="c-skills">
+            <span class="skill-pill">Visual Direction</span>
+            <span class="skill-pill">Presenter</span>
+            <span class="skill-pill">Scripting</span>
+          </div>
+          <div class="c-link-arrow">&#8594;</div>
         </div>
-        <div class="c-link-arrow">&#8594;</div>
-      </div>
-    </a>
-  </div>
+      </a>
 
-  <div class="sn-cta-wrap">
-    <a href="projects.html" class="btn-ghost" style="padding:18px 40px; font-size:15px;">Explore the Archive &#x2192;</a>
+      <!-- CARD 3 -->
+      <a href="https://youtube.com/@businessgita-4lit?si=HB4YN4x64JvlfgSQ" target="_blank" class="parallax-card card-sky">
+        <div class="c-img-wrap">
+          <img src="assets/business-gita.jpg" alt="Business Gita">
+        </div>
+        <div class="c-content">
+          <h3 class="c-title">Business Gita</h3>
+          <p class="c-desc">YouTube strategist, researcher, and script writer. Delivered highly praised thumbnail designs and concepts.</p>
+          <div class="c-skills">
+            <span class="skill-pill">YT Strategy</span>
+            <span class="skill-pill">Thumbnails</span>
+            <span class="skill-pill">Research</span>
+            <span class="skill-pill">Scripting</span>
+          </div>
+          <div class="c-link-arrow">&#8594;</div>
+        </div>
+      </a>
+
+      <!-- CARD 4 -->
+      <a href="#" class="parallax-card card-yellow">
+        <div class="c-img-wrap" style="background: linear-gradient(135deg, var(--yellow), #E0D392);">
+        </div>
+        <div class="c-content">
+          <h3 class="c-title">Pronto Campaigns</h3>
+          <p class="c-desc">Served as an actor and contributed to the screenwriting and story execution.</p>
+          <div class="c-skills">
+            <span class="skill-pill">Acting</span>
+            <span class="skill-pill">Scripting</span>
+          </div>
+          <div class="c-link-arrow">&#8594;</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="sn-cta-wrap">
+      <a href="projects.html" class="btn-ghost" style="padding:16px 36px; font-size:14px;">Explore the Archive &#x2192;</a>
+    </div>
   </div>
 </section>
 
@@ -949,6 +989,41 @@ if(video){
       card.style.transitionDelay = `${index * 0.15}s`;
       observer.observe(card);
     });
+
+    // === STICKY PARALLAX LOGIC ===
+    const stickySection = document.getElementById('selected-narratives');
+    const pCards = document.querySelectorAll('.parallax-card');
+    
+    if (stickySection && pCards.length === 4) {
+      window.addEventListener('scroll', () => {
+        // Only trigger parallax if not on mobile (avoids stacking bugs)
+        if (window.innerWidth <= 900) return;
+        
+        let rect = stickySection.getBoundingClientRect();
+        let windowHeight = window.innerHeight;
+        
+        // Calculate scroll bounds and progress
+        let scrollPixels = -rect.top;
+        let maxScroll = rect.height - windowHeight;
+        
+        // Lock progress strictly between 0 and 1
+        let progress = Math.max(0, Math.min(1, scrollPixels / maxScroll));
+        
+        // Custom Zig-Zag Math (Speed Tracking):
+        // Card 2 goes fastest (lowest starting value -> quickest to top)
+        let y1 = (1 - progress) * 1200 + 40;   // Card 1
+        let y2 = (1 - progress) * 1000 - 60;   // Card 2 (Middle Box - Hits frame first)
+        let y3 = (1 - progress) * 1600 + 80;   // Card 3
+        let y4 = (1 - progress) * 1400 - 10;   // Card 4
+        
+        // Apply butter-smooth transforms
+        pCards[0].style.transform = `translateY(${y1}px)`;
+        pCards[1].style.transform = `translateY(${y2}px)`;
+        pCards[2].style.transform = `translateY(${y3}px)`;
+        pCards[3].style.transform = `translateY(${y4}px)`;
+      });
+    }
+
   });
 </script>
 
