@@ -412,11 +412,11 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 /* ═══════════ SELECTED NARRATIVES (FEATURED WORK) ═══════════ */
 #selected-narratives {
   background: var(--cream);
-  padding: 80px 0 120px;
+  padding: 60px 0 80px;
 }
 .sn-header {
   max-width: 1200px;
-  margin: 0 auto 60px;
+  margin: 0 auto 30px;
   padding: 0 40px;
 }
 .sn-h2 {
@@ -434,7 +434,7 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 48px 60px;
+  padding: 30px 40px;
   border-bottom: 1px solid rgba(28,24,38,.1);
   text-decoration: none;
   color: var(--ink);
@@ -443,13 +443,14 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   transition: background 0.4s ease, padding 0.4s ease;
 }
 .sn-row:hover {
-  padding-left: 80px;
-  padding-right: 40px;
+  padding-left: 56px;
+  padding-right: 24px;
 }
-.sn-row.color-sage:hover { background: var(--sage); cursor: pointer; }
-.sn-row.color-blush:hover { background: var(--blush); cursor: pointer; }
-.sn-row.color-sky:hover { background: var(--sky); cursor: pointer; }
-.sn-row.color-yellow:hover { background: var(--yellow); cursor: pointer; }
+/* Subtle aesthetic linear gradients instead of solid block colors */
+.sn-row.color-sage:hover { background: linear-gradient(90deg, rgba(197, 232, 213, 0.4), transparent); cursor: pointer; }
+.sn-row.color-blush:hover { background: linear-gradient(90deg, rgba(253, 232, 238, 0.6), transparent); cursor: pointer; }
+.sn-row.color-sky:hover { background: linear-gradient(90deg, rgba(228, 243, 250, 0.6), transparent); cursor: pointer; }
+.sn-row.color-yellow:hover { background: linear-gradient(90deg, rgba(254, 247, 214, 0.6), transparent); cursor: pointer; }
 
 .sn-info {
   display: flex;
@@ -470,15 +471,15 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   opacity: 0.6;
 }
 .sn-title {
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 800;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
   font-family: 'Syne', sans-serif;
   letter-spacing: -0.02em;
 }
 .sn-role {
   font-family: 'Instrument Serif', serif;
   font-style: italic;
-  font-size: 22px;
+  font-size: 19px;
   color: var(--ink-soft);
   position: relative;
   z-index: 2;
@@ -494,8 +495,8 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   right: 15%;
   top: 50%;
   transform: translateY(-50%) rotate(5deg) scale(0.85);
-  width: 320px;
-  height: 200px;
+  width: 260px;
+  height: 160px;
   border-radius: 12px;
   opacity: 0;
   pointer-events: none;
@@ -821,7 +822,7 @@ if(video){
       <span class="badge-dot"></span>
       SELECTED NARRATIVES
     </p>
-    <h2 class="sn-h2">Stories I've told.</h2>
+    <h2 class="sn-h2">Proofs of Concept.</h2>
   </div>
 
   <div class="sn-list">
