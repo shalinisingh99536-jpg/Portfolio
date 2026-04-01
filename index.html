@@ -409,6 +409,118 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 @media(max-width: 520px) {
   .about-right { grid-template-columns: 1fr; }
 }
+/* ═══════════ SELECTED NARRATIVES (FEATURED WORK) ═══════════ */
+#selected-narratives {
+  background: var(--cream);
+  padding: 80px 0 120px;
+}
+.sn-header {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 0 40px;
+}
+.sn-h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+.sn-list {
+  border-top: 1px solid rgba(28,24,38,.1);
+}
+.sn-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 48px 60px;
+  border-bottom: 1px solid rgba(28,24,38,.1);
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease, padding 0.4s ease;
+}
+.sn-row:hover {
+  padding-left: 80px;
+  padding-right: 40px;
+}
+.sn-row.color-sage:hover { background: var(--sage); cursor: pointer; }
+.sn-row.color-blush:hover { background: var(--blush); cursor: pointer; }
+.sn-row.color-sky:hover { background: var(--sky); cursor: pointer; }
+.sn-row.color-yellow:hover { background: var(--yellow); cursor: pointer; }
+
+.sn-info {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sn-row:hover .sn-info {
+  transform: translateX(20px);
+}
+.sn-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  font-family: 'Syne', sans-serif;
+  opacity: 0.6;
+}
+.sn-title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.02em;
+}
+.sn-role {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ink-soft);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+.sn-row:hover .sn-role {
+  color: var(--ink);
+}
+
+/* Floating Image Hover */
+.sn-img-target {
+  position: absolute;
+  right: 15%;
+  top: 50%;
+  transform: translateY(-50%) rotate(5deg) scale(0.85);
+  width: 320px;
+  height: 200px;
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.sn-row:hover .sn-img-target {
+  opacity: 1;
+  transform: translateY(-50%) rotate(-2deg) scale(1);
+  right: 10%;
+}
+
+.sn-cta-wrap {
+  text-align: center;
+  margin-top: 80px;
+}
+
+@media(max-width: 900px) {
+  .sn-row { flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 40px; }
+  .sn-info { gap: 24px; flex-direction: column; align-items: flex-start; }
+  .sn-img-target { display: none; } /* Hide hover images on mobile */
+  .sn-row:hover { padding-left: 40px; padding-right: 40px; background: transparent !important; }
+  .sn-row:hover .sn-info { transform: translateX(0); }
+}
 
 </style>
 </head>
@@ -701,6 +813,71 @@ if(video){
 
   </div>
 </section>
+
+<!-- SELECTED NARRATIVES (Featured Work) -->
+<section id="selected-narratives">
+  <div class="sn-header">
+    <p class="role-badge" style="opacity:1; animation:none; margin-bottom:16px;">
+      <span class="badge-dot"></span>
+      SELECTED NARRATIVES
+    </p>
+    <h2 class="sn-h2">Stories I've told.</h2>
+  </div>
+
+  <div class="sn-list">
+    <!-- ROW 1 -->
+    <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank" class="sn-row color-sage">
+      <div class="sn-info">
+        <span class="sn-num">01</span>
+        <h3 class="sn-title">Indian Silicon Valley</h3>
+      </div>
+      <span class="sn-role">Website Redesign</span>
+      <!-- Floating Project Thumbnail -->
+      <div class="sn-img-target" style="overflow: hidden; background: var(--sage);">
+        <img src="assets/isv-site.jpg" alt="Indian Silicon Valley Redesign" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.95;">
+      </div>
+    </a>
+
+    <!-- ROW 2 -->
+    <a href="projects.html" class="sn-row color-blush">
+      <div class="sn-info">
+        <span class="sn-num">02</span>
+        <h3 class="sn-title">JITO Tycoon Campaign</h3>
+      </div>
+      <span class="sn-role">Visual Direction & Presenter</span>
+      <div class="sn-img-target" style="overflow: hidden; background: var(--blush);">
+        <img src="assets/jito-presenter.jpg" alt="JITO Campaign" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.95;">
+      </div>
+    </a>
+
+    <!-- ROW 3 -->
+    <a href="https://youtube.com/@businessgita-4lit?si=HB4YN4x64JvlfgSQ" target="_blank" class="sn-row color-sky">
+      <div class="sn-info">
+        <span class="sn-num">03</span>
+        <h3 class="sn-title">Business Gita</h3>
+      </div>
+      <span class="sn-role">Targeted Strategy & Scripting</span>
+      <div class="sn-img-target" style="overflow: hidden; background: var(--sky);">
+        <img src="assets/business-gita.jpg" alt="Business Gita" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.95;">
+      </div>
+    </a>
+
+    <!-- ROW 4 -->
+    <a href="#" class="sn-row color-yellow">
+      <div class="sn-info">
+        <span class="sn-num">04</span>
+        <h3 class="sn-title">Pronto Campaigns</h3>
+      </div>
+      <span class="sn-role">On-Camera (1st & 2nd Place Awards)</span>
+      <div class="sn-img-target" style="background: linear-gradient(135deg, var(--yellow), #E0D392);"></div>
+    </a>
+  </div>
+
+  <div class="sn-cta-wrap">
+    <a href="projects.html" class="btn-ghost" style="padding:18px 40px; font-size:15px;">Explore the Archive &#x2192;</a>
+  </div>
+</section>
+
 
 <script>
   // Scroll Reveal Animations for About Section
