@@ -473,57 +473,75 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
 }
 
 .parallax-card {
-  width: 260px; 
-  min-height: 440px;
-  background: #ffffff;
+  position: relative;
   border-radius: 20px;
   text-decoration: none;
-  color: var(--ink);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  color: var(--cream);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  transition: box-shadow 0.4s ease;
+  justify-content: flex-end; /* Push content to bottom */
+  overflow: hidden;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
   will-change: transform; /* Hint for buttery scroll performance */
 }
+.parallax-card.card-h {
+  width: 380px; 
+  height: 280px;
+}
+.parallax-card.card-v {
+  width: 250px; 
+  height: 380px;
+}
 .parallax-card:hover {
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
 .c-img-wrap {
+  position: absolute;
+  top: 0; left: 0;
   width: 100%;
-  height: 180px;
-  overflow: hidden;
-  border-radius: 20px 20px 0 0;
-  position: relative;
+  height: 100%;
+  z-index: 1;
 }
 .c-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .parallax-card:hover .c-img-wrap img {
-  transform: scale(1.05);
+  transform: scale(1.08); /* Noticeable zoom on image background */
+}
+/* Gradient overlay to make text readable */
+.c-img-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.0) 70%);
 }
 
 .c-content {
-  padding: 32px;
+  position: relative;
+  z-index: 2; /* Sit cleanly over the image gradient */
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
 }
 .c-title {
   font-family: 'Syne', sans-serif;
   font-size: 20px;
   font-weight: 800;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   letter-spacing: -0.02em;
+  color: #fff;
 }
 .c-desc {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.5;
-  color: var(--ink-soft);
-  margin-bottom: 20px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 16px;
 }
 .c-skills {
   display: flex;
@@ -532,41 +550,37 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   margin-bottom: auto; 
 }
 .skill-pill {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   padding: 4px 10px;
   border-radius: 100px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  background: rgba(255,255,255,0.15); /* Glass pill styling */
+  color: #fff;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .c-link-arrow {
-  margin-top: 32px;
-  font-size: 24px;
-  color: var(--ink);
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 20px;
+  color: #fff;
   transition: transform 0.3s ease;
-  align-self: flex-end;
+  z-index: 2;
 }
 .parallax-card:hover .c-link-arrow {
-  transform: translateX(6px);
+  transform: translateX(4px) translateY(-4px); /* Diagonal arrow movement */
 }
-
-/* Card Tints */
-.card-sage .c-img-wrap { background: var(--sage); }
-.card-sage .skill-pill { background: var(--sage); color: #1e3626; }
-.card-blush .c-img-wrap { background: var(--blush); }
-.card-blush .skill-pill { background: var(--blush); color: #4a212b; }
-.card-sky .c-img-wrap { background: var(--sky); }
-.card-sky .skill-pill { background: var(--sky); color: #1c3241; }
-.card-yellow .c-img-wrap { background: var(--yellow); }
-.card-yellow .skill-pill { background: var(--yellow); color: #433d1b; }
 
 .sn-cta-wrap {
   text-align: center;
   position: relative;
   z-index: 10;
-  margin-top: 40px;
+  margin-top: 140px; /* Massive gap to prevent overlapping with translated cards */
   width: 100%;
 }
 
@@ -575,8 +589,85 @@ nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit
   #selected-narratives { height: auto; }
   .sticky-wrapper { position: relative; height: auto; padding: 60px 0; }
   .parallax-grid { flex-direction: column; padding: 20px; gap: 40px; }
-  .parallax-card { width: 320px; transform: none !important; }
+  .parallax-card.card-h, .parallax-card.card-v { width: 320px; height: 320px; transform: none !important; }
   .bg-massive-text { display: none; }
+}
+
+/* ── FOOTER / CONTACT ── */
+#contact-footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 100px 40px 40px;
+}
+.footer-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 80px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.f-left {
+  max-width: 400px;
+}
+.f-left .f-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.f-left .f-desc {
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.f-right {
+  display: flex;
+  gap: 100px;
+}
+.f-col h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 24px;
+}
+.f-col a, .f-col p {
+  display: block;
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 15px;
+  margin-bottom: 16px;
+  transition: opacity 0.3s ease;
+}
+.f-col a:hover {
+  opacity: 0.6;
+}
+.f-bottom {
+  max-width: 1400px;
+  margin: 40px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+}
+.back-to-top {
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.back-to-top:hover {
+  color: var(--cream);
+}
+@media(max-width: 900px) {
+  .footer-wrap { flex-direction: column; gap: 60px; }
+  .f-right { flex-direction: column; gap: 40px; }
+  .f-bottom { flex-direction: column; gap: 20px; align-items: flex-start; }
 }
 
 </style>
@@ -885,11 +976,12 @@ if(video){
     </div>
 
     <div class="parallax-grid">
-      <!-- CARD 1 -->
-      <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank" class="parallax-card card-sage">
+      <!-- CARD 1 (Horizontal) -->
+      <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank" class="parallax-card card-h">
         <div class="c-img-wrap">
           <img src="assets/isv-site.jpg" alt="Indian Silicon Valley">
         </div>
+        <div class="c-link-arrow">&#8599;</div>
         <div class="c-content">
           <h3 class="c-title">Indian Silicon Valley</h3>
           <p class="c-desc">Redesigned their website from scratch in Figma and developed it in Webflow. Concept highly appreciated by Jivraj Singh (Founder).</p>
@@ -899,15 +991,15 @@ if(video){
             <span class="skill-pill">Webflow</span>
             <span class="skill-pill">UX Narrative</span>
           </div>
-          <div class="c-link-arrow">&#8594;</div>
         </div>
       </a>
 
-      <!-- CARD 2 -->
-      <a href="projects.html" class="parallax-card card-blush">
+      <!-- CARD 2 (Vertical) -->
+      <a href="projects.html" class="parallax-card card-v">
         <div class="c-img-wrap">
           <img src="assets/jito-presenter.jpg" alt="JITO Tycoon Campaign">
         </div>
+        <div class="c-link-arrow">&#8599;</div>
         <div class="c-content">
           <h3 class="c-title">JITO Tycoon Campaign</h3>
           <p class="c-desc">Visual direction, scripting, and female presenter for JITO North Bangalore's Instagram featuring local founders.</p>
@@ -916,15 +1008,15 @@ if(video){
             <span class="skill-pill">Presenter</span>
             <span class="skill-pill">Scripting</span>
           </div>
-          <div class="c-link-arrow">&#8594;</div>
         </div>
       </a>
 
-      <!-- CARD 3 -->
-      <a href="https://youtube.com/@businessgita-4lit?si=HB4YN4x64JvlfgSQ" target="_blank" class="parallax-card card-sky">
+      <!-- CARD 3 (Horizontal) -->
+      <a href="https://youtube.com/@businessgita-4lit?si=HB4YN4x64JvlfgSQ" target="_blank" class="parallax-card card-h">
         <div class="c-img-wrap">
           <img src="assets/business-gita.jpg" alt="Business Gita">
         </div>
+        <div class="c-link-arrow">&#8599;</div>
         <div class="c-content">
           <h3 class="c-title">Business Gita</h3>
           <p class="c-desc">YouTube strategist, researcher, and script writer. Delivered highly praised thumbnail designs and concepts.</p>
@@ -934,14 +1026,14 @@ if(video){
             <span class="skill-pill">Research</span>
             <span class="skill-pill">Scripting</span>
           </div>
-          <div class="c-link-arrow">&#8594;</div>
         </div>
       </a>
 
-      <!-- CARD 4 -->
-      <a href="#" class="parallax-card card-yellow">
+      <!-- CARD 4 (Vertical) -->
+      <a href="#" class="parallax-card card-v">
         <div class="c-img-wrap" style="background: linear-gradient(135deg, var(--yellow), #E0D392);">
         </div>
+        <div class="c-link-arrow">&#8599;</div>
         <div class="c-content">
           <h3 class="c-title">Pronto Campaigns</h3>
           <p class="c-desc">Served as an actor and contributed to the screenwriting and story execution.</p>
@@ -949,7 +1041,6 @@ if(video){
             <span class="skill-pill">Acting</span>
             <span class="skill-pill">Scripting</span>
           </div>
-          <div class="c-link-arrow">&#8594;</div>
         </div>
       </a>
     </div>
@@ -957,9 +1048,36 @@ if(video){
     <div class="sn-cta-wrap">
       <a href="projects.html" class="btn-ghost" style="padding:16px 36px; font-size:14px;">Explore the Archive &#x2192;</a>
     </div>
+    </div>
   </div>
 </section>
 
+<!-- FOOTER -->
+<footer id="contact-footer">
+  <div class="footer-wrap">
+    <div class="f-left">
+      <h2 class="f-logo">Shalini Singh</h2>
+      <p class="f-desc">Strategist, Researcher, and Visual Director.<br>Shaping narratives for brands, founders, and creators.</p>
+    </div>
+    
+    <div class="f-right">
+      <div class="f-col">
+        <h4>Contact</h4>
+        <a href="mailto:shalinisinghswork@gmail.com">shalinisinghswork@gmail.com</a>
+        <a href="tel:+918447057002">+91 84470 57002</a>
+      </div>
+      <div class="f-col">
+        <h4>Socials</h4>
+        <a href="https://www.linkedin.com/in/shalini-singh-953747151" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/shalinistuff/" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <p>&copy; 2024 Shalini Singh. All rights reserved.</p>
+    <a href="#" class="back-to-top">Back to top &uarr;</a>
+  </div>
+</footer>
 
 <script>
   // Scroll Reveal Animations for About Section
