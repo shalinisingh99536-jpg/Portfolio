@@ -1,1194 +1,2086 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Shalini Singh — Projects Vault</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet"/>
-<style>
-/* CORE STYLES */
-:root {
-  --sky:#B8DFEF; --sky-light:#E4F3FA; --sky-deep:#5A9FC2;
-  --blush:#F2BDCA; --blush-light:#FDE8EE; --blush-deep:#D45E7A;
-  --yellow:#FAE083; --yellow-light:#FEF7D6; --yellow-deep:#C8940A;
-  --sage:#C5E8D5; --lavender:#D8CEFF;
-  --cream:#FAF7F2; --ink:#1C1826; --ink-soft:#4A4462; --ink-muted:#928EA8;
-}
-*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-html, body {
-  overflow-x: hidden;
-}
-body {
-  background: 
-    radial-gradient(ellipse at top left, rgba(212, 94, 122, 0.08), transparent 50%),
-    radial-gradient(ellipse at bottom right, rgba(90, 159, 194, 0.08), transparent 50%),
-    linear-gradient(rgba(28, 24, 38, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(28, 24, 38, 0.03) 1px, transparent 1px),
-    var(--cream);
-  background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
-  background-position: center, center, center, center;
-  background-attachment: fixed;
-  font-family: 'Syne', sans-serif;
-  color: var(--ink);
-  overflow-x: hidden;
-  cursor: none;
-  -webkit-font-smoothing: antialiased;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shalini Singh — Projects Vault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@1&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* CORE STYLES */
+    :root {
+      --sky: #B8DFEF;
+      --sky-light: #E4F3FA;
+      --sky-deep: #5A9FC2;
+      --blush: #F2BDCA;
+      --blush-light: #FDE8EE;
+      --blush-deep: #D45E7A;
+      --yellow: #FAE083;
+      --yellow-light: #FEF7D6;
+      --yellow-deep: #C8940A;
+      --sage: #C5E8D5;
+      --lavender: #D8CEFF;
+      --cream: #FAF7F2;
+      --ink: #1C1826;
+      --ink-soft: #4A4462;
+      --ink-muted: #928EA8;
+    }
 
-/* CURSOR */
-#cur {position:fixed;width:10px;height:10px;background:var(--blush-deep);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:multiply;transition:width .22s,height .22s;will-change:transform;}
-#cur-ring {position:fixed;width:32px;height:32px;border:2px solid var(--sky-deep);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4;transition:width .28s,height .28s,opacity .28s;will-change:transform;}
-#cur.big {width:42px;height:42px;opacity:.1;}
-#cur-ring.big {width:58px;height:58px;opacity:.08;}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* NAV */
-nav {position:fixed;top:0;left:0;right:0;z-index:600;padding:22px 56px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s;}
-nav.scrolled {background:rgba(250,247,242,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(28,24,38,.08);}
-.nav-logo {font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px;}
-.nav-pip {width:8px;height:8px;border-radius:50%;background:var(--blush-deep);flex-shrink:0;animation:pipPulse 2.5s ease-in-out infinite;}
-@keyframes pipPulse{0%,100%{background:var(--blush-deep);transform:scale(1);}50%{background:var(--sky-deep);transform:scale(1.45);}}
-.nav-logo em {font-style:normal;color:var(--blush-deep);}
-.nav-links {display:flex;gap:32px;}
-.nav-links a {font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;position:relative;padding-bottom:3px;transition:color .25s;}
-.nav-links a::after {content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--blush-deep);border-radius:2px;transition:width .3s ease;}
-.nav-links a:hover {color:var(--blush-deep);}
-.nav-links a:hover::after {width:100%;}
+    html,
+    body {
+      overflow-x: hidden;
+    }
 
-/* ═══════════ 3D VAULT SECTION ═══════════ */
-#vault-section {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 80px; 
-  perspective: 1600px; /* 3D Depth */
-  overflow: hidden;
-}
+    body {
+      background:
+        radial-gradient(ellipse at top left, rgba(212, 94, 122, 0.08), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(90, 159, 194, 0.08), transparent 50%),
+        linear-gradient(rgba(28, 24, 38, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(28, 24, 38, 0.03) 1px, transparent 1px),
+        var(--cream);
+      background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+      background-position: center, center, center, center;
+      background-attachment: fixed;
+      font-family: 'Syne', sans-serif;
+      color: var(--ink);
+      overflow-x: hidden;
+      cursor: none;
+      -webkit-font-smoothing: antialiased;
+    }
 
-.vault-title {
-  position: absolute;
-  top: 140px;
-  text-align: center;
-  z-index: 10;
-  pointer-events: none;
-}
-.vault-title h1 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-}
-.vault-title p {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-size: clamp(18px, 2vw, 24px);
-  color: var(--ink-soft);
-  margin-top: 8px;
-}
+    /* CURSOR */
+    #cur {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--blush-deep);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: multiply;
+      transition: width .22s, height .22s;
+      will-change: transform;
+    }
 
-/* 3D Scene Wrapper */
-#vault-scene {
-  position: relative;
-  width: 480px;
-  height: 340px;
-  transform-style: preserve-3d;
-  /* Starting tilt to show off 3D right away */
-  transform: rotateX(15deg) rotateY(-10deg);
-  transition: transform 0.1s linear; 
-  cursor: pointer;
-  z-index: 5;
-  margin-top: 60px;
-}
+    #cur-ring {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--sky-deep);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      opacity: .4;
+      transition: width .28s, height .28s, opacity .28s;
+      will-change: transform;
+    }
 
-/* When the gallery is active, hide the vault */
-#vault-section.gallery-active #vault-scene {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
+    #cur.big {
+      width: 42px;
+      height: 42px;
+      opacity: .1;
+    }
 
-/* Master Folder Pieces */
-.folder-part {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  border-radius: 12px 12px 0 0;
-  transform-origin: bottom center;
-}
+    #cur-ring.big {
+      width: 58px;
+      height: 58px;
+      opacity: .08;
+    }
 
-/* Back of Folder */
-.f-back {
-  background: linear-gradient(145deg, #6C9CB9, #4B8DB2);
-  transform: translateZ(-30px);
-  /* Make the folder look thick with solid 3D layers */
-  box-shadow: 
-    0 -2px 0 var(--blush-deep), 
-    0 -4px 0 var(--yellow-deep), 
-    0 -6px 0 var(--sky-deep), 
-    0 20px 50px rgba(0,0,0,0.15);
-  border: 1px solid rgba(255,255,255,0.2);
-}
-.f-back::before {
-  content: '';
-  position: absolute;
-  top: -24px;
-  right: 20px;
-  width: 160px;
-  height: 36px;
-  background: linear-gradient(145deg, #6C9CB9, #4B8DB2);
-  border-radius: 12px 12px 0 0;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-bottom: none;
-}
-.thick-tab {
-  position: absolute;
-  height: 48px; width: 100px;
-  border-radius: 12px 12px 0 0;
-  border: 1px solid rgba(255,255,255,0.3);
-}
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 600;
+      padding: 22px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background .4s, box-shadow .4s;
+    }
 
-/* Inside the Folder: The 3 Sub-folders */
-.inner-wrap {
-  position: absolute;
-  bottom: 0;
-  left: 4%;
-  width: 92%;
-  height: 98%;
-  transform-style: preserve-3d;
-  transform: translateZ(0px); /* Sandwiched perfectly between front and back */
-  display: flex;
-  gap: 12px;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: hidden; /* Fixes bottom clipping cleanly */
-  border-radius: 0 0 12px 12px;
-}
+    nav.scrolled {
+      background: rgba(250, 247, 242, .92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(28, 24, 38, .08);
+    }
 
-.sub-folder {
-  flex: 1;
-  height: 100%;
-  border-radius: 12px 12px 0 0;
-  box-shadow: inset 0 2px 10px rgba(255,255,255,0.8), 0 -5px 15px rgba(0,0,0,0.08);
-  /* Hidden down inside the folder initially */
-  transform: translateY(100%); 
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), flex 0.3s ease;
-  cursor: pointer;
-  position: relative;
-  text-align: center;
-  padding-top: 24px;
-  border: 1px solid rgba(255,255,255,0.5);
-  border-bottom: none;
-}
+    .nav-logo {
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
 
-/* Individual colors for tabs - Premium Gradients */
-.sf-live     { background: linear-gradient(145deg, #F9D0DA, #EBA4B6); transition-delay: 0.15s; }
-.sf-freelance{ background: linear-gradient(145deg, #FDF0B5, #F5D35B); transition-delay: 0.25s; }
-.sf-campaign { background: linear-gradient(145deg, #D6F0E0, #B4E0C9); transition-delay: 0.35s; }
+    .nav-pip {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blush-deep);
+      flex-shrink: 0;
+      animation: pipPulse 2.5s ease-in-out infinite;
+    }
 
-.sub-folder:hover {
-  flex: 1.2;
-}
+    @keyframes pipPulse {
 
-.sf-label {
-  font-family: 'Syne', sans-serif;
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-  display: block;
-}
-.sf-icon {
-  font-size: 24px;
-  margin-bottom: 12px;
-  display: block;
-}
+      0%,
+      100% {
+        background: var(--blush-deep);
+        transform: scale(1);
+      }
 
-/* Front Flap */
-.f-front {
-  background: linear-gradient(145deg, #C2E3F2, #94CDE8);
-  transform: translateZ(30px);
-  box-shadow: inset 0 2px 15px rgba(255,255,255,0.8), inset 0 -20px 40px rgba(0,0,0,0.03), 0 -5px 20px rgba(90, 159, 194, 0.15);
-  border: 1px solid rgba(255,255,255,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.f-front::before {
-  /* Front flap manila tab */
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: 30px;
-  width: 140px;
-  height: 30px;
-  background: linear-gradient(145deg, #C2E3F2, #94CDE8);
-  border-radius: 12px 12px 0 0;
-  border: 1px solid rgba(255,255,255,0.6);
-  border-bottom: none;
-}
-.f-front-content {
-  text-align: center;
-  transform: translateZ(10px); /* Slightly pop text off the front flap */
-  text-shadow: 0 2px 10px rgba(255,255,255,0.6);
-}
-.front-logo {
-  font-size: 48px;
-  margin-bottom: 12px;
-}
-.front-text {
-  font-family: 'Syne', sans-serif;
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-}
+      50% {
+        background: var(--sky-deep);
+        transform: scale(1.45);
+      }
+    }
 
-/* Hint text */
-.click-hint {
-  position: absolute;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--blush-deep);
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
+    .nav-logo em {
+      font-style: normal;
+      color: var(--blush-deep);
+    }
 
-/* ── ORBITING POLAROIDS ── */
-.orbit-wrapper {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  perspective: 1200px;
-  transition: filter 1s ease, transform 1s ease;
-}
-#vault-scene:hover ~ .orbit-wrapper {
-  filter: blur(8px);
-}
-#vault-section.is-open .orbit-wrapper {
-  /* Let them stay visible but slow them down or push them back gracefully */
-  transform: scale(0.9) translateZ(-100px);
-}
-.polaroid {
-  position: absolute;
-  transform-style: preserve-3d;
-  pointer-events: auto; /* allow explicit click/hover on the photos */
-}
-.p-frame {
-  width: 220px; height: 260px;
-  padding: 12px 12px 48px;
-  border-radius: 6px;
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.9), 0 20px 40px rgba(0,0,0,0.06);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-  cursor: pointer;
-}
-.f-blush { background: var(--blush-light); }
-.f-sky { background: var(--sky-light); }
-.f-yellow { background: var(--yellow-light); }
-.f-sage { background: #E8F5E9; }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
 
-.f-sage { background: #E8F5E9; }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color .25s;
+    }
 
-.p-img { 
-  width: 100%; 
-  height: 200px; 
-  background: var(--lavender); 
-  border-radius: 4px; 
-  object-fit: cover; 
-  display: block; 
-}
-.p-cap {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-size: 24px;
-  color: var(--ink);
-  text-align: center;
-  margin-top: 14px;
-  opacity: 0.85;
-  pointer-events: none;
-}
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blush-deep);
+      border-radius: 2px;
+      transition: width .3s ease;
+    }
 
-/* ── AMBIENT MARKETING BG ── */
-.ambient-bg {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none; z-index: 0;
-  overflow: hidden;
-}
-.ambient-pill {
-  position: absolute;
-  padding: 8px 16px;
-  background: rgba(255,255,255,0.8);
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-  border-radius: 30px;
-  font-family: 'Syne', sans-serif;
-  font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
-  color: var(--ink-soft); text-transform: uppercase;
-  animation: floatAmbient 20s ease-in-out infinite;
-}
-.ambient-icon {
-  position: absolute; font-size: 32px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.05));
-  animation: floatAmbient 24s ease-in-out infinite reverse; opacity: 0.6;
-}
-.ambient-bg .p1 { top: 12%; left: 45%; animation-delay: 0s; }
-.ambient-bg .p2 { bottom: 12%; right: 45%; animation-delay: -5s; }
-.ambient-bg .i1 { top: 30%; right: 25%; animation-delay: -10s; }
-.ambient-bg .i2 { bottom: 20%; left: 20%; animation-delay: -2s; font-size:40px; }
-.ambient-bg .i3 { top: 10%; right: 18%; animation-delay: -7s; }
-@keyframes floatAmbient { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-30px) rotate(10deg);} }
+    .nav-links a:hover {
+      color: var(--blush-deep);
+    }
 
-/* Polaroids Interaction */
-.polaroid:hover { z-index: 100; animation-play-state: paused; }
-.polaroid:hover .p-frame {
-  transform: scale(1.3) translateY(-10px);
-  box-shadow: inset 0 0 0 2px #fff, 0 30px 60px rgba(0,0,0,0.15);
-}
-.polaroid:active .p-frame {
-  transform: scale(1.15) translateY(-5px);
-}
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
-.polaroid.p1 { top: 12%; left: 10%; animation: float1 14s ease-in-out infinite; }
-.polaroid.p2 { bottom: 18%; left: 14%; animation: float2 17s ease-in-out infinite; }
-.polaroid.p3 { top: 18%; right: 10%; animation: float3 15s ease-in-out infinite; }
-.polaroid.p4 { bottom: 12%; right: 16%; animation: float1 13s ease-in-out infinite reverse; }
+    /* ═══════════ 3D VAULT SECTION ═══════════ */
+    #vault-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 80px;
+      perspective: 1600px;
+      /* 3D Depth */
+      overflow: hidden;
+    }
 
-@keyframes float1 { 0%,100%{transform:translateY(0) rotateZ(-12deg) rotateY(15deg);} 50%{transform:translateY(-20px) rotateZ(-8deg) rotateY(10deg);} }
-@keyframes float2 { 0%,100%{transform:translateY(0) rotateZ(15deg) rotateX(15deg);} 50%{transform:translateY(25px) rotateZ(10deg) rotateX(20deg);} }
-@keyframes float3 { 0%,100%{transform:translateY(0) rotateZ(18deg) rotateY(-15deg);} 50%{transform:translateY(-15px) rotateZ(22deg) rotateY(-10deg);} }
+    .vault-title {
+      position: absolute;
+      top: 140px;
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+    }
 
-/* ── HOVER STATE (Peek) ── */
-/* Before vault open, on hover, flap dips slightly to peek */
-#vault-section:not(.is-open) #vault-scene:hover .f-front {
-  transform: translateZ(30px) rotateX(-20deg);
-}
-#vault-section:not(.is-open) #vault-scene:hover .inner-wrap .sub-folder {
-  transform: translateY(85%); /* Slide up slightly */
-}
+    .vault-title h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
 
-/* ── CLICKED STATE (Opened) ── */
-#vault-section.is-open .click-hint { opacity: 0; }
-#vault-section.is-open .f-front {
-  transform: translateZ(30px) rotateX(-75deg); /* Fall completely open */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-#vault-section.is-open .inner-wrap .sub-folder {
-  transform: translateY(15%); /* Slide gracefully completely up */
-}
-/* If open, hovering a tab pops it up just a bit more */
-#vault-section.is-open .sub-folder:hover {
-  transform: translateY(5%);
-}
+    .vault-title p {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }
 
-/* ═══════════ EXPANDED GALLERY SECTION ═══════════ */
-/* Hidden initially via opacity and pointer events */
-#gallery-wrapper {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 50;
-  background: rgba(250, 247, 242, 0.65); /* Cream frosted glass */
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-  display: flex;
-  flex-direction: column;
-}
-#vault-section.gallery-active ~ #gallery-wrapper {
-  opacity: 1;
-  pointer-events: auto;
-}
+    /* 3D Scene Wrapper */
+    #vault-scene {
+      position: relative;
+      width: 480px;
+      height: 340px;
+      transform-style: preserve-3d;
+      /* Starting tilt to show off 3D right away */
+      transform: rotateX(15deg) rotateY(-10deg);
+      transition: transform 0.1s linear;
+      cursor: pointer;
+      z-index: 5;
+      margin-top: 60px;
+    }
 
-/* Gallery Header */
-.gallery-header {
-  padding: 100px 56px 40px;
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid rgba(28,24,38,0.06);
-}
-.gh-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 48px;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.03em;
-}
-.btn-back {
-  font-family: 'Syne', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background: none;
-  border: 2px solid var(--ink);
-  padding: 12px 24px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.btn-back:hover {
-  background: var(--ink); color: var(--cream);
-}
+    /* When the gallery is active, hide the vault */
+    #vault-section.gallery-active #vault-scene {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
 
-/* Content Area */
-.gallery-content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 40px 56px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Custom scrollbar to look sleek */
-}
-.gallery-content::-webkit-scrollbar { width: 8px; }
-.gallery-content::-webkit-scrollbar-track { background: transparent; }
-.gallery-content::-webkit-scrollbar-thumb { background: var(--blush); border-radius: 4px; }
+    /* Master Folder Pieces */
+    .folder-part {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px 12px 0 0;
+      transform-origin: bottom center;
+    }
 
-/* We use structural classes to hide/show specific categories */
-.g-panel {
-  width: 100%;
-  max-width: 1280px;
-  display: none;
-  animation: fadeIn 0.5s ease forwards;
-}
-.g-panel.active { display: block; }
+    /* Back of Folder */
+    .f-back {
+      background: linear-gradient(145deg, #6C9CB9, #4B8DB2);
+      transform: translateZ(-30px);
+      /* Make the folder look thick with solid 3D layers */
+      box-shadow:
+        0 -2px 0 var(--blush-deep),
+        0 -4px 0 var(--yellow-deep),
+        0 -6px 0 var(--sky-deep),
+        0 20px 50px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .f-back::before {
+      content: '';
+      position: absolute;
+      top: -24px;
+      right: 20px;
+      width: 160px;
+      height: 36px;
+      background: linear-gradient(145deg, #6C9CB9, #4B8DB2);
+      border-radius: 12px 12px 0 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: none;
+    }
 
-/* ── MOCKUPS & BENTO CSS (Placeholders for actual content) ── */
-/* ── AESTHETIC SUB-TAB VIEWS (Live Projects) ── */
-.sub-nav { display:flex; gap:32px; margin-bottom: 64px; border-bottom:1px solid rgba(0,0,0,0.06); padding-bottom:16px; overflow-x:auto; }
-.sub-nav::-webkit-scrollbar { display:none; }
-.sub-btn { background:none; border:none; padding:8px 0; font-family:'Syne',sans-serif; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-muted); cursor:pointer; transition:all 0.3s; position:relative; white-space:nowrap; }
-.sub-btn:hover { color:var(--ink); }
-.sub-btn.active { color:var(--ink); }
-.sub-btn.active::after { content:''; position:absolute; bottom:-17px; left:0; width:100%; height:2px; background:var(--blush-deep); }
+    .thick-tab {
+      position: absolute;
+      height: 48px;
+      width: 100px;
+      border-radius: 12px 12px 0 0;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
 
-.sub-panel { display:none; animation:fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; padding-bottom:80px; opacity:0; transform:translateY(20px); }
-.sub-panel.active { display:block; }
-@keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
+    /* Inside the Folder: The 3 Sub-folders */
+    .inner-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 4%;
+      width: 92%;
+      height: 98%;
+      transform-style: preserve-3d;
+      transform: translateZ(0px);
+      /* Sandwiched perfectly between front and back */
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      /* Fixes bottom clipping cleanly */
+      border-radius: 0 0 12px 12px;
+    }
 
-.aesthetic-split { display:flex; gap:64px; align-items:center; }
-.ae-text { flex:1; display:flex; flex-direction:column; gap:16px; }
-.ae-visual { flex:1; display:flex; justify-content:center; align-items:center; position:relative; }
-.ae-title { font-size:40px; font-weight:800; letter-spacing:-0.02em; line-height:1.1; }
-.ae-desc { font-size:16px; color:var(--ink-soft); line-height:1.6; }
+    .sub-folder {
+      flex: 1;
+      height: 100%;
+      border-radius: 12px 12px 0 0;
+      box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.8), 0 -5px 15px rgba(0, 0, 0, 0.08);
+      /* Hidden down inside the folder initially */
+      transform: translateY(100%);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), flex 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      text-align: center;
+      padding-top: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: none;
+    }
 
-.aesthetic-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
-.clean-video-card { display:flex; flex-direction:column; gap:20px; cursor:pointer; text-decoration:none; color:inherit; }
-.cv-thumb { width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; position:relative; box-shadow:0 20px 40px rgba(0,0,0,0.06); }
-.cv-thumb img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease, filter 0.5s ease; filter:brightness(0.95); }
-.clean-video-card:hover .cv-thumb img { transform:scale(1.03); filter:brightness(1); }
-.cv-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.9); width:64px; height:64px; border-radius:50%; background:var(--cream); color:var(--ink); display:flex; align-items:center; justify-content:center; font-size:24px; opacity:0; transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); padding-left:4px; }
-.clean-video-card:hover .cv-play { opacity:1; transform:translate(-50%,-50%) scale(1); box-shadow:0 10px 30px rgba(0,0,0,0.2); }
-.cv-info { display:flex; flex-direction:column; gap:10px; }
-.cv-title { font-size:24px; font-weight:800; letter-spacing:-0.01em; margin:0; }
+    /* Individual colors for tabs - Premium Gradients */
+    .sf-live {
+      background: linear-gradient(145deg, #F9D0DA, #EBA4B6);
+      transition-delay: 0.15s;
+    }
 
-.aesthetic-impact { text-align:center; padding:80px 20px; max-width:700px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:24px; background:var(--sage); border-radius:32px; }
-.impact-stat { font-size:140px; font-family:'Syne',sans-serif; font-weight:800; color:var(--ink); line-height:0.9; margin:0; letter-spacing:-0.04em; }
-.impact-title { font-size:40px; font-weight:800; letter-spacing:-0.02em; color:var(--ink); margin:0; }
-.impact-desc { font-size:22px; line-height:1.5; color:#3a614d; font-family:'Instrument Serif', serif; font-style:italic; margin:0; }
+    .sf-freelance {
+      background: linear-gradient(145deg, #FDF0B5, #F5D35B);
+      transition-delay: 0.25s;
+    }
 
-.pc-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
-.pc-tags span { font-size:11px; font-weight:700; padding:6px 14px; border-radius:20px; background:rgba(0,0,0,0.04); color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.05em; }
+    .sf-campaign {
+      background: linear-gradient(145deg, #D6F0E0, #B4E0C9);
+      transition-delay: 0.35s;
+    }
 
-@media(max-width: 900px) {
-  .aesthetic-split { flex-direction:column; gap:40px; }
-  .aesthetic-grid { grid-template-columns:1fr; }
-  .impact-stat { font-size:90px; }
-  .sub-nav { gap: 24px; }
-}
+    .sub-folder:hover {
+      flex: 1.2;
+    }
 
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-}
+    .sf-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      display: block;
+    }
 
-/* Sleek Video Card */
-.video-card {
-  position: relative;
-  background: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-  aspect-ratio: 16/9;
-  cursor: pointer;
-}
-.v-thumb {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.video-card:hover .v-thumb {
-  transform: scale(1.05); /* Slight zoom on hover */
-}
-.v-overlay {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0);
-  display: flex;
-  align-items: center; justify-content: center;
-  transition: background 0.3s ease;
-}
-.video-card:hover .v-overlay {
-  background: rgba(0,0,0,0.4);
-}
-.v-play {
-  width: 64px; height: 64px;
-  background: var(--yellow);
-  border-radius: 50%;
-  border: 2px solid var(--ink);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transform: scale(0.8);
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.video-card:hover .v-play { opacity: 1; transform: scale(1); }
+    .sf-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+      display: block;
+    }
 
-/* Browser/Phone Mockup Container */
-.mockup-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-}
+    /* Front Flap */
+    .f-front {
+      background: linear-gradient(145deg, #C2E3F2, #94CDE8);
+      transform: translateZ(30px);
+      box-shadow: inset 0 2px 15px rgba(255, 255, 255, 0.8), inset 0 -20px 40px rgba(0, 0, 0, 0.03), 0 -5px 20px rgba(90, 159, 194, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
 
-/* Browser Window Mac style */
-.browser-mock {
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-  overflow: hidden;
-  display: flex; flex-direction: column;
-}
-.bm-top {
-  height: 44px;
-  background: #F4F5F5;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  display: flex; align-items: center;
-  padding: 0 16px; gap: 8px;
-}
-.bm-dot { width: 10px; height: 10px; border-radius: 50%; background: #E2E3E4; }
-.bm-dot.r { background: #FF5F56; }
-.bm-dot.y { background: #FFBD2E; }
-.bm-dot.g { background: #27C93F; }
-.bm-bar { flex: 1; height: 24px; background: #fff; border-radius: 6px; margin-left: 16px; border: 1px solid rgba(0,0,0,0.05);}
-.bm-content { flex: 1; min-height: 400px; background: #fafafa; padding: 24px;}
+    .f-front::before {
+      /* Front flap manila tab */
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 30px;
+      width: 140px;
+      height: 30px;
+      background: linear-gradient(145deg, #C2E3F2, #94CDE8);
+      border-radius: 12px 12px 0 0;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-bottom: none;
+    }
 
-/* iPhone Mockup */
-.phone-mock {
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
-  aspect-ratio: 9/19;
-  background: #111;
-  border-radius: 40px;
-  border: 12px solid #222;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  position: relative;
-  overflow: hidden;
-}
-.p-notch {
-  position: absolute;
-  top: 0; left: 50%; transform: translateX(-50%);
-  width: 120px; height: 28px;
-  background: #222;
-  border-radius: 0 0 16px 16px;
-  z-index: 10;
-}
-.p-screen {
-  width: 100%; height: 100%;
-  background: #fff;
-  overflow-y: auto;
-  padding: 40px 16px 16px; /* Space for notch */
-}
-.p-screen::-webkit-scrollbar { display: none; } /* Hide scrollbar in phone */
+    .f-front-content {
+      text-align: center;
+      transform: translateZ(10px);
+      /* Slightly pop text off the front flap */
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.6);
+    }
 
-/* Responsive */
-@media(max-width: 900px) {
-  #vault-scene { transform: scale(0.7) rotateX(15deg) rotateY(-5deg); margin-top: 100px; }
-  .mockup-container { grid-template-columns: 1fr; }
-  .gallery-header { padding: 80px 24px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
-  .gallery-content { padding: 24px; }
-}
-@media(max-width: 520px) {
-  #vault-scene { transform: scale(0.6) rotateX(15deg) rotateY(-5deg); }
-}
+    .front-logo {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
 
-</style>
+    .front-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    /* Hint text */
+    .click-hint {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--blush-deep);
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    /* ── ORBITING POLAROIDS ── */
+    .orbit-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      perspective: 1200px;
+      transition: filter 1s ease, transform 1s ease;
+    }
+
+    #vault-scene:hover~.orbit-wrapper {
+      filter: blur(8px);
+    }
+
+    #vault-section.is-open .orbit-wrapper {
+      /* Let them stay visible but slow them down or push them back gracefully */
+      transform: scale(0.9) translateZ(-100px);
+    }
+
+    .polaroid {
+      position: absolute;
+      transform-style: preserve-3d;
+      pointer-events: auto;
+      /* allow explicit click/hover on the photos */
+    }
+
+    .p-frame {
+      width: 220px;
+      height: 260px;
+      padding: 12px 12px 48px;
+      border-radius: 6px;
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.9), 0 20px 40px rgba(0, 0, 0, 0.06);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+
+    .f-blush {
+      background: var(--blush-light);
+    }
+
+    .f-sky {
+      background: var(--sky-light);
+    }
+
+    .f-yellow {
+      background: var(--yellow-light);
+    }
+
+    .f-sage {
+      background: #E8F5E9;
+    }
+
+    .f-sage {
+      background: #E8F5E9;
+    }
+
+    .p-img {
+      width: 100%;
+      height: 200px;
+      background: var(--lavender);
+      border-radius: 4px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .p-cap {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 24px;
+      color: var(--ink);
+      text-align: center;
+      margin-top: 14px;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    /* ── AMBIENT MARKETING BG ── */
+    .ambient-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .ambient-pill {
+      position: absolute;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      border-radius: 30px;
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      animation: floatAmbient 20s ease-in-out infinite;
+    }
+
+    .ambient-icon {
+      position: absolute;
+      font-size: 32px;
+      filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.05));
+      animation: floatAmbient 24s ease-in-out infinite reverse;
+      opacity: 0.6;
+    }
+
+    .ambient-bg .p1 {
+      top: 12%;
+      left: 45%;
+      animation-delay: 0s;
+    }
+
+    .ambient-bg .p2 {
+      bottom: 12%;
+      right: 45%;
+      animation-delay: -5s;
+    }
+
+    .ambient-bg .i1 {
+      top: 30%;
+      right: 25%;
+      animation-delay: -10s;
+    }
+
+    .ambient-bg .i2 {
+      bottom: 20%;
+      left: 20%;
+      animation-delay: -2s;
+      font-size: 40px;
+    }
+
+    .ambient-bg .i3 {
+      top: 10%;
+      right: 18%;
+      animation-delay: -7s;
+    }
+
+    @keyframes floatAmbient {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-30px) rotate(10deg);
+      }
+    }
+
+    /* Polaroids Interaction */
+    .polaroid:hover {
+      z-index: 100;
+      animation-play-state: paused;
+    }
+
+    .polaroid:hover .p-frame {
+      transform: scale(1.3) translateY(-10px);
+      box-shadow: inset 0 0 0 2px #fff, 0 30px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .polaroid:active .p-frame {
+      transform: scale(1.15) translateY(-5px);
+    }
+
+    .polaroid.p1 {
+      top: 12%;
+      left: 10%;
+      animation: float1 14s ease-in-out infinite;
+    }
+
+    .polaroid.p2 {
+      bottom: 18%;
+      left: 14%;
+      animation: float2 17s ease-in-out infinite;
+    }
+
+    .polaroid.p3 {
+      top: 18%;
+      right: 10%;
+      animation: float3 15s ease-in-out infinite;
+    }
+
+    .polaroid.p4 {
+      bottom: 12%;
+      right: 16%;
+      animation: float1 13s ease-in-out infinite reverse;
+    }
+
+    @keyframes float1 {
+
+      0%,
+      100% {
+        transform: translateY(0) rotateZ(-12deg) rotateY(15deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotateZ(-8deg) rotateY(10deg);
+      }
+    }
+
+    @keyframes float2 {
+
+      0%,
+      100% {
+        transform: translateY(0) rotateZ(15deg) rotateX(15deg);
+      }
+
+      50% {
+        transform: translateY(25px) rotateZ(10deg) rotateX(20deg);
+      }
+    }
+
+    @keyframes float3 {
+
+      0%,
+      100% {
+        transform: translateY(0) rotateZ(18deg) rotateY(-15deg);
+      }
+
+      50% {
+        transform: translateY(-15px) rotateZ(22deg) rotateY(-10deg);
+      }
+    }
+
+    /* ── HOVER STATE (Peek) ── */
+    /* Before vault open, on hover, flap dips slightly to peek */
+    #vault-section:not(.is-open) #vault-scene:hover .f-front {
+      transform: translateZ(30px) rotateX(-20deg);
+    }
+
+    #vault-section:not(.is-open) #vault-scene:hover .inner-wrap .sub-folder {
+      transform: translateY(85%);
+      /* Slide up slightly */
+    }
+
+    /* ── CLICKED STATE (Opened) ── */
+    #vault-section.is-open .click-hint {
+      opacity: 0;
+    }
+
+    #vault-section.is-open .f-front {
+      transform: translateZ(30px) rotateX(-75deg);
+      /* Fall completely open */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    #vault-section.is-open .inner-wrap .sub-folder {
+      transform: translateY(15%);
+      /* Slide gracefully completely up */
+    }
+
+    /* If open, hovering a tab pops it up just a bit more */
+    #vault-section.is-open .sub-folder:hover {
+      transform: translateY(5%);
+    }
+
+    /* ═══════════ EXPANDED GALLERY SECTION ═══════════ */
+    /* Hidden initially via opacity and pointer events */
+    #gallery-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      background: rgba(250, 247, 242, 0.65);
+      /* Cream frosted glass */
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #vault-section.gallery-active~#gallery-wrapper {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Gallery Header */
+    .gallery-header {
+      padding: 100px 56px 40px;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid rgba(28, 24, 38, 0.06);
+    }
+
+    .gh-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+    }
+
+    .btn-back {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: none;
+      border: 2px solid var(--ink);
+      padding: 12px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-back:hover {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    /* Content Area */
+    .gallery-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Custom scrollbar to look sleek */
+    }
+
+    .gallery-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .gallery-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .gallery-content::-webkit-scrollbar-thumb {
+      background: var(--blush);
+      border-radius: 4px;
+    }
+
+    /* We use structural classes to hide/show specific categories */
+    .g-panel {
+      width: 100%;
+      max-width: 1280px;
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .g-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── MOCKUPS & BENTO CSS (Placeholders for actual content) ── */
+    /* ── AESTHETIC SUB-TAB VIEWS (Live Projects) ── */
+    .sub-nav {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 64px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      padding-bottom: 16px;
+      overflow-x: auto;
+    }
+
+    .sub-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sub-btn {
+      background: none;
+      border: none;
+      padding: 8px 0;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .sub-btn:hover {
+      color: var(--ink);
+    }
+
+    .sub-btn.active {
+      color: var(--ink);
+    }
+
+    .sub-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -17px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--blush-deep);
+    }
+
+    .sub-panel {
+      display: none;
+      animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      padding-bottom: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .sub-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .aesthetic-split {
+      display: flex;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .ae-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ae-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .ae-title {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .ae-desc {
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    .aesthetic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .clean-video-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .cv-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .cv-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      filter: brightness(0.95);
+    }
+
+    .clean-video-card:hover .cv-thumb img {
+      transform: scale(1.03);
+      filter: brightness(1);
+    }
+
+    .cv-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--cream);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      padding-left: 4px;
+    }
+
+    .clean-video-card:hover .cv-play {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .cv-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cv-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .aesthetic-impact {
+      text-align: center;
+      padding: 80px 20px;
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      background: var(--sage);
+      border-radius: 32px;
+    }
+
+    .impact-stat {
+      font-size: 140px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 0.9;
+      margin: 0;
+      letter-spacing: -0.04em;
+    }
+
+    .impact-title {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .impact-desc {
+      font-size: 22px;
+      line-height: 1.5;
+      color: #3a614d;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      margin: 0;
+    }
+
+    .pc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pc-tags span {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.04);
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    @media(max-width: 900px) {
+      .aesthetic-split {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .aesthetic-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-stat {
+        font-size: 90px;
+      }
+
+      .sub-nav {
+        gap: 24px;
+      }
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    /* Sleek Video Card */
+    .video-card {
+      position: relative;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      aspect-ratio: 16/9;
+      cursor: pointer;
+    }
+
+    .v-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .video-card:hover .v-thumb {
+      transform: scale(1.05);
+      /* Slight zoom on hover */
+    }
+
+    .v-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+
+    .video-card:hover .v-overlay {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .v-play {
+      width: 64px;
+      height: 64px;
+      background: var(--yellow);
+      border-radius: 50%;
+      border: 2px solid var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .video-card:hover .v-play {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Browser/Phone Mockup Container */
+    .mockup-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+
+    /* Browser Window Mac style */
+    .browser-mock {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bm-top {
+      height: 44px;
+      background: #F4F5F5;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 8px;
+    }
+
+    .bm-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #E2E3E4;
+    }
+
+    .bm-dot.r {
+      background: #FF5F56;
+    }
+
+    .bm-dot.y {
+      background: #FFBD2E;
+    }
+
+    .bm-dot.g {
+      background: #27C93F;
+    }
+
+    .bm-bar {
+      flex: 1;
+      height: 24px;
+      background: #fff;
+      border-radius: 6px;
+      margin-left: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .bm-content {
+      flex: 1;
+      min-height: 400px;
+      background: #fafafa;
+      padding: 24px;
+    }
+
+    /* iPhone Mockup */
+    .phone-mock {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      aspect-ratio: 9/19;
+      background: #111;
+      border-radius: 40px;
+      border: 12px solid #222;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .p-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 28px;
+      background: #222;
+      border-radius: 0 0 16px 16px;
+      z-index: 10;
+    }
+
+    .p-screen {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      overflow-y: auto;
+      padding: 40px 16px 16px;
+      /* Space for notch */
+    }
+
+    .p-screen::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar in phone */
+
+    /* Responsive */
+    @media(max-width: 900px) {
+      #vault-scene {
+        transform: scale(0.7) rotateX(15deg) rotateY(-5deg);
+        margin-top: 100px;
+      }
+
+      .mockup-container {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-header {
+        padding: 80px 24px 24px;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .gallery-content {
+        padding: 24px;
+      }
+    }
+
+    @media(max-width: 520px) {
+      #vault-scene {
+        transform: scale(0.6) rotateX(15deg) rotateY(-5deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="cur"></div>
-<div id="cur-ring"></div>
+  <div id="cur"></div>
+  <div id="cur-ring"></div>
 
-<nav id="mainNav">
-  <a href="index.html" class="nav-logo">
-    <span class="nav-pip"></span>
-    Shalini <em>Singh</em>
-  </a>
-  <div class="nav-links">
-    <a href="about.html">About</a>
-    <a href="projects.html" style="color:var(--blush-deep)">Projects</a>
-    <a href="resume.html">Resume</a>
-    <a href="contact.html">Contact</a>
-  </div>
-</nav>
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-pip"></span>
+      Shalini <em>Singh</em>
+    </a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="projects.html" style="color:var(--blush-deep)">Projects</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
 
-<!-- ════════════ THE MASTER VAULT (3D Section) ════════════ -->
-<section id="vault-section">
+  <!-- ════════════ THE MASTER VAULT (3D Section) ════════════ -->
+  <section id="vault-section">
 
-  <!-- Floating Ambient BG for Marketing Vibes -->
-  <div class="ambient-bg">
-    <div class="ambient-pill p1">Creative Direction</div>
-    <div class="ambient-pill p2">Growth Strategy</div>
-    <div class="ambient-icon i1">🎯</div>
-    <div class="ambient-icon i2">🖱️</div>
-    <div class="ambient-icon i3">📈</div>
-  </div>
+    <!-- Floating Ambient BG for Marketing Vibes -->
+    <div class="ambient-bg">
+      <div class="ambient-pill p1">Creative Direction</div>
+      <div class="ambient-pill p2">Growth Strategy</div>
+      <div class="ambient-icon i1">🎯</div>
+      <div class="ambient-icon i2">🖱️</div>
+      <div class="ambient-icon i3">📈</div>
+    </div>
 
-  <!-- Floating Polaroids (Interactive Colored Frames) -->
-  <div class="orbit-wrapper">
-    <div class="polaroid p1">
-      <div class="p-frame f-blush">
-        <img src="Work%201.jpg" class="p-img" alt="Work 1" onerror="this.src=''; this.style.background='var(--blush-light)'">
-        <div class="p-cap">Shoot Day</div>
+    <!-- Floating Polaroids (Interactive Colored Frames) -->
+    <div class="orbit-wrapper">
+      <div class="polaroid p1">
+        <div class="p-frame f-blush">
+          <img src="Work%201.jpg" class="p-img" alt="Work 1"
+            onerror="this.src=''; this.style.background='var(--blush-light)'">
+          <div class="p-cap">Shoot Day</div>
+        </div>
+      </div>
+      <div class="polaroid p2">
+        <div class="p-frame f-sky">
+          <img src="work%202.JPG" class="p-img" alt="Work 2"
+            onerror="this.src=''; this.style.background='var(--sky-light)'">
+          <div class="p-cap">Deep Work</div>
+        </div>
+      </div>
+      <div class="polaroid p3">
+        <div class="p-frame f-yellow">
+          <img src="work%203.png" class="p-img" alt="Work 3"
+            onerror="this.src=''; this.style.background='var(--yellow-light)'">
+          <div class="p-cap">Editing flow</div>
+        </div>
+      </div>
+      <div class="polaroid p4">
+        <div class="p-frame f-sage">
+          <img src="work%204.png" class="p-img" alt="Work 4" onerror="this.src=''; this.style.background='var(--sage)'">
+          <div class="p-cap">Strategy</div>
+        </div>
       </div>
     </div>
-    <div class="polaroid p2">
-      <div class="p-frame f-sky">
-        <img src="work%202.JPG" class="p-img" alt="Work 2" onerror="this.src=''; this.style.background='var(--sky-light)'">
-        <div class="p-cap">Deep Work</div>
-      </div>
-    </div>
-    <div class="polaroid p3">
-      <div class="p-frame f-yellow">
-        <img src="work%203.png" class="p-img" alt="Work 3" onerror="this.src=''; this.style.background='var(--yellow-light)'">
-        <div class="p-cap">Editing flow</div>
-      </div>
-    </div>
-    <div class="polaroid p4">
-      <div class="p-frame f-sage">
-        <img src="work%204.png" class="p-img" alt="Work 4" onerror="this.src=''; this.style.background='var(--sage)'">
-        <div class="p-cap">Strategy</div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="vault-title">
-    <h1>The Vault</h1>
-    <p>Everything I've made lives here. Pick a folder.</p>
-  </div>
 
-  <div id="vault-scene">
-    <!-- The folder back cover with fake thickness tabs -->
-    <div class="folder-part f-back">
-       <div class="thick-tab" style="background:var(--blush-deep); top:-10px; left:8%; z-index:-1; transform:translateZ(-10px);"></div>
-       <div class="thick-tab" style="background:var(--yellow-deep); top:-15px; left:25%; z-index:-2; transform:translateZ(-20px);"></div>
-       <div class="thick-tab" style="background:var(--sky-deep); top:-20px; left:45%; z-index:-3; transform:translateZ(-30px);"></div>
+    <div class="vault-title">
+      <h1>The Vault</h1>
+      <p>Everything I've made lives here. Pick a folder.</p>
     </div>
-    
-    <!-- The 3 sub-folders sandwiched inside -->
-    <div class="inner-wrap">
-      <div class="sub-folder sf-live" data-target="live">
-        <span class="sf-icon" style="font-size:24px;">📼</span>
-        <span class="sf-label" style="font-size:12px; line-height:1.2;">The Mixed Tape<br><small style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; font-weight:400; color:rgba(28,24,38,0.7); display:block; margin-top:2px;">(College Projects)</small></span>
-      </div>
-      <div class="sub-folder sf-freelance" data-target="freelance">
-        <span class="sf-icon" style="font-size:24px;">🧪</span>
-        <span class="sf-label" style="font-size:12px; line-height:1.2;">The Experiment Files<br><small style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; font-weight:400; color:rgba(28,24,38,0.7); display:block; margin-top:2px;">(Personal & Freelance)</small></span>
-      </div>
-      <div class="sub-folder sf-campaign" data-target="campaign">
-        <span class="sf-icon" style="font-size:24px;">🧠</span>
-        <span class="sf-label" style="font-size:12px; line-height:1.2;">The Big Brain Stuff<br><small style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; font-weight:400; color:rgba(28,24,38,0.7); display:block; margin-top:2px;">(Campaign Strategies)</small></span>
-      </div>
-    </div>
-    
-    <!-- The front folding flap -->
-    <div class="folder-part f-front">
-      <div class="f-front-content">
-        <div class="front-logo">🗂️</div>
-        <div class="front-text">Master Archive</div>
-      </div>
-      <!-- Aesthetic stickers -->
-      <div style="position:absolute; bottom:20px; right:20px; border:2px solid rgba(28,24,38,0.2); color:rgba(28,24,38,0.5); padding:4px 8px; font-family:'Syne',sans-serif; font-size:9px; font-weight:800; letter-spacing:0.1em; transform:rotate(-5deg); pointer-events:none;">VOL. 1</div>
-      <div style="position:absolute; top:20px; left:20px; border:2px dashed rgba(255,255,255,0.6); padding:4px 12px; font-family:'Syne',sans-serif; font-weight:700; font-size:10px; letter-spacing:0.1em; color:#fff; transform:rotate(-15deg); background:rgba(0,0,0,0.05); pointer-events:none;">CLASSIFIED</div>
-    </div>
-  </div>
 
-  <div class="click-hint">Click Here to Open</div>
-</section>
-
-
-<!-- ════════════ EXPANDED GALLERY OVERLAY ════════════ -->
-<div id="gallery-wrapper">
-  
-  <div class="gallery-header">
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%; max-width:1280px;">
-      <div>
-        <h2 class="gh-title" id="gallery-title">Archive</h2>
-        <p id="gallery-subtitle" style="font-family:'Instrument Serif',serif; font-style:italic; font-size:24px; color:var(--ink-soft); margin-top:4px;">Subtitle Goes Here</p>
-      </div>
-      <button class="btn-back" id="btn-back">Close Folder ✕</button>
-    </div>
-  </div>
-
-  <div class="gallery-content">
-    
-    <!-- PANEL 1: LIVE PROJECTS -->
-    <div class="g-panel active" id="panel-live">
-      
-      <!-- Sub-Navigation Menu -->
-      <div class="sub-nav">
-        <button class="sub-btn active" data-target="live-short">Short-form Content</button>
-        <button class="sub-btn" data-target="live-long">Long-form Content</button>
-        <button class="sub-btn" data-target="live-web">Design & Web</button>
-        <button class="sub-btn" data-target="live-perf">Performance Marketing</button>
+    <div id="vault-scene">
+      <!-- The folder back cover with fake thickness tabs -->
+      <div class="folder-part f-back">
+        <div class="thick-tab"
+          style="background:var(--blush-deep); top:-10px; left:8%; z-index:-1; transform:translateZ(-10px);"></div>
+        <div class="thick-tab"
+          style="background:var(--yellow-deep); top:-15px; left:25%; z-index:-2; transform:translateZ(-20px);"></div>
+        <div class="thick-tab"
+          style="background:var(--sky-deep); top:-20px; left:45%; z-index:-3; transform:translateZ(-30px);"></div>
       </div>
 
-      <!-- Sub-Panel 1: Short-form Content -->
-      <div class="sub-panel active" id="live-short">
-         <div style="text-align:left; margin-bottom:48px;">
-           <span style="font-size:11px; font-weight:800; color:var(--blush-deep); letter-spacing:0.15em; text-transform:uppercase;">Short-Form Production</span>
-           <h3 style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">Crafting high-retention visual stories that drive conversion.</h3>
-         </div>
+      <!-- The 3 sub-folders sandwiched inside -->
+      <div class="inner-wrap">
+        <div class="sub-folder sf-live" data-target="live">
+          <span class="sf-icon" style="font-size:24px;">📼</span>
+          <span class="sf-label" style="font-size:12px; line-height:1.2;">The Mixed Tape<br><small
+              style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; font-weight:400; color:rgba(28,24,38,0.7); display:block; margin-top:2px;">(College
+              Projects)</small></span>
+        </div>
+        <div class="sub-folder sf-freelance" data-target="freelance">
+          <span class="sf-icon" style="font-size:24px;">🧪</span>
+          <span class="sf-label" style="font-size:12px; line-height:1.2;">The Experiment Files<br><small
+              style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; font-weight:400; color:rgba(28,24,38,0.7); display:block; margin-top:2px;">(Personal
+              & Freelance)</small></span>
+        </div>
+        <div class="sub-folder sf-campaign" data-target="campaign">
+          <span class="sf-icon" style="font-size:24px;">🧠</span>
+          <span class="sf-label" style="font-size:12px; line-height:1.2;">The Big Brain Stuff<br><small
+              style="font-family:'Instrument Serif',serif; font-style:italic; font-size:15px; font-weight:400; color:rgba(28,24,38,0.7); display:block; margin-top:2px;">(Campaign
+              Strategies)</small></span>
+        </div>
+      </div>
 
-         <!-- Embed Grid Overview (Downward Scroll) -->
-         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:32px; align-items:start; max-width:1000px; margin:0 auto;">
-            
+      <!-- The front folding flap -->
+      <div class="folder-part f-front">
+        <div class="f-front-content">
+          <div class="front-logo">🗂️</div>
+          <div class="front-text">Master Archive</div>
+        </div>
+        <!-- Aesthetic stickers -->
+        <div
+          style="position:absolute; bottom:20px; right:20px; border:2px solid rgba(28,24,38,0.2); color:rgba(28,24,38,0.5); padding:4px 8px; font-family:'Syne',sans-serif; font-size:9px; font-weight:800; letter-spacing:0.1em; transform:rotate(-5deg); pointer-events:none;">
+          VOL. 1</div>
+        <div
+          style="position:absolute; top:20px; left:20px; border:2px dashed rgba(255,255,255,0.6); padding:4px 12px; font-family:'Syne',sans-serif; font-weight:700; font-size:10px; letter-spacing:0.1em; color:#fff; transform:rotate(-15deg); background:rgba(0,0,0,0.05); pointer-events:none;">
+          CLASSIFIED</div>
+      </div>
+    </div>
+
+    <div class="click-hint">Click Here to Open</div>
+  </section>
+
+
+  <!-- ════════════ EXPANDED GALLERY OVERLAY ════════════ -->
+  <div id="gallery-wrapper">
+
+    <div class="gallery-header">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%; max-width:1280px;">
+        <div>
+          <h2 class="gh-title" id="gallery-title">Archive</h2>
+          <p id="gallery-subtitle"
+            style="font-family:'Instrument Serif',serif; font-style:italic; font-size:24px; color:var(--ink-soft); margin-top:4px;">
+            Subtitle Goes Here</p>
+        </div>
+        <button class="btn-back" id="btn-back">Close Folder ✕</button>
+      </div>
+    </div>
+
+    <div class="gallery-content">
+
+      <!-- PANEL 1: LIVE PROJECTS -->
+      <div class="g-panel active" id="panel-live">
+
+        <!-- Sub-Navigation Menu -->
+        <div class="sub-nav">
+          <button class="sub-btn active" data-target="live-short">Short-form Content</button>
+          <button class="sub-btn" data-target="live-long">Long-form Content</button>
+          <button class="sub-btn" data-target="live-web">Design & Web</button>
+          <button class="sub-btn" data-target="live-perf">Performance Marketing</button>
+        </div>
+
+        <!-- Sub-Panel 1: Short-form Content -->
+        <div class="sub-panel active" id="live-short">
+          <div style="text-align:left; margin-bottom:48px;">
+            <span
+              style="font-size:11px; font-weight:800; color:var(--blush-deep); letter-spacing:0.15em; text-transform:uppercase;">Short-Form
+              Production</span>
+            <h3
+              style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">
+              Crafting high-retention visual stories that drive conversion.</h3>
+          </div>
+
+          <!-- Embed Grid Overview (Downward Scroll) -->
+          <div
+            style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:32px; align-items:start; max-width:1000px; margin:0 auto;">
+
             <!-- Hightable Reel 1 (IG) -->
             <div style="display:flex; flex-direction:column; gap:16px;">
-               <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
-                  <iframe src="https://www.instagram.com/reel/DKpH0KhJSnr/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-               </div>
-               <div>
-                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Hightable</h4>
-                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;"><strong>3rd Place</strong> – Drove massive brand awareness via aggressive viral hook testing.</p>
-               </div>
+              <div
+                style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.instagram.com/reel/DKpH0KhJSnr/embed/" width="100%" height="100%"
+                  frameborder="0" scrolling="no" allowtransparency="true"
+                  style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+              <div>
+                <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">
+                  Hightable</h4>
+                <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;"><strong>3rd
+                    Place</strong> – Drove massive brand awareness via aggressive viral hook testing.</p>
+              </div>
             </div>
 
             <!-- Hightable Reel 2 (IG) -->
             <div style="display:flex; flex-direction:column; gap:16px;">
-               <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
-                  <iframe src="https://www.instagram.com/reel/DKrzQZKyWfp/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-               </div>
-               <div>
-                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Hightable</h4>
-                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;"><strong>1st Place</strong> – Executed an epic brand awareness brief, earning high praise from founder Asha Bhatt.</p>
-               </div>
+              <div
+                style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.instagram.com/reel/DKrzQZKyWfp/embed/" width="100%" height="100%"
+                  frameborder="0" scrolling="no" allowtransparency="true"
+                  style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+              <div>
+                <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">
+                  Hightable</h4>
+                <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;"><strong>1st
+                    Place</strong> – Executed an epic brand awareness brief, earning high praise from founder Asha
+                  Bhatt.</p>
+              </div>
             </div>
 
             <!-- Mitti Cafe (LinkedIn) -->
             <div style="display:flex; flex-direction:column; gap:16px;">
-               <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
-                  <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7304690259869470720" height="100%" width="100%" frameborder="0" allowfullscreen="" title="Embedded post" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-               </div>
-               <div>
-                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Mitti Cafe</h4>
-                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">Lead Visual Director & Strategist tracking corporate CSR impact.</p>
-               </div>
+              <div
+                style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7304690259869470720"
+                  height="100%" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"
+                  style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+              <div>
+                <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">
+                  Mitti Cafe</h4>
+                <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">Lead Visual Director
+                  & Strategist tracking corporate CSR impact.</p>
+              </div>
             </div>
 
             <!-- Stable Money (Google Drive) -->
             <div style="display:flex; flex-direction:column; gap:16px;">
-               <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
-                  <iframe src="https://drive.google.com/file/d/1RhuQOSuaKCL8GFnm4Fnh2FwsFA9iEk5Z/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-               </div>
-               <div>
-                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Stable Money</h4>
-                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">Old advertisement storytelling. End-to-end production.</p>
-               </div>
+              <div
+                style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                <iframe src="https://drive.google.com/file/d/1RhuQOSuaKCL8GFnm4Fnh2FwsFA9iEk5Z/preview" width="100%"
+                  height="100%" frameborder="0" allow="autoplay"
+                  style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+              <div>
+                <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">
+                  Stable Money</h4>
+                <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">Old advertisement
+                  storytelling. End-to-end production.</p>
+              </div>
             </div>
 
             <!-- Oben Electric (Google Drive) -->
             <div style="display:flex; flex-direction:column; gap:16px;">
-               <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
-                  <iframe src="https://drive.google.com/file/d/1abR0Z6DnF7ZIhQMCIgOyO-t_HVu8YcHx/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-               </div>
-               <div>
-                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Oben Electric</h4>
-                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">From ideation to execution, made with high production.</p>
-               </div>
+              <div
+                style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                <iframe src="https://drive.google.com/file/d/1abR0Z6DnF7ZIhQMCIgOyO-t_HVu8YcHx/preview" width="100%"
+                  height="100%" frameborder="0" allow="autoplay"
+                  style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+              <div>
+                <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Oben
+                  Electric</h4>
+                <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">From ideation to
+                  execution, made with high production.</p>
+              </div>
             </div>
 
             <!-- Sprentzo (Google Drive) -->
             <div style="display:flex; flex-direction:column; gap:16px;">
-               <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
-                  <iframe src="https://drive.google.com/file/d/1_BB1JWyWwlSvAtSUr4GeZiTfhDduUMbu/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-               </div>
-               <div>
-                 <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">Sprentzo</h4>
-                 <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">Brand research, end-to-end production.</p>
-               </div>
-            </div>
-
-         </div>
-      </div>
-
-      <!-- Sub-Panel 2: Long-form Content -->
-      <div class="sub-panel" id="live-long">
-         <div style="text-align:left; margin-bottom:48px;">
-           <span style="font-size:11px; font-weight:800; color:var(--yellow-deep); letter-spacing:0.15em; text-transform:uppercase;">YouTube Channels</span>
-           <h3 style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">Crafting high-impact informative, educational, and business channels.</h3>
-         </div>
-         <div class="aesthetic-grid">
-            
-            <a href="https://youtube.com/@businessgita-4lit?si=jjPA-DuSz6P1ywES" target="_blank" class="clean-video-card" style="box-shadow:0 10px 30px rgba(0,0,0,0.04); border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,0.05); background:#fff; text-decoration:none;">
-               <div class="cv-thumb" style="aspect-ratio:16/9; max-height:280px; position:relative; overflow:hidden; background:var(--yellow-light);">
-                 <img src="assets/business-gita.jpg" alt="The Business Gita" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='business-gita.jpg'; this.onerror=function(){this.style.display='none'};">
-                 <div class="cv-play">▶</div>
-               </div>
-               <div class="cv-info" style="padding:24px;">
-                  <div style="display:flex; flex-wrap:wrap; gap:8px;">
-                     <span style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Research</span>
-                     <span style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Trendjacking</span>
-                     <span style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Scripting</span>
-                     <span style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Strategy</span>
-                  </div>
-                  <h4 class="cv-title" style="font-family:'Syne',sans-serif; font-size:18px; font-weight:800; letter-spacing:-0.01em; margin-top:8px; color:var(--ink);">The Business Gita</h4>
-                  <p class="ae-desc" style="font-size:14px; line-height:1.4; color:var(--ink-soft); margin-top:8px;">Telugu based regional channel.</p>
-               </div>
-            </a>
-
-            <a href="https://youtube.com/@theindianskin?si=ootC9puoNlh4XBCq" target="_blank" class="clean-video-card" style="box-shadow:0 10px 30px rgba(0,0,0,0.04); border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,0.05); background:#fff; text-decoration:none;">
-               <div class="cv-thumb" style="aspect-ratio:16/9; max-height:280px; position:relative; overflow:hidden; background:var(--blush-light);">
-                 <img src="assets/The%20Indian%20Skin.png" alt="The Indian Skin" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='The%20Indian%20Skin.png'; this.onerror=function(){this.style.display='none'};">
-                 <div class="cv-play">▶</div>
-               </div>
-               <div class="cv-info" style="padding:24px;">
-                  <div style="display:flex; flex-wrap:wrap; gap:8px;">
-                     <span style="padding:5px 12px; border-radius:20px; background:var(--blush-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--blush-deep); letter-spacing:0.05em;">Strategy</span>
-                     <span style="padding:5px 12px; border-radius:20px; background:var(--blush-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--blush-deep); letter-spacing:0.05em;">Research</span>
-                     <span style="padding:5px 12px; border-radius:20px; background:var(--blush-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--blush-deep); letter-spacing:0.05em;">Scripting</span>
-                  </div>
-                  <h4 class="cv-title" style="font-family:'Syne',sans-serif; font-size:18px; font-weight:800; letter-spacing:-0.01em; margin-top:8px; color:var(--ink);">The Indian Skin</h4>
-                  <p class="ae-desc" style="font-size:14px; line-height:1.4; color:var(--ink-soft); margin-top:8px;">Educational based channel on Indian skin.</p>
-               </div>
-            </a>
-
-         </div>
-      </div>
-
-      <!-- Sub-Panel 3: Web & Thumbnails -->
-      <div class="sub-panel" id="live-web">
-         <div style="text-align:left; margin-bottom:48px;">
-           <span style="font-size:11px; font-weight:800; color:var(--sky-deep); letter-spacing:0.15em; text-transform:uppercase;">Website Redesign</span>
-           <h3 style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">Architecting intuitive UX & seamless interfaces.</h3>
-         </div>
-         <div class="aesthetic-split" style="gap:56px; align-items:start;">
-            <div class="ae-visual" style="flex:1.5;">
-               <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank" style="text-decoration:none; display:block; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
-                  <div class="browser-mock" style="box-shadow: 0 30px 60px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.05); border-radius:8px; overflow:hidden; background:#fff;">
-                     <div class="bm-top" style="height:32px; background:#f5f5f5; display:flex; align-items:center; padding:0 12px; gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#FF5F56;"></div><div style="width:10px;height:10px;border-radius:50%;background:#FFBD2E;"></div><div style="width:10px;height:10px;border-radius:50%;background:#27C93F;"></div><div style="flex:1;height:14px;background:#e0e0e0;border-radius:4px;margin-left:16px;"></div></div>
-                     <div class="bm-content" style="padding:0; aspect-ratio:16/10; background:var(--sky-light); display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                        <img src="assets/indian-silicon-valley.png" alt="The Indian Silicon Valley Mockup" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='indian-silicon-valley.png'; this.onerror=function(){this.style.display='none'};">
-                     </div>
-                  </div>
-               </a>
-            </div>
-            <div class="ae-text" style="flex:1;">
-               <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank" style="text-decoration:none; color:inherit;">
-                  <h4 class="cv-title" style="font-family:'Syne',sans-serif; font-size:24px; font-weight:800; letter-spacing:-0.01em; transition:color 0.2s; cursor:pointer;" onmouseover="this.style.color='var(--sky-deep)'" onmouseout="this.style.color='inherit'">The Indian Silicon Valley</h4>
-               </a>
-               <p class="ae-desc" style="font-size:15px; line-height:1.6; color:var(--ink-soft); margin-top:16px;">A complete ground-up redesign from scratch to elevate their digital presence. Architected intuitive site structures to deliver a flawless, aesthetic, and user-centric deployed product.</p>
-               <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:24px;">
-                 <span style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">UI/UX</span>
-                 <span style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">Figma</span>
-                 <span style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">Webflow</span>
-                 <span style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">Visual Designing</span>
-               </div>
-            </div>
-         </div>
-
-         <!-- Thumbnails Grid Section -->
-         <div style="margin-top:100px; padding-top:60px; border-top:1px solid rgba(0,0,0,0.05);">
-            <div style="text-align:left; margin-bottom:48px;">
-               <span style="font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; color:var(--sky-deep); letter-spacing:0.05em; text-transform:uppercase;">VISUAL DESIGN • CANVA</span>
-               <h3 style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">Thumbnails designs</h3>
-               <p style="font-size:15px; color:var(--ink-soft); margin-top:12px; line-height:1.6; max-width:600px;">Crafting high-click-through visual hooks and engaging thumbnail creatives.</p>
-            </div>
-
-            <!-- Embed Grid Overview (Downward Scroll) -->
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:32px; align-items:start; max-width:1000px; margin:0 auto;">
-               
-               <div style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
-                  <img src="A.png" alt="Thumbnail A" style="width:100%; height:100%; object-fit:cover;" onerror="this.src=this.src.replace('.png','.jpg'); this.onerror=function(){this.style.display='none'};">
-               </div>
-               
-               <div style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
-                  <img src="B.png" alt="Thumbnail B" style="width:100%; height:100%; object-fit:cover;" onerror="this.src=this.src.replace('.png','.jpg'); this.onerror=function(){this.style.display='none'};">
-               </div>
-               
-               <div style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
-                  <img src="C.png" alt="Thumbnail C" style="width:100%; height:100%; object-fit:cover;" onerror="this.src=this.src.replace('.png','.jpg'); this.onerror=function(){this.style.display='none'};">
-               </div>
-               
-               <div style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
-                  <img src="D.png" alt="Thumbnail D" style="width:100%; height:100%; object-fit:cover;" onerror="this.src=this.src.replace('.png','.jpg'); this.onerror=function(){this.style.display='none'};">
-               </div>
-               
-               <div style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
-                  <img src="E.png" alt="Thumbnail E" style="width:100%; height:100%; object-fit:cover;" onerror="this.src=this.src.replace('.png','.jpg'); this.onerror=function(){this.style.display='none'};">
-               </div>
-               
-               <div style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
-                  <img src="F.png" alt="Thumbnail F" style="width:100%; height:100%; object-fit:cover;" onerror="this.src=this.src.replace('.png','.jpg'); this.onerror=function(){this.style.display='none'};">
-               </div>
-
-            </div>
-         </div>
-      </div>
-
-      <!-- Sub-Panel 4: Performance Marketing -->
-      <div class="sub-panel" id="live-perf">
-         <div style="text-align:left; margin-bottom:48px;">
-           <span style="font-size:11px; font-weight:800; color:#3a614d; letter-spacing:0.15em; text-transform:uppercase;">Performance Marketing</span>
-           <h3 style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">Data-driven campaigns that dominate conversions.</h3>
-         </div>
-         
-         <div style="background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.03); padding:40px; display:flex; gap:40px; align-items:center;">
-           <div style="flex:0 0 35%; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;">
-             <img src="assets/15.png" alt="Urban Vault" style="width:100%; max-width:260px; transform:scale(1.5); transform-origin:left center; margin-bottom:24px;" onerror="this.src='15.png'; this.onerror=function(){this.style.display='none'};">
-             <span style="display:block; font-size:11px; font-family:system-ui,-apple-system,sans-serif; font-weight:600; color:#3a614d; letter-spacing:0.05em; text-transform:uppercase; margin-top:24px;">In Class Conversions</span>
-           </div>
-           
-           <div style="flex:2;">
-              <h4 style="font-family:'Syne',sans-serif; font-size:24px; font-weight:800; letter-spacing:-0.01em;">Urban Vault Media Buying</h4>
-              <p style="font-size:16px; line-height:1.6; color:var(--ink-soft); margin-top:16px;">Developed and ran Google and Meta Ads campaigns for Urban Vault. I successfully secured the absolute highest leads and conversions among all participating groups in the class by optimizing ad spend and aggressive A/B testing.</p>
-              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:24px;">
-                 <span style="padding:5px 12px; border-radius:20px; background:var(--sage); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:#3a614d; letter-spacing:0.05em;">Google Ads</span>
-                 <span style="padding:5px 12px; border-radius:20px; background:var(--sage); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:#3a614d; letter-spacing:0.05em;">Meta Ads</span>
-                 <span style="padding:5px 12px; border-radius:20px; background:var(--sage); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:#3a614d; letter-spacing:0.05em;">Lead Gen</span>
-              </div>
-           </div>
-         </div>
-      </div>
-
-    </div>
-
-    <!-- PANEL 2: FREELANCE STUDIO -->
-    <div class="g-panel" id="panel-freelance">
-      <h3 style="font-family:'Syne',sans-serif; margin-bottom:24px;">Video Edits & Motion</h3>
-      <div class="bento-grid" style="margin-bottom: 56px;">
-        <!-- Video Card Placeholder 1 -->
-        <div class="video-card">
-          <div style="background:#f0e4db; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-             <span style="color:#aaa;">Video Thumbnail Here</span>
-          </div>
-          <div class="v-overlay"><div class="v-play">▶</div></div>
-        </div>
-        <!-- Video Card Placeholder 2 -->
-        <div class="video-card">
-          <div style="background:#e4ebf0; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-             <span style="color:#aaa;">Video Thumbnail Here</span>
-          </div>
-          <div class="v-overlay"><div class="v-play">▶</div></div>
-        </div>
-        <!-- Video Card Placeholder 3 -->
-        <div class="video-card">
-          <div style="background:#eef0e4; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-             <span style="color:#aaa;">Video Thumbnail Here</span>
-          </div>
-          <div class="v-overlay"><div class="v-play">▶</div></div>
-        </div>
-      </div>
-
-      <h3 style="font-family:'Syne',sans-serif; margin-bottom:24px;">Thumbnail & Graphic Designs</h3>
-      <!-- Masonry mockup -->
-      <div style="column-count:3; column-gap:16px;">
-        <div style="background:#fafafa; border-radius:8px; height:150px; margin-bottom:16px; border:1px solid #eee;"></div>
-        <div style="background:#fafafa; border-radius:8px; height:240px; margin-bottom:16px; border:1px solid #eee;"></div>
-        <div style="background:#fafafa; border-radius:8px; height:180px; margin-bottom:16px; border:1px solid #eee;"></div>
-        <div style="background:#fafafa; border-radius:8px; height:210px; margin-bottom:16px; border:1px solid #eee;"></div>
-        <div style="background:#fafafa; border-radius:8px; height:160px; margin-bottom:16px; border:1px solid #eee;"></div>
-      </div>
-    </div>
-
-    <!-- PANEL 3: CAMPAIGN STRATEGIES -->
-    <div class="g-panel" id="panel-campaign">
-      <div class="mockup-container">
-        
-        <!-- Strategy Brief Text -->
-        <div>
-          <h3 style="font-family:'Syne',sans-serif; font-size:32px; margin-bottom:16px; letter-spacing:-0.02em;">Namma Creator Carnival</h3>
-          <p style="color:var(--ink-soft); line-height:1.7; margin-bottom:24px; font-size:16px;">
-            Leading the PR strategy and social media execution for Namma Creator Carnival meant building hype, coordinating with top-tier creators, and designing an unforgettable aesthetic across all touchpoints.
-          </p>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <span style="padding:6px 12px; border-radius:20px; background:var(--sage); font-size:11px; font-weight:700; text-transform:uppercase;">PR Strategy</span>
-            <span style="padding:6px 12px; border-radius:20px; background:var(--sky-light); font-size:11px; font-weight:700; text-transform:uppercase;">Event Mgmt</span>
-            <span style="padding:6px 12px; border-radius:20px; background:var(--yellow-light); font-size:11px; font-weight:700; text-transform:uppercase;">Social Media</span>
-          </div>
-        </div>
-
-        <!-- Phone IG Mockup -->
-        <div class="phone-mock">
-          <div class="p-notch"></div>
-          <div class="p-screen">
-            <!-- IG Header Mock -->
-            <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px; border-bottom:1px solid #eee; padding-bottom:16px;">
-              <div style="width:40px; height:40px; border-radius:50%; background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); display:flex; align-items:center; justify-content:center;">
-                <div style="width:36px; height:36px; border-radius:50%; border:2px solid #fff; background:#222;"></div>
+              <div
+                style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                <iframe src="https://drive.google.com/file/d/1_BB1JWyWwlSvAtSUr4GeZiTfhDduUMbu/preview" width="100%"
+                  height="100%" frameborder="0" allow="autoplay"
+                  style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
               </div>
               <div>
-                <strong style="display:block; font-size:13px;">nammacreatorcarnival</strong>
-                <span style="font-size:11px; color:#999;">The biggest creator fest</span>
+                <h4 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; letter-spacing:-0.01em;">
+                  Sprentzo</h4>
+                <p style="font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.4;">Brand research,
+                  end-to-end production.</p>
               </div>
             </div>
-            <!-- IG Grid Mock -->
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-              <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
-              <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
-              <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
-              <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
-              <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
-              <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
+
+          </div>
+        </div>
+
+        <!-- Sub-Panel 2: Long-form Content -->
+        <div class="sub-panel" id="live-long">
+          <div style="text-align:left; margin-bottom:48px;">
+            <span
+              style="font-size:11px; font-weight:800; color:var(--yellow-deep); letter-spacing:0.15em; text-transform:uppercase;">YouTube
+              Channels</span>
+            <h3
+              style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">
+              Crafting high-impact informative, educational, and business channels.</h3>
+          </div>
+          <div class="aesthetic-grid">
+
+            <a href="https://youtube.com/@businessgita-4lit?si=jjPA-DuSz6P1ywES" target="_blank"
+              class="clean-video-card"
+              style="box-shadow:0 10px 30px rgba(0,0,0,0.04); border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,0.05); background:#fff; text-decoration:none;">
+              <div class="cv-thumb"
+                style="aspect-ratio:16/9; max-height:280px; position:relative; overflow:hidden; background:var(--yellow-light);">
+                <img src="assets/business-gita.jpg" alt="The Business Gita"
+                  style="width:100%; height:100%; object-fit:cover;"
+                  onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';">
+                <div class="cv-play">▶</div>
+              </div>
+              <div class="cv-info" style="padding:24px;">
+                <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                  <span
+                    style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Research</span>
+                  <span
+                    style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Trendjacking</span>
+                  <span
+                    style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Scripting</span>
+                  <span
+                    style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Strategy</span>
+                </div>
+                <h4 class="cv-title"
+                  style="font-family:'Syne',sans-serif; font-size:18px; font-weight:800; letter-spacing:-0.01em; margin-top:8px; color:var(--ink);">
+                  The Business Gita</h4>
+                <p class="ae-desc" style="font-size:14px; line-height:1.4; color:var(--ink-soft); margin-top:8px;">
+                  Telugu based regional channel.</p>
+              </div>
+            </a>
+
+            <a href="https://youtube.com/@theindianskin?si=ootC9puoNlh4XBCq" target="_blank" class="clean-video-card"
+              style="box-shadow:0 10px 30px rgba(0,0,0,0.04); border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,0.05); background:#fff; text-decoration:none;">
+              <div class="cv-thumb"
+                style="aspect-ratio:16/9; max-height:280px; position:relative; overflow:hidden; background:var(--blush-light);">
+                <img src="assets/The%20Indian%20Skin.png" alt="The Indian Skin"
+                  style="width:100%; height:100%; object-fit:cover;"
+                  onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';">
+                <div class="cv-play">▶</div>
+              </div>
+              <div class="cv-info" style="padding:24px;">
+                <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                  <span
+                    style="padding:5px 12px; border-radius:20px; background:var(--blush-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--blush-deep); letter-spacing:0.05em;">Strategy</span>
+                  <span
+                    style="padding:5px 12px; border-radius:20px; background:var(--blush-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--blush-deep); letter-spacing:0.05em;">Research</span>
+                  <span
+                    style="padding:5px 12px; border-radius:20px; background:var(--blush-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--blush-deep); letter-spacing:0.05em;">Scripting</span>
+                </div>
+                <h4 class="cv-title"
+                  style="font-family:'Syne',sans-serif; font-size:18px; font-weight:800; letter-spacing:-0.01em; margin-top:8px; color:var(--ink);">
+                  The Indian Skin</h4>
+                <p class="ae-desc" style="font-size:14px; line-height:1.4; color:var(--ink-soft); margin-top:8px;">
+                  Educational based channel on Indian skin.</p>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Sub-Panel 3: Web & Thumbnails -->
+        <div class="sub-panel" id="live-web">
+          <div style="text-align:left; margin-bottom:48px;">
+            <span
+              style="font-size:11px; font-weight:800; color:var(--sky-deep); letter-spacing:0.15em; text-transform:uppercase;">Website
+              Redesign</span>
+            <h3
+              style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">
+              Architecting intuitive UX & seamless interfaces.</h3>
+          </div>
+          <div class="aesthetic-split" style="gap:56px; align-items:start;">
+            <div class="ae-visual" style="flex:1.5;">
+              <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank"
+                style="text-decoration:none; display:block; transition: transform 0.3s ease;"
+                onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+                <div class="browser-mock"
+                  style="box-shadow: 0 30px 60px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.05); border-radius:8px; overflow:hidden; background:#fff;">
+                  <div class="bm-top"
+                    style="height:32px; background:#f5f5f5; display:flex; align-items:center; padding:0 12px; gap:6px;">
+                    <div style="width:10px;height:10px;border-radius:50%;background:#FF5F56;"></div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:#FFBD2E;"></div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:#27C93F;"></div>
+                    <div style="flex:1;height:14px;background:#e0e0e0;border-radius:4px;margin-left:16px;"></div>
+                  </div>
+                  <div class="bm-content"
+                    style="padding:0; aspect-ratio:16/10; background:var(--sky-light); display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                    <img src="assets/isv-site.png" alt="The Indian Silicon Valley Mockup"
+                      style="width:100%; height:100%; object-fit:cover;"
+                      onerror="this.src='assets/isv-site.jpg'; this.onerror=function(){this.style.display='none'};">
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="ae-text" style="flex:1;">
+              <a href="https://indiansiliconvalleyredesign.webflow.io/" target="_blank"
+                style="text-decoration:none; color:inherit;">
+                <h4 class="cv-title"
+                  style="font-family:'Syne',sans-serif; font-size:24px; font-weight:800; letter-spacing:-0.01em; transition:color 0.2s; cursor:pointer;"
+                  onmouseover="this.style.color='var(--sky-deep)'" onmouseout="this.style.color='inherit'">The Indian
+                  Silicon Valley</h4>
+              </a>
+              <p class="ae-desc" style="font-size:15px; line-height:1.6; color:var(--ink-soft); margin-top:16px;">A
+                complete ground-up redesign from scratch to elevate their digital presence. Architected intuitive site
+                structures to deliver a flawless, aesthetic, and user-centric deployed product.</p>
+              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:24px;">
+                <span
+                  style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">UI/UX</span>
+                <span
+                  style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">Figma</span>
+                <span
+                  style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">Webflow</span>
+                <span
+                  style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">Visual
+                  Designing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thumbnails Grid Section -->
+          <div style="margin-top:100px; padding-top:60px; border-top:1px solid rgba(0,0,0,0.05);">
+            <div style="text-align:left; margin-bottom:48px;">
+              <span
+                style="font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; color:var(--sky-deep); letter-spacing:0.05em; text-transform:uppercase;">VISUAL
+                DESIGN • CANVA</span>
+              <h3
+                style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">
+                Thumbnails designs</h3>
+              <p style="font-size:15px; color:var(--ink-soft); margin-top:12px; line-height:1.6; max-width:600px;">
+                Crafting high-click-through visual hooks and engaging thumbnail creatives.</p>
+            </div>
+
+            <div
+              style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:32px; align-items:start; max-width:1000px; margin:0 auto;">
+
+              <div
+                style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
+                <img src="assets/A.png" alt="Thumbnail A" style="width:100%; height:100%; object-fit:cover;"
+                  onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';">
+              </div>
+
+              <div
+                style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
+                <img src="assets/B.png" alt="Thumbnail B" style="width:100%; height:100%; object-fit:cover;"
+                  onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';">
+              </div>
+
+              <div
+                style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
+                <img src="assets/C.png" alt="Thumbnail C" style="width:100%; height:100%; object-fit:cover;"
+                  onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';">
+              </div>
+
+              <div
+                style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
+                <img src="assets/D.png" alt="Thumbnail D" style="width:100%; height:100%; object-fit:cover;"
+                  onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';">
+              </div>
+
+              <div
+                style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
+                <img src="assets/E.png" alt="Thumbnail E" style="width:100%; height:100%; object-fit:cover;"
+                  onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';">
+              </div>
+
+              <div
+                style="border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:16/9; background:var(--sky-light);">
+                <img src="assets/F.png" alt="Thumbnail F" style="width:100%; height:100%; object-fit:cover;"
+                  onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';">
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-Panel 4: Performance Marketing -->
+        <div class="sub-panel" id="live-perf">
+          <div style="text-align:left; margin-bottom:48px;">
+            <span
+              style="font-size:11px; font-weight:800; color:#3a614d; letter-spacing:0.15em; text-transform:uppercase;">Performance
+              Marketing</span>
+            <h3
+              style="font-family:'Instrument Serif', serif; font-size:36px; font-weight:400; font-style:italic; color:var(--ink); margin-top:8px; line-height:1.1;">
+              Data-driven campaigns that dominate conversions.</h3>
+          </div>
+
+          <div
+            style="background:#f4f8f5; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.03); padding:40px; display:flex; gap:40px; align-items:center;">
+            <div
+              style="flex:0 0 35%; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;">
+              <img src="assets/15.png" alt="Urban Vault"
+                style="width:100%; max-width:260px; transform:scale(1.5); transform-origin:left center; margin-bottom:24px;"
+                onerror="this.src='15.png'; this.onerror=function(){this.style.display='none'};">
+              <span
+                style="display:block; font-size:11px; font-family:system-ui,-apple-system,sans-serif; font-weight:600; color:#3a614d; letter-spacing:0.05em; text-transform:uppercase; margin-top:24px;">In
+                Class Conversions</span>
+            </div>
+
+            <div style="flex:2;">
+              <h4 style="font-family:'Syne',sans-serif; font-size:24px; font-weight:800; letter-spacing:-0.01em;">Urban
+                Vault Media Buying</h4>
+              <p style="font-size:16px; line-height:1.6; color:var(--ink-soft); margin-top:16px;">Developed and ran
+                Google and Meta Ads campaigns for Urban Vault. I successfully secured the absolute highest leads and
+                conversions among all participating groups in the class by optimizing ad spend and aggressive A/B
+                testing.</p>
+              <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:24px;">
+                <span
+                  style="padding:5px 12px; border-radius:20px; background:var(--sage); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:#3a614d; letter-spacing:0.05em;">Google
+                  Ads</span>
+                <span
+                  style="padding:5px 12px; border-radius:20px; background:var(--sage); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:#3a614d; letter-spacing:0.05em;">Meta
+                  Ads</span>
+                <span
+                  style="padding:5px 12px; border-radius:20px; background:var(--sage); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:#3a614d; letter-spacing:0.05em;">Lead
+                  Gen</span>
+              </div>
             </div>
           </div>
         </div>
 
       </div>
+
+      <!-- PANEL 2: FREELANCE STUDIO -->
+      <div class="g-panel" id="panel-freelance">
+        <!-- BRAND 1: JBN Tycoons -->
+        <div style="margin-bottom:80px;">
+          <div style="text-align:left; margin-bottom:40px;">
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">Female
+                Presenter</span>
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">Visual
+                Director</span>
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--sky-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--sky-deep); letter-spacing:0.05em;">Scriptwriter</span>
+            </div>
+            <h3
+              style="font-family:'Instrument Serif', serif; font-size:40px; font-weight:400; font-style:italic; color:var(--ink); line-height:1.1;">
+              JBN Tycoons</h3>
+            <p style="font-size:16px; color:var(--ink-soft); margin-top:12px; line-height:1.6; max-width:600px;">
+              Developed a digital campaign covering the authentic and inspiring stories of JITO's sponsors in a raw,
+              real format.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:32px; align-items:start; max-width:1000px; margin:0 auto;">
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.instagram.com/jbn_tycoons_bangalore/reel/DRg74g4kqZG/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.instagram.com/jbn_tycoons_bangalore/reel/DSueRWAkqCc/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.instagram.com/jbn_tycoons_bangalore/reel/DUYp8mpklzx/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.instagram.com/jbn_tycoons_bangalore/reel/DUlbhMpktDW/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.instagram.com/jbn_tycoons_bangalore/reel/DVNshgIkkCm/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.instagram.com/jbn_tycoons_bangalore/reel/DWERXvaib5d/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BRAND 2: Pronto -->
+        <div style="margin-bottom:80px; padding-top:20px; border-top:1px solid rgba(0,0,0,0.05);">
+          <div style="text-align:left; margin-bottom:40px; margin-top:40px;">
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--sage); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:#3a614d; letter-spacing:0.05em;">Content
+                Creation</span>
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--sage); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:#3a614d; letter-spacing:0.05em;">Awareness
+                Campaign</span>
+            </div>
+            <h3
+              style="font-family:'Instrument Serif', serif; font-size:40px; font-weight:400; font-style:italic; color:var(--ink); line-height:1.1;">
+              Pronto</h3>
+            <p style="font-size:16px; color:var(--ink-soft); margin-top:12px; line-height:1.6; max-width:600px;">Worked
+              on their brand awareness campaign—delivering a creative content piece that was highly appreciated directly
+              by the brand.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:32px; align-items:start; max-width:1000px; margin:0 auto;">
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                <iframe src="https://drive.google.com/file/d/1rjuTYJ271vOYmYVLKqyW82HZUQTJY23y/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BRAND 3: Humdard Khaalis Masale -->
+        <div style="margin-bottom:80px; padding-top:20px; border-top:1px solid rgba(0,0,0,0.05);">
+          <div style="text-align:left; margin-bottom:40px; margin-top:40px;">
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Acting</span>
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Scripting</span>
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--yellow-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--yellow-deep); letter-spacing:0.05em;">Visual
+                Direction</span>
+            </div>
+            <h3
+              style="font-family:'Instrument Serif', serif; font-size:40px; font-weight:400; font-style:italic; color:var(--ink); line-height:1.1;">
+              Humdard Khaalis Masale</h3>
+            <p style="font-size:16px; color:var(--ink-soft); margin-top:12px; line-height:1.6; max-width:600px;">
+              Executed an Independence Day campaign featuring a renowned creator with 100k+ followers.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:32px; align-items:start; max-width:1000px; margin:0 auto;">
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative;">
+                <iframe src="https://www.instagram.com/p/DNVfp5phzn5/embed/" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BRAND 4: Personal Touch Skincare -->
+        <div style="margin-bottom:80px; padding-top:20px; border-top:1px solid rgba(0,0,0,0.05);">
+          <div style="text-align:left; margin-bottom:40px; margin-top:40px;">
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--blush-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--blush-deep); letter-spacing:0.05em;">Actor</span>
+              <span
+                style="padding:5px 12px; border-radius:20px; background:var(--blush-light); font-family:system-ui,-apple-system,sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; color:var(--blush-deep); letter-spacing:0.05em;">Performance
+                Marketing</span>
+            </div>
+            <h3
+              style="font-family:'Instrument Serif', serif; font-size:40px; font-weight:400; font-style:italic; color:var(--ink); line-height:1.1;">
+              Personal Touch Skincare</h3>
+            <p style="font-size:16px; color:var(--ink-soft); margin-top:12px; line-height:1.6; max-width:600px;">Shark
+              Tank featured brand. Designed and acted in 3 creative video ads specifically optimized for performance
+              marketing conversions.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:32px; align-items:start; max-width:1000px; margin:0 auto;">
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                <iframe src="https://drive.google.com/file/d/1BnI5AKDEe3pFTy7vjDnGGjKAODtPIZv7/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                <iframe src="https://drive.google.com/file/d/1UbhetWTyFn-v1Sff0fcnJUMB-6-QtdAs/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="background:#000; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.04); aspect-ratio:9/16; position:relative; border:1px solid rgba(0,0,0,0.05);">
+                <iframe src="https://drive.google.com/file/d/1dx3uwxwzqRdXyc6rk0wm65GMIa4FMYJN/preview" width="100%" height="100%" frameborder="0" allow="autoplay" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 3: CAMPAIGN STRATEGIES -->
+      <div class="g-panel" id="panel-campaign">
+        <div class="mockup-container">
+
+          <!-- Strategy Brief Text -->
+          <div>
+            <h3 style="font-family:'Syne',sans-serif; font-size:32px; margin-bottom:16px; letter-spacing:-0.02em;">Namma
+              Creator Carnival</h3>
+            <p style="color:var(--ink-soft); line-height:1.7; margin-bottom:24px; font-size:16px;">
+              Leading the PR strategy and social media execution for Namma Creator Carnival meant building hype,
+              coordinating with top-tier creators, and designing an unforgettable aesthetic across all touchpoints.
+            </p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span
+                style="padding:6px 12px; border-radius:20px; background:var(--sage); font-size:11px; font-weight:700; text-transform:uppercase;">PR
+                Strategy</span>
+              <span
+                style="padding:6px 12px; border-radius:20px; background:var(--sky-light); font-size:11px; font-weight:700; text-transform:uppercase;">Event
+                Mgmt</span>
+              <span
+                style="padding:6px 12px; border-radius:20px; background:var(--yellow-light); font-size:11px; font-weight:700; text-transform:uppercase;">Social
+                Media</span>
+            </div>
+          </div>
+
+          <!-- Phone IG Mockup -->
+          <div class="phone-mock">
+            <div class="p-notch"></div>
+            <div class="p-screen">
+              <!-- IG Header Mock -->
+              <div
+                style="display:flex; align-items:center; gap:12px; margin-bottom:24px; border-bottom:1px solid #eee; padding-bottom:16px;">
+                <div
+                  style="width:40px; height:40px; border-radius:50%; background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); display:flex; align-items:center; justify-content:center;">
+                  <div style="width:36px; height:36px; border-radius:50%; border:2px solid #fff; background:#222;">
+                  </div>
+                </div>
+                <div>
+                  <strong style="display:block; font-size:13px;">nammacreatorcarnival</strong>
+                  <span style="font-size:11px; color:#999;">The biggest creator fest</span>
+                </div>
+              </div>
+              <!-- IG Grid Mock -->
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
+                <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
+                <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
+                <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
+                <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
+                <div style="aspect-ratio:1; background:#f0f0f0; border-radius:4px;"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
-
   </div>
-</div>
 
-<script>
-/* ── CUSTOM CURSOR ── */
-const cur=document.getElementById("cur"),ring=document.getElementById("cur-ring");
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+"px";cur.style.top=my+"px";});
-(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+"px";ring.style.top=ry+"px";requestAnimationFrame(loop);})();
+  <script>
+    /* ── CUSTOM CURSOR ── */
+    const cur = document.getElementById("cur"), ring = document.getElementById("cur-ring");
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + "px"; cur.style.top = my + "px"; });
+    (function loop() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(loop); })();
 
-document.querySelectorAll("a, .vault-scene, .sub-folder, .btn-back, .video-card").forEach(el=>{
-  el.addEventListener("mouseenter",()=>{cur.classList.add("big");ring.classList.add("big");});
-  el.addEventListener("mouseleave",()=>{cur.classList.remove("big");ring.classList.remove("big");});
-});
+    document.querySelectorAll("a, .vault-scene, .sub-folder, .btn-back, .video-card").forEach(el => {
+      el.addEventListener("mouseenter", () => { cur.classList.add("big"); ring.classList.add("big"); });
+      el.addEventListener("mouseleave", () => { cur.classList.remove("big"); ring.classList.remove("big"); });
+    });
 
-/* ── 3D VAULT LOGIC ── */
-const scene = document.getElementById("vault-scene");
-const vaultSection = document.getElementById("vault-section");
-const subFolders = document.querySelectorAll(".sub-folder");
+    /* ── 3D VAULT LOGIC ── */
+    const scene = document.getElementById("vault-scene");
+    const vaultSection = document.getElementById("vault-section");
+    const subFolders = document.querySelectorAll(".sub-folder");
 
-const galleryWrapper = document.getElementById("gallery-wrapper");
-const galleryTitle = document.getElementById("gallery-title");
-const btnBack = document.getElementById("btn-back");
-const panels = document.querySelectorAll(".g-panel");
+    const galleryWrapper = document.getElementById("gallery-wrapper");
+    const galleryTitle = document.getElementById("gallery-title");
+    const btnBack = document.getElementById("btn-back");
+    const panels = document.querySelectorAll(".g-panel");
 
-/* 1. Mouse hover 3D tilt tracking */
-document.addEventListener("mousemove", (e) => {
-  // If vault is animating or gallery is open, stop tracking
-  if(vaultSection.classList.contains("gallery-active") || window.innerWidth < 900) return;
-  
-  // Center is screen center
-  let ax = -(window.innerWidth/2 - e.pageX)/35;
-  let ay = (window.innerHeight/2 - e.pageY)/35;
+    /* 1. Mouse hover 3D tilt tracking */
+    document.addEventListener("mousemove", (e) => {
+      // If vault is animating or gallery is open, stop tracking
+      if (vaultSection.classList.contains("gallery-active") || window.innerWidth < 900) return;
 
-  // Add the base tilt
-  // Only tilt fully if vault is NOT open. If open, lock it so user can click folders easily
-  if(!vaultSection.classList.contains("is-open")) {
-    scene.style.transform = `rotateY(${ax}deg) rotateX(${ay + 15}deg)`;
-  } else {
-    // Very subtle tracking when opened, locked base angle
-    scene.style.transform = `rotateY(${ax*0.2}deg) rotateX(15deg)`;
-  }
-});
+      // Center is screen center
+      let ax = -(window.innerWidth / 2 - e.pageX) / 35;
+      let ay = (window.innerHeight / 2 - e.pageY) / 35;
 
-/* 2. Open / Close Vault on Click */
-scene.addEventListener("click", (e) => {
-  // Prevent vault toggle if clicking right on a subfolder to open gallery
-  if(e.target.closest('.sub-folder')) return;
-  
-  vaultSection.classList.toggle("is-open");
-  
-  // Clean snap logic when opening
-  if(vaultSection.classList.contains("is-open")) {
-    if(window.innerWidth > 900) {
-      scene.style.transform = `rotateY(0deg) rotateX(15deg)`;
-    }
-  }
-});
+      // Add the base tilt
+      // Only tilt fully if vault is NOT open. If open, lock it so user can click folders easily
+      if (!vaultSection.classList.contains("is-open")) {
+        scene.style.transform = `rotateY(${ax}deg) rotateX(${ay + 15}deg)`;
+      } else {
+        // Very subtle tracking when opened, locked base angle
+        scene.style.transform = `rotateY(${ax * 0.2}deg) rotateX(15deg)`;
+      }
+    });
 
-/* 3. Click Sub-Folder to Open Gallery */
-subFolders.forEach(folder => {
-  folder.addEventListener("click", (e) => {
-    // Prevent event bubbling so it doesn't trigger the vault click if already open
-    e.stopPropagation();
+    /* 2. Open / Close Vault on Click */
+    scene.addEventListener("click", (e) => {
+      // Prevent vault toggle if clicking right on a subfolder to open gallery
+      if (e.target.closest('.sub-folder')) return;
 
-    // If vault isn't even open, ignore clicks on hidden folders
-    if(!vaultSection.classList.contains("is-open")) return;
+      vaultSection.classList.toggle("is-open");
 
-    // Get target panel
-    const target = folder.getAttribute("data-target");
-    let titleText = "Archive";
-    let subText = "";
-    if(target === "live") {
-      titleText = "The Mixed Tape";
-      subText = "The LIT projects — College work.";
-    }
-    if(target === "freelance") {
-      titleText = "The Experiment Files";
-      subText = "Personal explorations & Freelance Studio.";
-    }
-    if(target === "campaign") {
-      titleText = "The Big Brain Stuff";
-      subText = "Strategic campaigns & high-level tier-downs.";
-    }
-    
-    // Hide all panels, show target
-    panels.forEach(p => p.classList.remove("active"));
-    document.getElementById(`panel-${target}`).classList.add("active");
+      // Clean snap logic when opening
+      if (vaultSection.classList.contains("is-open")) {
+        if (window.innerWidth > 900) {
+          scene.style.transform = `rotateY(0deg) rotateX(15deg)`;
+        }
+      }
+    });
 
-    // Update gallery header & subtitle
-    galleryTitle.innerText = titleText;
-    document.getElementById("gallery-subtitle").innerText = subText;
+    /* 3. Click Sub-Folder to Open Gallery */
+    subFolders.forEach(folder => {
+      folder.addEventListener("click", (e) => {
+        // Prevent event bubbling so it doesn't trigger the vault click if already open
+        e.stopPropagation();
 
-    // Activate gallery Overlay
-    vaultSection.classList.add("gallery-active");
-  });
-});
+        // If vault isn't even open, ignore clicks on hidden folders
+        if (!vaultSection.classList.contains("is-open")) return;
 
-/* 4. Close Gallery */
-btnBack.addEventListener("click", () => {
-  vaultSection.classList.remove("gallery-active");
-  // Let the vault stay open so they can pick another folder immediately!
-});
+        // Get target panel
+        const target = folder.getAttribute("data-target");
+        let titleText = "Archive";
+        let subText = "";
+        if (target === "live") {
+          titleText = "The Mixed Tape";
+          subText = "The LIT projects — College work.";
+        }
+        if (target === "freelance") {
+          titleText = "The Experiment Files";
+          subText = "Personal explorations & Freelance Studio.";
+        }
+        if (target === "campaign") {
+          titleText = "The Big Brain Stuff";
+          subText = "Strategic campaigns & high-level tier-downs.";
+        }
 
-/* 5. Sub-Panel Navigation (Live Projects) */
-const subBtns = document.querySelectorAll(".sub-btn");
-const subPanels = document.querySelectorAll(".sub-panel");
+        // Hide all panels, show target
+        panels.forEach(p => p.classList.remove("active"));
+        document.getElementById(`panel-${target}`).classList.add("active");
 
-subBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    // remove active from all btns and panels
-    subBtns.forEach(b => b.classList.remove("active"));
-    subPanels.forEach(p => p.classList.remove("active"));
-    
-    // add active to clicked btn and target panel
-    btn.classList.add("active");
-    document.getElementById(btn.getAttribute("data-target")).classList.add("active");
-  });
-});
-</script>
+        // Update gallery header & subtitle
+        galleryTitle.innerText = titleText;
+        document.getElementById("gallery-subtitle").innerText = subText;
+
+        // Activate gallery Overlay
+        vaultSection.classList.add("gallery-active");
+      });
+    });
+
+    /* 4. Close Gallery */
+    btnBack.addEventListener("click", () => {
+      vaultSection.classList.remove("gallery-active");
+      // Let the vault stay open so they can pick another folder immediately!
+    });
+
+    /* 5. Sub-Panel Navigation (Live Projects) */
+    const subBtns = document.querySelectorAll(".sub-btn");
+    const subPanels = document.querySelectorAll(".sub-panel");
+
+    subBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // remove active from all btns and panels
+        subBtns.forEach(b => b.classList.remove("active"));
+        subPanels.forEach(p => p.classList.remove("active"));
+
+        // add active to clicked btn and target panel
+        btn.classList.add("active");
+        document.getElementById(btn.getAttribute("data-target")).classList.add("active");
+      });
+    });
+  </script>
 
 </body>
+
 </html>
