@@ -188,6 +188,20 @@
       padding-top: 20px;
     }
 
+    .page-eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+      display: inline-block;
+      border: 1px solid rgba(28,24,38,0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
     .bio-hook {
       font-family: 'Instrument Serif', serif;
       font-style: italic;
@@ -293,8 +307,10 @@
       box-shadow: 6px 6px 0 var(--ink);
     }
     .t1-card.visible:hover {
+      background: var(--blush-light);
       transform: translate(-4px, -4px);
       box-shadow: 10px 10px 0 var(--ink);
+      border-color: var(--blush-deep);
     }
 
     /* Tier 2 */
@@ -308,8 +324,10 @@
       box-shadow: 6px 6px 0 var(--ink); /* Standardized to match T1 */
     }
     .t2-card.visible:hover {
+      background: var(--sky-light);
       transform: translate(-4px, -4px);
       box-shadow: 10px 10px 0 var(--ink);
+      border-color: var(--sky-deep);
     }
 
     /* Card Content Typography */
@@ -382,6 +400,36 @@
       background: var(--sky-light);
       border: 1.5px solid var(--sky);
       color: var(--ink);
+    }
+
+    /* RESUME CTA BUTTON */
+    .resume-cta-wrap {
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+    }
+    .btn-resume {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 56px;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s;
+      border: 2px solid var(--ink);
+    }
+    .btn-resume:hover {
+      background: var(--blush-deep);
+      border-color: var(--blush-deep);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(212, 94, 122, 0.25);
     }
 
     /* ── FOOTER / CONTACT ── */
@@ -518,7 +566,6 @@
       <a href="about.html" class="active">About</a>
       <a href="projects.html">Projects</a>
       <a href="case-studies.html">Case Studies</a>
-      <a href="resume.html">Resume</a>
       <a href="contact.html">Contact</a>
     </div>
   </nav>
@@ -531,7 +578,7 @@
       
       <div class="portrait-wrap">
         <div class="portrait-inner">
-          <img src="assets/shalini-portrait.jpg" alt="Shalini Singh Portrait" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='">
+          <img src="shalini-portrait.jpg" alt="Shalini Singh Portrait" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='">
         </div>
       </div>
 
@@ -546,6 +593,7 @@
     <!-- RIGHT CONTENT SPRAWL -->
     <main class="content-scroll">
       
+      <span class="page-eyebrow">About Me</span>
       <h1 class="bio-hook">"Tell me the idea. I'll tell you how it looks when it's done."</h1>
       
       <div class="bio-text">
@@ -634,6 +682,13 @@
 
         </div>
 
+      </div>
+
+      <!-- RESUME 1-CLICK DOWNLOAD -->
+      <div class="resume-cta-wrap">
+        <a href="assets/resume.pdf" download class="btn-resume">
+          Download My Resume &darr;
+        </a>
       </div>
 
     </main>
