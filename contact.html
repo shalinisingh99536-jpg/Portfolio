@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Shalini Singh</title>
+  <title>Contact â€” Shalini Singh</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
@@ -482,4 +482,130 @@
       .nav-links { display: none; } /* Quick mobile fix for nav */
       .c-h1 { font-size: 40px; }
       .marketing-quote { font-size: 20px; }
-      .video-corner-wrap { bottom: -5
+      .video-corner-wrap { bottom: -50px; opacity: 0.3; }
+    }
+      /* GLOBAL FONT RULES */
+    body, p, span, a, li, .nav-links a, .nav-logo, .role-badge, .bio-text, .sc-desc, .skill-desc, .tagline, .description, button, .pill, label, caption, footer, .f-desc, .f-col h4, .f-col a, .f-col p, .f-bottom {
+      font-family: var(--font-body) !important; letter-spacing: 0.01em !important; line-height: 1.75 !important; -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4, .about-title, .hero-name, .section-title, .btt-title, .f-logo, .sc-title, .skill-title, .brands-heading, .sn-h2, .metrics-h2 {
+      font-family: var(--font-display) !important; letter-spacing: -0.02em !important; line-height: 1.05 !important; -webkit-font-smoothing: antialiased;
+    }
+    .nav-logo { font-family: var(--font-display) !important; font-weight: 800 !important; font-size: 19px !important; letter-spacing: -0.01em !important; }
+    /* CONTACT */
+    .contact-heading { font-family: var(--font-display) !important; font-weight: 800; }
+    label, input, textarea { font-family: var(--font-body) !important; }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="cur"></div>
+  <div id="cur-ring"></div>
+
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-pip"></span>
+      Shalini <em>Singh</em>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#about-section">About Me</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+  </nav>
+
+  <section id="contact-section">
+    <!-- LEFT -->
+    <div class="contact-left">
+      <h1 class="c-h1">Let's build <em>something</em> real.</h1>
+
+      <!-- Underrated Marketing Quote -->
+      <div style="margin-top:20px;">
+        <p class="marketing-quote">
+          Good marketing makes the company look smart. Great marketing makes the customer feel smart.
+        </p>
+        <span class="quote-author">&mdash; Joe Chernov</span>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.instagram.com/shalinistuff/" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/in/shalini-singh-953747151" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="contact-right">
+      
+      <div class="form-wrapper">
+        <!-- Formspree Integration -->
+        <form action="https://formspree.io/f/xykbprbo" method="POST">
+          
+          <div class="input-group">
+            <input type="text" id="name" name="name" required placeholder=" " autocomplete="name">
+            <label for="name">Your Name</label>
+          </div>
+
+          <div class="input-group">
+            <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
+            <label for="email">Your Email</label>
+          </div>
+
+          <div class="input-group">
+            <select id="reason" name="reason" required>
+              <option value="" disabled selected>Select one</option>
+              <option value="Freelance project">Freelance project</option>
+              <option value="Full-time opportunity">Full-time opportunity</option>
+              <option value="Collaboration">Collaboration</option>
+              <option value="Just saying hi">Just saying hi</option>
+            </select>
+            <label for="reason" class="static-label">WHAT'S THIS ABOUT?</label>
+            <!-- Custom dropdown arrow matching exactly your brand -->
+            <div style="position: absolute; right: 0; top: 16px; pointer-events: none;">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1.5L6 6.5L11 1.5" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="input-group" style="margin-bottom:24px;">
+            <textarea id="message" name="message" rows="3" required placeholder=" "></textarea>
+            <label for="message">How can I help you?</label>
+          </div>
+
+          <!-- Hidden Formspree config subject line -->
+          <input type="hidden" name="_subject" value="New Portfolio Inquiry!">
+
+          <button type="submit" class="btn-main">Send Message &#8594;</button>
+        </form>
+      </div>
+
+      </div>
+  </section>
+
+  <script>
+    /* CURSOR */
+    const cur = document.getElementById("cur"), ring = document.getElementById("cur-ring");
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + "px"; cur.style.top = my + "px"; });
+    (function loop() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(loop); })();
+    document.querySelectorAll("a, button, input, textarea").forEach(el => {
+      el.addEventListener("mouseenter", () => { cur.classList.add("big"); ring.classList.add("big"); });
+      el.addEventListener("mouseleave", () => { cur.classList.remove("big"); ring.classList.remove("big"); });
+    });
+
+    /* NAV SCROLL */
+    window.addEventListener("scroll", () => {
+      document.getElementById("mainNav").classList.toggle("scrolled", window.scrollY > 24);
+    }, { passive: true });
+  </script>
+
+</body>
+
+</html>
+
+
+
+
+
